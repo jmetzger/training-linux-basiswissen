@@ -15,7 +15,7 @@
      1. [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      1. [Kopieren/Verschieben/umbenennen](file-rename-copy-move.md) 
   1. Prozesse 
-     [Prozesse anzeigen - ps/pstree -p](prozesse.md)
+     1. [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. [Hilfe zu Befehlen](help.md)
   1. [Literatur](literatur.md) 
 
