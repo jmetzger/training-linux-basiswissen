@@ -4,16 +4,8 @@
 
   1. [Verzeichnisaufbau](verzeichnisaufbau.md) 
   1. [Basisbefehle](basisbefehle.md)
-     1. In den Root-Benutzer wechseln  
+     1. [In den Root-Benutzer wechseln](sudo.md)  
   1. [Literatur](literatur.md) 
-
-## In den root-Benutzer wechseln 
-
-```
-# einloggen als normaler Benutzer z.B. benutzer: kurs 
-sudo su -
-# eingeben des Passworts des benutzer
-```
 
 ## Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
 
