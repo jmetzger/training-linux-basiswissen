@@ -19,7 +19,8 @@
      1. [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. Benutzer, Gruppen und Rechte 
      1. [Rechte](rechte.md) 
-     2. [Dateien für Benutzer und Gruppen](files-users-groups.md) 
+     1. [Dateien für Benutzer und Gruppen](files-users-groups.md) 
+     1. [Benutzer anlegen](create-users.md)  
   1. [Hilfe zu Befehlen](help.md)
   1. [Literatur](literatur.md) 
 
