@@ -31,6 +31,12 @@
   + Schnittstelle zwischen Kernel und User-Space (für Programme, Benutzer)
   + Kommunikation erfolgt über Dateien 
 
+## /root 
+  
+  * Heimatverzeichnis des root-Benutzers 
+
+## /run 
+
 
 
 
