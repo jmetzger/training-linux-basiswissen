@@ -7,7 +7,9 @@
      1. [In den Root-Benutzer wechseln](sudo.md)  
      1. [Wo bin ich ?](pwd.md)
      1. [Praktische Ausgabe von langen Seite - less](less.md) 
-  1. [Literatur](literatur.md) 
+  1. Prozesse 
+     [Prozesse anzeigen - ps/pstree -p](prozesse.md)
+  3. [Literatur](literatur.md) 
 
 ## Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
 
