@@ -22,5 +22,15 @@
 
   * Große Softwarepaket (z.B. LibreOffice, OpenOffice, Dritt-Anbieter) 
 
+## /boot 
+ 
+  * Files for booting (e.g. kernel, grub.cfg, initital ramdisk)
+
+## /proc 
+
+  + Schnittstelle zwischen Kernel und User-Space (für Programme, Benutzer)
+  + Kommunikation erfolgt über Dateien 
+
+
 
 
