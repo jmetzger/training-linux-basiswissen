@@ -40,6 +40,29 @@
   * Dateien mit Prozess-ID für laufenden Services
   * um diese gut beenden zu können 
 
+## /tmp 
 
+  * Temporäre Dateien 
+  * Löschen von Dateien kann unter /etc/tmpfiles.d verwaltet werden (erfolgt von systemd auf Tagesbasis) 
 
+## /sys 
 
+  * wie proc 
+  * Schnittstelle zwischen Kernel und User-space 
+
+## /var (=variable daten) 
+
+  * Hier liegen Daten, die sich häufig ändern
+  * Log-Dateien, Datenbanken, Spool-Dateien, Cache-Dateien 
+
+## /lib 
+
+  * Bibliotheken (.so, .ko) wie unter Windows *dll's 
+
+## /sbin
+
+  * Programme zur Systemadministration 
+
+## /bin 
+
+  * Normale Programme für alle (executables) 
