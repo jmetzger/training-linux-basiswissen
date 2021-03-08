@@ -5,6 +5,7 @@
   1. [Verzeichnisaufbau](verzeichnisaufbau.md) 
   1. [Basisbefehle](basisbefehle.md)
      1. [In den Root-Benutzer wechseln](sudo.md)  
+     1. [Wo bin ich ?](pwd.md)
   1. [Literatur](literatur.md) 
 
 ## Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
@@ -34,10 +35,3 @@ cd etc
 cd /etc 
 ```
 
-## Wo bin ich ?
-
-```
-# 1. Ich erkenne es am prompt (Beginn  der Zeile ) 
-
-# pwd - Print working directory 
-pwd 
