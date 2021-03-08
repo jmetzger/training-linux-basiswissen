@@ -3,8 +3,9 @@
 ## Agenda 
 
   1. [Verzeichnisaufbau](verzeichnisaufbau.md) 
-  2. [Basisbefehle](basisbefehle.md)
-  3. [Literatur](literatur.md) 
+  1. [Basisbefehle](basisbefehle.md)
+     1. In den Root-Benutzer wechseln  
+  1. [Literatur](literatur.md) 
 
 ## In den root-Benutzer wechseln 
 
