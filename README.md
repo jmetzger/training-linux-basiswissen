@@ -4,12 +4,15 @@
 
   1. [Verzeichnisaufbau](verzeichnisaufbau.md) 
      1. [Dateitypen](dateitypen.md) 
-  3. [Basisbefehle](basisbefehle.md)
+  1. [Basisbefehle](basisbefehle.md)
      1. [In den Root-Benutzer wechseln](sudo.md)  
      1. [Wo bin ich ?](pwd.md)
      1. [Praktische Ausgabe von langen Seite - less](less.md) 
      1. [Datei anlegen - touch](touch.md)
-  4. Prozesse 
+  1. Dateien 
+     1. [Inhalt in Datei schreiben und anhängen](file-write-append.md)
+  
+  1. Prozesse 
      [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. [Hilfe zu Befehlen](help.md)
   1. [Literatur](literatur.md) 
