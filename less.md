@@ -35,3 +35,10 @@ G
 # zu einer bestimmten Zeile (Zeile 5)  
 5g 
 ```
+
+## In die Hilfe rein 
+
+```
+h 
+# wieder raus
+q
