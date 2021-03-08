@@ -10,8 +10,9 @@
      1. [Praktische Ausgabe von langen Seite - less](less.md) 
      1. [Datei anlegen - touch](touch.md)
      1. [Autovervollständen * and tab](autocomplete.md) 
-  1. Dateien 
+  1. Dateien und Verzeichnisse
      1. [Inhalt in Datei schreiben und anhängen](file-write-append.md)
+     1. [Verzeichnisse und Dateien löschen](file-dir-delete.md)
   
   1. Prozesse 
      [Prozesse anzeigen - ps/pstree -p](prozesse.md)
