@@ -13,7 +13,7 @@
   1. Dateien und Verzeichnisse
      1. [Inhalt in Datei schreiben und anhängen](file-write-append.md)
      1. [Verzeichnisse und Dateien löschen](file-dir-delete.md)
-  
+     1. [Kopieren/Verschieben/umbenennen](file-rename-copy-move.md) 
   1. Prozesse 
      [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. [Hilfe zu Befehlen](help.md)
