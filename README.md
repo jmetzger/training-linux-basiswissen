@@ -29,6 +29,8 @@
      1. [bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
   1. Logs/Loganalyse
      1. [Logfile beobachten](tailf.md)
+  1. Variablen
+     1. [Setzen und verwenden von Variablen](variables.md) 
   3. [Hilfe zu Befehlen](help.md)
   4. [Literatur](literatur.md) 
 
