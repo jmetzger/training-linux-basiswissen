@@ -1,0 +1,5 @@
+# Kernel-Version 
+
+```
+uname -a 
+```
