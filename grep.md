@@ -24,3 +24,9 @@ cat /etc/services | grep -v "s$"
 cat /etc/services | grep  "s$"
 
 ```
+
+## Recursive Suchen (grep -r) 
+
+```
+grep -r "PermitRootLogin" /etc
+```
