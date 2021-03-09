@@ -91,7 +91,22 @@ grep -r "AllowIsolate" /lib/systemd/system
 systemctl isolate reboot.target 
 ```
 
+## Dienste maskieren, so dass sie nicht gestartet werden können 
+
+```
+systemctl mask apache2
+# kann jetzt gestartet werden
+systemctl start apache2
+
+# de-maskieren 
+systemctl unmask apache2 
+# kann wieder gestaret werden
+systemctl start apache2
+```
+
 ## systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
+
+
 
