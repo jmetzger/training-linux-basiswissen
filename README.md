@@ -33,6 +33,8 @@
      1. [Setzen und verwenden von Variablen](variables.md) 
   1. Dienste/Runlevel(Targets verwalten) 
      1. [Die wichtigsten systemctl/service](systemctl-service.md)
+  1. Partitionierung und Filesystem
+     1. [parted and mkfs.ext4](parted-mkfs.md)
   1. [Hilfe zu Befehlen](help.md)
   1. [Literatur](literatur.md) 
 
