@@ -27,3 +27,11 @@ tail /etc/services
 # die letzten 40 Zeilen 
 tail -n 40 /etc/services
 ```
+
+## Ausgabe der letzten Zeilen und ausgabe in Datei 
+
+```
+cd /var/log 
+tail -n 100 syslog.1 >> fehlerlog 
+cat fehlerlog
+```
