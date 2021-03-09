@@ -26,6 +26,7 @@
      1. [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
      1. [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
      1. [wc - zeilen zählen](wc.md)
+     1. [bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
   1. Logs/Loganalyse
      1. [Logfile beobachten](tailf.md)
   3. [Hilfe zu Befehlen](help.md)
