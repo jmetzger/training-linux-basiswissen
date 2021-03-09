@@ -45,6 +45,11 @@ poweroff
 systemctl poweroff 
 ```
 
+## Welche Dienste sind aktiviert/deaktiviert 
+```
+systemctl list-unit-files -t service
+```
+
 ## systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
