@@ -50,6 +50,25 @@ systemctl poweroff
 systemctl list-unit-files -t service
 ```
 
+## Dienstekonfiguration anzeigen 
+
+```
+systemctl cat sshd.service 
+```
+
+## Dienste bearbeiten 
+```
+systemctl edit sshd.service 
+# Dann eintragen
+[Unit]
+Description=Jochen's ssh-server 
+# Dann speichern und schliessen (Editor) 
+
+systemctl daemon-reload 
+systemctl status 
+```
+
+
 ## systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
