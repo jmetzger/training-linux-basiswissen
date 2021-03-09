@@ -35,8 +35,10 @@
      1. [Die wichtigsten systemctl/service](systemctl-service.md)
   1. Partitionierung und Filesystem
      1. [parted and mkfs.ext4](parted-mkfs.md)
-  1. Boot-Prozess 
-     1. [Grub konfigurieren](grub.md) 
+  1. Boot-Prozess und Kernel 
+     1. [Grub konfigurieren](grub.md)
+     1. [Kernel-Version anzeigen](kernel-version.md) 
+     1. [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
   1. Hilfe 
      1. [Hilfe zu Befehlen](help.md)
   1. Literatur 
