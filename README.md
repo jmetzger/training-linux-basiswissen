@@ -23,7 +23,7 @@
      1. [Benutzer anlegen](create-users.md) 
      1. [sudo Benutzer erstellen](mod-user-sudo.md) 
   1. Dateimanipulation/Unix Tools
-     1. [cat/head-Beginn einer Datei anzeigen](cat-head.md)
+     1. [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
   1. [Hilfe zu Befehlen](help.md)
   1. [Literatur](literatur.md) 
 
