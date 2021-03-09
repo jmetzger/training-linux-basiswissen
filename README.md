@@ -25,8 +25,10 @@
   1. Dateimanipulation/Unix Tools
      1. [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
      1. [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
-  1. [Hilfe zu Befehlen](help.md)
-  1. [Literatur](literatur.md) 
+  1. Logs/Loganalyse
+     1. [Logfile beobachten](tailf.md)
+  3. [Hilfe zu Befehlen](help.md)
+  4. [Literatur](literatur.md) 
 
 ## Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
 
