@@ -35,8 +35,12 @@
      1. [Die wichtigsten systemctl/service](systemctl-service.md)
   1. Partitionierung und Filesystem
      1. [parted and mkfs.ext4](parted-mkfs.md)
-  1. [Hilfe zu Befehlen](help.md)
-  1. [Literatur](literatur.md) 
+  1. Boot-Prozess 
+     1. [Grub konfigurieren](grub.md) 
+  1. Hilfe 
+     1. [Hilfe zu Befehlen](help.md)
+  1. Literatur 
+     1. [Literatur](literatur.md) 
 
 ## Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
 
