@@ -68,6 +68,16 @@ systemctl daemon-reload
 systemctl status 
 ```
 
+## Targets (wechseln und default) 
+
+```
+# Default runlevel/target auslesen 
+systemctl get-default 
+# in target wechseln 
+systemctl isolate multi-user 
+# Default target setzen (nach start/reboot) 
+systemctl set-default multi-user 
+```
 
 ## systemctl Cheatsheet 
 
