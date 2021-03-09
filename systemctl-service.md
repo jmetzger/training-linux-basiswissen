@@ -79,6 +79,18 @@ systemctl isolate multi-user
 systemctl set-default multi-user 
 ```
 
+## Alle Target anzeigen in die ich reinwechseln kann (isolate) 
+
+```
+# Ubuntu 
+grep -r "AllowIsolate" /lib/systemd/system 
+/lib/systemd/system/reboot.target
+...
+...
+...
+systemctl isolate reboot.target 
+```
+
 ## systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
