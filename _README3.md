@@ -3,68 +3,68 @@
 
 ## Agenda
   1. Distributionen 
-     * [Überblick](#Überblick)
+     * [Überblick](#überblick)
   1. Verzeichnisse und Dateitypen 
-     * [Verzeichnisaufbau](#Verzeichnisaufbau)
-     * [Dateitypen](#Dateitypen)
+     * [Verzeichnisaufbau](#verzeichnisaufbau)
+     * [Dateitypen](#dateitypen)
   1. Basisbefehle
-     * [In den Root-Benutzer wechseln](#In den Root-Benutzer wechseln)
-     * [Wo bin ich ?](#Wo bin ich ?)
-     * [Praktische Ausgabe von langen Seiten - less](#Praktische Ausgabe von langen Seiten - less)
-     * [Datei anlegen - touch](#Datei anlegen - touch)
-     * [Autovervollständen * und tab](#Autovervollständen * und tab)
-     * [Welches Programm wird verwendet](#Welches Programm wird verwendet)
+     * [In den Root-Benutzer wechseln](#in-den-root-benutzer-wechseln)
+     * [Wo bin ich ?](#wo-bin-ich-)
+     * [Praktische Ausgabe von langen Seiten - less](#praktische-ausgabe-von-langen-seiten---less)
+     * [Datei anlegen - touch](#datei-anlegen---touch)
+     * [Autovervollständen * und tab](#autovervollständen-*-und-tab)
+     * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Dateien und Verzeichnisse
-     * [Mit cd im System navigieren](#Mit cd im System navigieren)
-     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](#Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen)
-     * [Inhalt in Datei schreiben und anhängen](#Inhalt in Datei schreiben und anhängen)
-     * [Verzeichnisse und Dateien löschen](#Verzeichnisse und Dateien löschen)
-     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#Kopieren/Verschieben/Umbenennen von Dateien und Files)
+     * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
+     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen)
+     * [Inhalt in Datei schreiben und anhängen](#inhalt-in-datei-schreiben-und-anhängen)
+     * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
+     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
   1. Prozesse 
-     * [Prozesse anzeigen - ps/pstree -p](#Prozesse anzeigen - ps/pstree -p)
+     * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
   1. Benutzer, Gruppen und Rechte 
-     * [Rechte](#Rechte)
-     * [Dateien für Benutzer und Gruppen](#Dateien für Benutzer und Gruppen)
-     * [Benutzer anlegen](#Benutzer anlegen)
-     * [sudo Benutzer erstellen](#sudo Benutzer erstellen)
+     * [Rechte](#rechte)
+     * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
+     * [Benutzer anlegen](#benutzer-anlegen)
+     * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
   1. Dateimanipulation/Unix Tools
-     * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#cat/head/tail-Beginn/Ende einer Datei anzeigen)
-     * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat - Inhalte einer mit gzip komprimierten Datei anzeigen)
-     * [wc - Zeilen zählen](#wc - Zeilen zählen)
-     * [Bestimmte Zeilen aus Datei anzeigen - grep](#Bestimmte Zeilen aus Datei anzeigen - grep)
-     * [Erweiterte Suche mit Grep](#Erweiterte Suche mit Grep)
+     * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#catheadtail-beginnende-einer-datei-anzeigen)
+     * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat---inhalte-einer-mit-gzip-komprimierten-datei-anzeigen)
+     * [wc - Zeilen zählen](#wc---zeilen-zählen)
+     * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
+     * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
   1. Logs/Loganalyse
-     * [Logfile beobachten](#Logfile beobachten)
-     * [Dienste debuggen](#Dienste debuggen)
+     * [Logfile beobachten](#logfile-beobachten)
+     * [Dienste debuggen](#dienste-debuggen)
   1. Variablen
-     * [Setzen und verwenden von Variablen](#Setzen und verwenden von Variablen)
+     * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
   1. Dienste/Runlevel(Targets verwalten) 
-     * [Die wichtigsten systemctl/service](#Die wichtigsten systemctl/service)
+     * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
   1. Partitionierung und Filesystem
-     * [parted and mkfs.ext4](#parted and mkfs.ext4)
+     * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
   1. Boot-Prozess und Kernel 
-     * [Grub konfigurieren](#Grub konfigurieren)
-     * [Kernel-Version anzeigen](#Kernel-Version anzeigen)
-     * [Kernel-Module laden/entladen/zeigen](#Kernel-Module laden/entladen/zeigen)
+     * [Grub konfigurieren](#grub-konfigurieren)
+     * [Kernel-Version anzeigen](#kernel-version-anzeigen)
+     * [Kernel-Module laden/entladen/zeigen](#kernel-module-ladenentladenzeigen)
   1. Hilfe 
-     * [Hilfe zu Befehlen](#Hilfe zu Befehlen)
+     * [Hilfe zu Befehlen](#hilfe-zu-befehlen)
   1. Grafische Oberfläche und Installation 
-     * [Gnome unter Ubuntu installieren](#Gnome unter Ubuntu installieren)
-     * [X-Server - Ausgabe auf Windows umleiten](#X-Server - Ausgabe auf Windows umleiten)
+     * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
+     * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
   * https://ubuntu.com/download/server#download
   1. Wartung und Aktualisierung
-     * [Aktualisierung des Systems](#Aktualisierung des Systems)
-     * [Paketmanager apt/dpkg](#Paketmanager apt/dpkg)
-     * [Archive runterladen und entpacken](#Archive runterladen und entpacken)
+     * [Aktualisierung des Systems](#aktualisierung-des-systems)
+     * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
+     * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
   1. Firewall und ports
-     * [ufw (uncomplicated firewall)](#ufw (uncomplicated firewall))
+     * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
-     * [Scannen und Überprüfen mit telnet/nmap](#Scannen und Überprüfen mit telnet/nmap)
+     * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
-     * [Auf welchen Ports lauscht mein Server](#Auf welchen Ports lauscht mein Server)
+     * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
 
   1. Literatur 
-     * [Literatur](#Literatur)
+     * [Literatur](#literatur)
 
 
 
