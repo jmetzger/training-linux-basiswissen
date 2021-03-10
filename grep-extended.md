@@ -47,7 +47,19 @@ hans1txt
 peter.txt
 
 grep 'hans\.txt' /root/dateinamen 
+
+root@ubuntu2004-101:/etc# grep 'hans\.txt' /root/dateinamen
+hans.txt
+root@ubuntu2004-101:/etc# grep 'hans.txt' /root/dateinamen
+hans.txt
+hans1txt
+
+
+
 ```
+
+
+
 
 ## Ref:
 
