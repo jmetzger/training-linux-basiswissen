@@ -1,6 +1,4 @@
-# File User Groups
-
-## Dateien für Benutzer und Gruppen 
+# Dateien für Benutzer und Gruppen 
 
 ```
 cd /etc 
