@@ -20,3 +20,12 @@ ufw status
 ufw enable 
 ufw status 
 ```
+
+## Port hinzufügen 
+
+```
+ufw allow 22 # for tcp and udp
+# or 
+ufw allow ssh # uses /etc/services for detection of port - number
+ufw status 
+```
