@@ -3,7 +3,7 @@
 
 ## Agenda
   1. Distributionen 
-     * [Überblick](overview-distros.md)
+     * [Überblick](#distributionen)
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
