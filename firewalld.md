@@ -32,7 +32,7 @@ firewall-cmd --state
 ## Best way to add a new rule 
 ```
 # Step1: do it persistent -> written to disk 
-firewall-cmd --add-port=82/tcp --persistant 
+firewall-cmd --add-port=82/tcp --permanent  
 
 # Step 2: + reload firewall 
 firewall-cmd --reload 
