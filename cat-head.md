@@ -1,4 +1,4 @@
-# Datein anzeigen / Teile davon 
+# Dateien anzeigen / Teile davon 
 
 ### cat mit Zeilennumer 
 
