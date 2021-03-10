@@ -58,6 +58,26 @@ hans1txt
 
 ```
 
+## Einzelne Zeichen sollen vorkommen 
+
+```
+root@ubuntu2004-101:~# echo "Klaus" >> /root/namen
+root@ubuntu2004-101:~# echo "klaus" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK]l' /root/namen
+Klaus
+klaus
+root@ubuntu2004-101:~# grep '[kK][la]' /root/namen
+Klaus
+klaus
+root@ubuntu2004-101:~# echo "karin" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK][la]' /root/namen
+Klaus
+klaus
+karin
+```
+
+
+
 ## Cheatsheets 
 
   * https://cheatography.com/tme520/cheat-sheets/grep-english/
