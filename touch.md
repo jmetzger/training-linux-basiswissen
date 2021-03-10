@@ -1,6 +1,4 @@
-# Datei anlegen 
-
-## Datei anlegen 
+# Dateien anlegen 
 
 ```
 touch dateiname 
