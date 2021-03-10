@@ -3,16 +3,18 @@
 ## Install firewalld and restrict ufw 
 
 ```
+# Schritt 1: ufw deaktivieren 
+systemctl stop ufw
+systemctl disable ufw 
+ufw disable # zur Sicherheit 
+ufw status
+# -> disabled # this has to be the case 
+
+# Schritt 2: firewalld 
 apt install firewalld 
 systemctl status firewalld 
 systemctl status ufw 
 
-# ufw service is still running, but :
-ufw status
--> disabled # this has to be the case 
-
-# 
-systemctl disable --now ufw.service 
 ```
 
 
