@@ -17,7 +17,7 @@
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](list.md)
      * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
-     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-move.md) 
+     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. Benutzer, Gruppen und Rechte 
