@@ -3,7 +3,7 @@
 
 ## Agenda
   1. Distributionen 
-     * [Überblick](#distributionen)
+     * [Überblick](#%C3%BCberblick)
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
