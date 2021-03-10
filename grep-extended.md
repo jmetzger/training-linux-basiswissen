@@ -20,6 +20,16 @@ cat /etc/services | grep -E 'protocol|mysql'
 egrep  -i '^(mysql|Moira)' /etc/services
 ```
 
+## x-Zeilen vor bzw. nach "Finde-(Grep-)"  - Ergebnis anzeigen
+
+```
+# -A x-Zeilen danach, z.B. -A 4 --> 4 Zeilen danach 
+# -B x-Zeilen davor 
+egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services'^(mysql|Moira)' /etc/services
+```
+
+
+
 
 ## Ref:
 
