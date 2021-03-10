@@ -255,8 +255,6 @@ echo todol<TAB> # bei einem weiteren Eintrag
 ### Welches Programm wird verwendet
 
 
-### Welches Programm wird verwendet ?
-
 ```
 ## Sucht in der Pfad-Variablen $PATH nach dem programm
 ## und zeigt ersten Fund --> d.h. dieses Programm würde ausgeführt 
