@@ -46,7 +46,7 @@
      * [Hilfe zu Befehlen](help.md)
   1. Grafische Oberfläche 
      * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
-     
+     * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md) 
   3. Literatur 
      * [Literatur](literatur.md) 
 
