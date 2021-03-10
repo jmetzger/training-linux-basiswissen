@@ -2,6 +2,8 @@
 
 
 ## Agenda
+  1. Distributionen 
+     * [Überblick](overview-distros.md)
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
@@ -30,8 +32,10 @@
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
      * [wc - Zeilen zählen](wc.md)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
+     * [Erweiterte Suche mit Grep](grep-extended.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
+     * [Dienste debuggen](debug-service.md)
   1. Variablen
      * [Setzen und verwenden von Variablen](variables.md) 
   1. Dienste/Runlevel(Targets verwalten) 
@@ -44,11 +48,75 @@
      * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
   1. Hilfe 
      * [Hilfe zu Befehlen](help.md)
+  1. Grafische Oberfläche und Installation 
+     * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
+     * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
+     * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
+  1. Wartung und Aktualisierung
+     * [Aktualisierung des Systems](update-upgrade.md)
+     * [Paketmanager apt/dpkg](apt-dpkg.md) 
+  1. Firewall und ports
+     * [ufw (uncomplicated firewall)](ufw.md)
+     * [firewalld](firewalld.md)
+     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
+  1. Netzwerk/Dienste 
+     * [Auf welchen Ports lauscht mein Server](lsof.md) 
+
   1. Literatur 
      * [Literatur](literatur.md) 
 
 
 
+
+<div class="page-break"></div>
+
+## Distributionen 
+
+### Überblick
+
+
+### Multi-Purpose - Distributionen (Ideal zum Starten) 
+
+#### Redhat-Familie 
+
+```
+Centos 
+Redhat.  — rpm / (yum / dnf) 
+Fedora 
+```
+#### Debian Familie 
+
+```
+Debian 
+Ubuntu. - dpkg / apt
+Mint 
+```
+
+#### SuSE - Familie 
+
+```
+SLES (SuSE Linux Enterprise)
+OpenSuSE 
+```
+
+### Distris zur Sicherheitsüberprüfung / Hacken 
+
+```
+Kali Linux
+Parrot.   - Distributionen zum Hacken 
+```
+
+### Live-DVD (Linux ohne Installation) 
+
+  * Knoppix - Live DVD - brauche nicht installieren 
+
+
+### Spezial-Linuxe, z.B. für Router 
+
+```
+OpenWRT 
+DDWRT
+```
 
 <div class="page-break"></div>
 
@@ -552,6 +620,134 @@ grep -r "PermitRootLogin" /etc
 
 <div class="page-break"></div>
 
+### Erweiterte Suche mit Grep
+
+
+### Nach einzelenen Wort suchen (Wort muss so vorkommen) 
+
+```
+cat /etc/services | grep -i -w 'protocol'
+```
+
+### Eines der Begriffe soll vorkommen 
+
+```
+## Achtung, unbedingt -E für extended regex verwendet 
+cat /etc/services | grep -E 'protocol|mysql' 
+```
+
+### Eines der Wort soll am Anfang der Zeile vorkommen 
+
+```
+## egrep ist das gleiche wie grep -E 
+egrep  -i '^(mysql|Moira)' /etc/services
+```
+
+### x-Zeilen vor bzw. nach "Finde-(Grep-)"  - Ergebnis anzeigen
+
+```
+## -A x-Zeilen danach, z.B. -A 4 --> 4 Zeilen danach 
+## -B x-Zeilen davor 
+egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services'^(mysql|Moira)' /etc/services
+```
+
+### Einzelne Zeichen als Suchmuster nehmen 
+
+```
+## 0, dann zwei beliebige Zeichen, dann tcp 
+grep '0..tcp' /etc/services
+## 0, dann ein beliebiges Zeichen, dann tcp 
+grep '0.tcp' /etc/services 
+
+```
+
+### Tatsächlich eine Punkt suchen 
+
+```
+## /root/dateinamen 
+hans.txt 
+hans1txt
+peter.txt
+
+grep 'hans\.txt' /root/dateinamen 
+
+root@ubuntu2004-101:/etc# grep 'hans\.txt' /root/dateinamen
+hans.txt
+root@ubuntu2004-101:/etc# grep 'hans.txt' /root/dateinamen
+hans.txt
+hans1txt
+
+
+
+```
+
+### Einzelne Zeichen sollen vorkommen 
+
+```
+root@ubuntu2004-101:~# echo "Klaus" >> /root/namen
+root@ubuntu2004-101:~# echo "klaus" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK]l' /root/namen
+Klaus
+klaus
+root@ubuntu2004-101:~# grep '[kK][la]' /root/namen
+Klaus
+klaus
+root@ubuntu2004-101:~# echo "karin" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK][la]' /root/namen
+Klaus
+klaus
+karin
+```
+
+```
+echo "Klaus1" >> /root/namen
+root@ubuntu2004-101:~# echo "Klaus2" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK][la]aus[0-9]' /root/namen
+```
+
+### Mengeangabe 
+
+```
+## Achtung unbedingt egrep oder grep -E verwenden 
+cat /root/namen
+AxB nix
+AxB nix
+abc nix
+a nix
+
+egrep '^[a-zA-Z]{1,3} nix' /root/namen
+```
+
+```
+echo "ab nix" >> /root/namen
+## Mindestens 2 Zeichen 
+root@ubuntu2004-101:~# egrep '^[a-zA-Z]{2,} nix' /root/namen
+AxB nix
+AxB nix
+abc nix
+ab nix
+```
+
+### Nach Zahlen Suchen 
+
+```
+echo "12345 namen" >> /root/namen 
+grep  "[[:digit:]]\{5\}" /root/namen
+```
+
+
+### Cheatsheets 
+
+  * https://cheatography.com/tme520/cheat-sheets/grep-english/
+
+
+
+### Ref:
+
+  * https://www.cyberciti.biz/faq/grep-regular-expressions/
+
+<div class="page-break"></div>
+
 ## Logs/Loganalyse
 
 ### Logfile beobachten
@@ -565,6 +761,49 @@ tail -f /var/log/syslog
 logger meine_nachricht 
 
 ```
+
+<div class="page-break"></div>
+
+### Dienste debuggen
+
+
+### Walkthrough 
+
+```
+## Dienst startet nicht 
+
+## Schritt 1 : status -> was sagen die logs (letzte 10 Zeilen) 
+systemctl status mariadb.service 
+
+## Nicht fündig-> Schritt 2:
+jourrnalctl -xe
+
+## Nicht fündig -> Schritt 3:
+journalctl -u mariadb.service 
+
+## Nicht fündig -> Schritt 4:
+## Spezifisches Log von Dienst suchen 
+## und evtl. LogLevel von Dienst hochsetzen
+## z.B. bei mariadb (durch Internetrecherche herausfinden) 
+less /var/log/mysql/error.log 
+
+## Nicht fündig -> Schritt 5
+## Allgemeines Log
+## Debian/Ubuntu 
+/var/log/syslog
+## REdhat/Centos 
+/var/log/messages 
+
+
+```
+
+### Find error in logs quickly
+
+```
+cd /var/log/mysql 
+cat error.log | grep -i error
+```
+
 
 <div class="page-break"></div>
 
@@ -847,6 +1086,296 @@ vi -h
 ps --help
 man ps 
 info ps 
+```
+
+<div class="page-break"></div>
+
+## Grafische Oberfläche und Installation 
+
+### Gnome unter Ubuntu installieren
+
+
+```
+sudo apt install tasksel 
+sudo tasksel install ubuntu-desktop 
+```
+
+<div class="page-break"></div>
+
+### X-Server - Ausgabe auf Windows umleiten
+
+
+  * https://www.thomas-krenn.com/de/wiki/Grafische_Linux_Programme_remote_von_einem_Windows_PC_mit_Xming_nutzen
+
+<div class="page-break"></div>
+
+### Installations-Images-Server
+
+  * https://ubuntu.com/download/server#download
+
+## Wartung und Aktualisierung
+
+### Aktualisierung des Systems
+
+
+```
+apt update
+apt upgrade 
+apt dist-upgrade 
+
+## oder geht auch auf älteren Systemen
+apt-get update
+apt-get upgrade
+apt-get dist-upgrade
+
+```
+
+<div class="page-break"></div>
+
+### Paketmanager apt/dpkg
+
+
+### Alle Pakete anzeigen, die installiert sind auf dem System 
+
+```
+dpkg -l 
+```
+
+### Alle Paket die zur Verfügung stehen 
+
+```
+apt list 
+```
+
+### Wo sind die Repos konfiguriert 
+
+```
+cat /etc/apt/sources.list 
+cd /etc/apt/sources.list.d 
+```
+
+
+### Paket deinstallieren und aufräumen 
+
+```
+## mit konfigurationsdateien deinstallieren
+apt purge mariadb-server 
+## konfgiurationsdateien stehen lassen
+apt remove mariadb-server 
+
+## Aufräumen / alle Pakete die nicht mehr benötigt werden
+apt autoremove 
+```
+
+<div class="page-break"></div>
+
+## Firewall und ports
+
+### ufw (uncomplicated firewall)
+
+
+### Läuft der Dienst für die Firewall 
+
+```
+systemctl status ufw 
+```
+
+### Ist die Firewall scharfgeschaltet ? 
+
+```
+ufw status
+```
+
+### Firewall aktivieren (Achtung ssh) 
+
+```
+## Neue ssh - Verbindungen werden nicht angenommen 
+## Bestehende Bedingungen (ESTABLISHED) bleiben erhalten 
+ufw enable 
+ufw status 
+```
+
+### Port hinzufügen 
+
+```
+ufw allow 22 # for tcp and udp
+## or 
+ufw allow ssh # uses /etc/services for detection of port - number
+ufw status 
+```
+
+<div class="page-break"></div>
+
+### firewalld
+
+
+### Install firewalld and restrict ufw 
+
+```
+## Schritt 1: ufw deaktivieren 
+systemctl stop ufw
+systemctl disable ufw 
+ufw disable # zur Sicherheit 
+ufw status
+## -> disabled # this has to be the case 
+
+## Schritt 2: firewalld 
+apt install firewalld 
+systemctl status firewalld 
+systemctl status ufw 
+
+```
+
+
+### Is firewalld running ?
+```
+## is it set to enabled ?
+systemctl status firewalld 
+firewall-cmd --state
+```
+
+### Command to control firewalld 
+  
+  * firewall-cmd 
+
+### Best way to add a new rule 
+```
+## Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --permanent  
+
+## Step 2: + reload firewall 
+firewall-cmd --reload 
+```
+
+### Zones documentation 
+
+man firewalld.zones 
+
+### Zones available 
+
+```
+firewall-cmd --get-zones 
+block dmz drop external home internal public trusted work
+```
+
+### Active Zones 
+
+```
+firewall-cmd --get-active-zones
+## in our case empty 
+```
+
+### Show information about all zones that are used 
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all-zones 
+```
+
+
+### Add Interface to Zone ~ Active Zone 
+
+```
+firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
+firewall-cmd --reload 
+firewall-cmd --get-active-zones 
+public
+  interfaces: enp0s3
+
+```
+### Default Zone 
+
+```
+## if not specifically mentioned when using firewall-cmd
+## .. add things to this zone 
+firewall-cmd --get-default-zone
+public
+
+```
+
+### Show services 
+```
+firewall-cmd --get-services 
+```
+### Adding/Removing a service 
+
+```
+firewall-cmd --permanent --zone=public --add-service=ssh
+firewall-cmd --reload 
+firewall-cmd --permanent --zone=public --remove-service=ssh
+firewall-cmd --reload 
+```
+
+### Add/Remove ports 
+```
+## add port
+firewall-cmd --add-port=82/tcp --zone=public --permanent
+firewall-cmd --reload
+
+## remove port
+firewall-cmd --remove-port=82/tcp --zone=public --permanent
+firewall-cmd --reload
+```
+
+### Enable / Disabled icmp 
+```
+firewall-cmd --get-icmptypes
+## none present yet 
+firewall-cmd --zone=public --add-icmp-block-inversion --permanent
+firewall-cmd --reload
+```
+
+### Working with rich rules 
+```
+## Documentation 
+## man firewalld.richlanguage
+
+## throttle connectons 
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10/32 service name=http log level=notice prefix="firewalld rich rule INFO:   " limit value="100/h" accept' 
+firewall-cmd --reload # 
+firewall-cmd --zone=public --list-all
+
+## port forwarding 
+firewall-cmd --get-active-zones
+firewall-cmd --zone=public --list-all
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10 forward-port port=42343 protocol=tcp to-port=22'
+firewall-cmd --reload 
+firewall-cmd --zone=public --list-all
+firewall-cmd --remove-service=ssh --zone=public
+
+## 
+
+
+## list only the rich rules 
+firewall-cmd --zone=public --list-rich-rules
+
+## persist all runtime rules 
+firewall-cmd --runtime-to-permanent
+
+
+
+
+```
+
+
+### References 
+
+  * https://www.linuxjournal.com/content/understanding-firewalld-multi-zone-configurations#:~:text=Going%20line%20by%20line%20through,or%20source%20associated%20with%20it.
+  * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
+
+<div class="page-break"></div>
+
+### Scannen und Überprüfen mit telnet/nmap
+
+## Netzwerk/Dienste 
+
+### Auf welchen Ports lauscht mein Server
+
+
+```
+## Zeigt alle ports an auf die gelauscht wird (ipv4) 
+lsof -i 
+## alternative
+netstat -tupel
 ```
 
 <div class="page-break"></div>
