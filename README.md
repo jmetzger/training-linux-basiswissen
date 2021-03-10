@@ -44,7 +44,10 @@
      * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
   1. Hilfe 
      * [Hilfe zu Befehlen](help.md)
-  1. Literatur 
+  1. Grafische Oberfläche 
+     * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
+     
+  3. Literatur 
      * [Literatur](literatur.md) 
 
 
