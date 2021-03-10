@@ -3,68 +3,68 @@
 
 ## Agenda
   1. Distributionen 
-     * [Überblick](#%C3%BCberblick)
+     * [Überblick](#überblick)
   1. Verzeichnisse und Dateitypen 
-     * [Verzeichnisaufbau](verzeichnisaufbau.md)
-     * [Dateitypen](dateitypen.md) 
+     * [Verzeichnisaufbau](#verzeichnisaufbau)
+     * [Dateitypen](#dateitypen)
   1. Basisbefehle
-     * [In den Root-Benutzer wechseln](sudo.md)  
-     * [Wo bin ich ?](pwd.md)
-     * [Praktische Ausgabe von langen Seiten - less](less.md) 
-     * [Datei anlegen - touch](touch.md)
-     * [Autovervollständen * und tab](autocomplete.md) 
-     * [Welches Programm wird verwendet](which.md)
+     * [In den Root-Benutzer wechseln](#in-den-root-benutzer-wechseln)
+     * [Wo bin ich ?](#wo-bin-ich-)
+     * [Praktische Ausgabe von langen Seiten - less](#praktische-ausgabe-von-langen-seiten---less)
+     * [Datei anlegen - touch](#datei-anlegen---touch)
+     * [Autovervollständen * und tab](#autovervollständen--und-tab)
+     * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Dateien und Verzeichnisse
-     * [Mit cd im System navigieren](cd.md)
-     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](list.md)
-     * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
-     * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
-     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
+     * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
+     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen)
+     * [Inhalt in Datei schreiben und anhängen](#inhalt-in-datei-schreiben-und-anhängen)
+     * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
+     * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
   1. Prozesse 
-     * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
+     * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
   1. Benutzer, Gruppen und Rechte 
-     * [Rechte](rechte.md) 
-     * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
-     * [Benutzer anlegen](create-users.md) 
-     * [sudo Benutzer erstellen](mod-user-sudo.md) 
+     * [Rechte](#rechte)
+     * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
+     * [Benutzer anlegen](#benutzer-anlegen)
+     * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
   1. Dateimanipulation/Unix Tools
-     * [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
-     * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
-     * [wc - Zeilen zählen](wc.md)
-     * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
-     * [Erweiterte Suche mit Grep](grep-extended.md)
+     * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#catheadtail-beginnende-einer-datei-anzeigen)
+     * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat---inhalte-einer-mit-gzip-komprimierten-datei-anzeigen)
+     * [wc - Zeilen zählen](#wc---zeilen-zählen)
+     * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
+     * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
   1. Logs/Loganalyse
-     * [Logfile beobachten](tailf.md)
-     * [Dienste debuggen](debug-service.md)
+     * [Logfile beobachten](#logfile-beobachten)
+     * [Dienste debuggen](#dienste-debuggen)
   1. Variablen
-     * [Setzen und verwenden von Variablen](variables.md) 
+     * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
   1. Dienste/Runlevel(Targets verwalten) 
-     * [Die wichtigsten systemctl/service](systemctl-service.md)
+     * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
   1. Partitionierung und Filesystem
-     * [parted and mkfs.ext4](parted-mkfs.md)
+     * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
   1. Boot-Prozess und Kernel 
-     * [Grub konfigurieren](grub.md)
-     * [Kernel-Version anzeigen](kernel-version.md) 
-     * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
+     * [Grub konfigurieren](#grub-konfigurieren)
+     * [Kernel-Version anzeigen](#kernel-version-anzeigen)
+     * [Kernel-Module laden/entladen/zeigen](#kernel-module-ladenentladenzeigen)
   1. Hilfe 
-     * [Hilfe zu Befehlen](help.md)
+     * [Hilfe zu Befehlen](#hilfe-zu-befehlen)
   1. Grafische Oberfläche und Installation 
-     * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
-     * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
-     * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
+     * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
+     * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
+  * https://ubuntu.com/download/server#download
   1. Wartung und Aktualisierung
-     * [Aktualisierung des Systems](update-upgrade.md)
-     * [Paketmanager apt/dpkg](apt-dpkg.md) 
-     * [Archive runterladen und entpacken](tar-download.md) 
+     * [Aktualisierung des Systems](#aktualisierung-des-systems)
+     * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
+     * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
   1. Firewall und ports
-     * [ufw (uncomplicated firewall)](ufw.md)
-     * [firewalld](firewalld.md)
-     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
+     * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
+     * [firewalld](#firewalld)
+     * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
-     * [Auf welchen Ports lauscht mein Server](lsof.md) 
+     * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
 
   1. Literatur 
-     * [Literatur](literatur.md) 
+     * [Literatur](#literatur)
 
 
 
