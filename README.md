@@ -32,6 +32,7 @@
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
      * [wc - Zeilen zählen](wc.md)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
+     * [Erweiterte Suche mit Grep](grep-extended.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
   1. Variablen
