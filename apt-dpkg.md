@@ -18,3 +18,16 @@ apt list
 cat /etc/apt/sources.list 
 cd /etc/apt/sources.list.d 
 ```
+
+
+## Paket deinstallieren und aufräumen 
+
+```
+# mit konfigurationsdateien deinstallieren
+apt purge mariadb-server 
+# konfgiurationsdateien stehen lassen
+apt remove mariadb-server 
+
+# Aufräumen / alle Pakete die nicht mehr benötigt werden
+apt autoremove 
+```
