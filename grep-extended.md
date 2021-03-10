@@ -13,6 +13,13 @@ cat /etc/services | grep -i -w 'protocol'
 cat /etc/services | grep -E 'protocol|mysql' 
 ```
 
+## Eines der Wort soll am Anfang der Zeile vorkommen 
+
+```
+# egrep ist das gleiche wie grep -E 
+egrep  -i '^(mysql|Moira)' /etc/services
+```
+
 
 ## Ref:
 
