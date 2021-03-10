@@ -44,9 +44,10 @@
      * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
   1. Hilfe 
      * [Hilfe zu Befehlen](help.md)
-  1. Grafische Oberfläche 
+  1. Grafische Oberfläche und Installation 
      * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
-     * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md) 
+     * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
+     * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
   3. Literatur 
      * [Literatur](literatur.md) 
 
