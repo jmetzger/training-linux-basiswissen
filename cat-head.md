@@ -1,7 +1,5 @@
 # Datein anzeigen / Teile davon 
 
-##  Datein anzeigen / Teile davon
-
 ### cat mit Zeilennumer 
 
 ```
