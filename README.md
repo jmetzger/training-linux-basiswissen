@@ -13,6 +13,7 @@
      * [Autovervollständen * und tab](autocomplete.md) 
      * [Welches Programm wird verwendet](which.md)
   1. Dateien und Verzeichnisse
+     * [Mit cd im System navigieren](cd.md)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](list.md)
      * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
