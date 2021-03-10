@@ -55,6 +55,7 @@
   1. Wartung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
+     * [Archive runterladen und entpacken](tar-download.md) 
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
@@ -1165,6 +1166,40 @@ apt remove mariadb-server
 
 ## Aufräumen / alle Pakete die nicht mehr benötigt werden
 apt autoremove 
+```
+
+### Pakete händisch mit dpkg installieren 
+
+```
+## Schritt 1: Im Browser
+## Paket online finden und Link kopieren (Browser - Rechte Mauataste Link kopieren) 
+
+## Schritt 2: auf dem Linux Server
+sudo apt install wget
+cd /usr/src
+wget http://archive.ubuntu.com/ubuntu/pool/main/a/acl/acl_2.2.53-10build1_amd64.deb
+sudo dpkg -i acl_2.2.53-10build1_amd64.deb
+```
+
+<div class="page-break"></div>
+
+### Archive runterladen und entpacken
+
+
+```
+## Walkthrough 
+## Schritt 1: Download-Link in Browser kopieren (rechte Maustaste) 
+
+## Schritt 2: 
+cd /usr/src 
+ # falsche Dateiname -> umbenannt.
+wget https://github.com/phayes/geoPHP/tarball/master
+mv master master.tar.gz
+## Schritt 3: Sicherheitsverzeichnis anlegen und entpacken
+mkdir foo
+mv master.tar.gz foo
+cd foo
+tar xvf master.tar.gz
 ```
 
 <div class="page-break"></div>
