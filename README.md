@@ -2,8 +2,9 @@
 
 ## Agenda 
 
-  1. [Verzeichnisaufbau](verzeichnisaufbau.md) 
-     1. [Dateitypen](dateitypen.md) 
+  1. Verzeichnisse und Dateitypen 
+     * [Verzeichnisaufbau](verzeichnisaufbau.md)
+     * [Dateitypen](dateitypen.md) 
   1. [Basisbefehle](basisbefehle.md)
      1. [In den Root-Benutzer wechseln](sudo.md)  
      1. [Wo bin ich ?](pwd.md)
