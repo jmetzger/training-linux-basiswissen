@@ -28,8 +28,8 @@
   1. Dateimanipulation/Unix Tools
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
-     * [wc - zeilen zählen](wc.md)
-     * [bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
+     * [wc - Zeilen zählen](wc.md)
+     * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
   1. Variablen
@@ -150,8 +150,6 @@ b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte)
 ### In den Root-Benutzer wechseln
 
 
-### In den root-Benutzer wechseln 
-
 ```
 ## einloggen als normaler Benutzer z.B. benutzer: kurs 
 sudo su -
@@ -225,8 +223,6 @@ q
 
 ### Datei anlegen - touch
 
-
-### Datei anlegen 
 
 ```
 touch dateiname 
@@ -442,8 +438,6 @@ sudo su -
 ### cat/head/tail-Beginn/Ende einer Datei anzeigen
 
 
-###  Datein anzeigen / Teile davon
-
 #### cat mit Zeilennumer 
 
 ```
@@ -482,7 +476,7 @@ cat fehlerlog
 
 ### zcat - Inhalte einer mit gzip komprimierten Datei anzeigen
 
-### wc - zeilen zählen
+### wc - Zeilen zählen
 
 
 ### Datei 
@@ -498,7 +492,7 @@ ls -la | wc -l
 
 <div class="page-break"></div>
 
-### bestimmte Zeilen aus Datei anzeigen - grep
+### Bestimmte Zeilen aus Datei anzeigen - grep
 
 
 ### Beispiele 
