@@ -35,6 +35,7 @@
      * [Erweiterte Suche mit Grep](grep-extended.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
+     * [Dienste debuggen](debug-service.md)
   1. Variablen
      * [Setzen und verwenden von Variablen](variables.md) 
   1. Dienste/Runlevel(Targets verwalten) 
