@@ -105,6 +105,13 @@ abc nix
 ab nix
 ```
 
+## Nach Zahlen Suchen 
+
+```
+echo "12345 namen" >> /root/namen 
+grep  "[[:digit:]]\{5\}" /root/namen
+```
+
 
 ## Cheatsheets 
 
