@@ -12,7 +12,7 @@
      * [Wo bin ich ?](#wo-bin-ich-)
      * [Praktische Ausgabe von langen Seiten - less](#praktische-ausgabe-von-langen-seiten---less)
      * [Datei anlegen - touch](#datei-anlegen---touch)
-     * [Autovervollständen * und tab](#autovervollständen-*-und-tab)
+     * [Autovervollständen * und tab](#autovervollständen--und-tab)
      * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
