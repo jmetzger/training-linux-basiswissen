@@ -58,6 +58,9 @@ hans1txt
 
 ```
 
+## Cheatsheets 
+
+  * https://cheatography.com/tme520/cheat-sheets/grep-english/
 
 
 
