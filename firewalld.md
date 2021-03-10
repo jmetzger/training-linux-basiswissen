@@ -98,11 +98,16 @@ firewall-cmd --reload
 
 ## Add/Remove ports 
 ```
+# add port
 firewall-cmd --add-port=82/tcp --zone=public --permanent
+firewall-cmd --reload
 
+# remove port
+firewall-cmd --remove-port=82/tcp --zone=public --permanent
+firewall-cmd --reload
 ```
 
-## Enable / Disabled icm 
+## Enable / Disabled icmp 
 ```
 firewall-cmd --get-icmptypes
 # none present yet 
