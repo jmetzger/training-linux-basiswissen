@@ -55,9 +55,10 @@
   1. Wartung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
-  1. Firewall 
+  1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
+     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
   1. Netzwerk/Dienste 
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
 
