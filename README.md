@@ -28,8 +28,8 @@
   1. Dateimanipulation/Unix Tools
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
-     * [wc - zeilen zählen](wc.md)
-     * [bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
+     * [wc - Zeilen zählen](wc.md)
+     * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
   1. Variablen
