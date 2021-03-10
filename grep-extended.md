@@ -28,8 +28,26 @@ egrep  -i '^(mysql|Moira)' /etc/services
 egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services'^(mysql|Moira)' /etc/services
 ```
 
+## Einzelne Zeichen als Suchmuster nehmen 
 
+```
+# 0, dann zwei beliebige Zeichen, dann tcp 
+grep '0..tcp' /etc/services
+# 0, dann ein beliebiges Zeichen, dann tcp 
+grep '0.tcp' /etc/services 
 
+```
+
+## Tatsächlich eine Punkt suchen 
+
+```
+# /root/dateinamen 
+hans.txt 
+hans1txt
+peter.txt
+
+grep 'hans\.txt' /root/dateinamen 
+```
 
 ## Ref:
 
