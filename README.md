@@ -58,6 +58,8 @@
   1. Firewall 
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
+  1. Netzwerk/Dienste 
+     * [Auf welchen Ports lauscht mein Server](lsof.md) 
 
   1. Literatur 
      * [Literatur](literatur.md) 
