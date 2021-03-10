@@ -161,9 +161,6 @@ sudo su -
 ### Wo bin ich ?
 
 
-
-### Wo bin ich ?
-
 ```
 ## 1. Ich erkenne es am prompt (Beginn  der Zeile ) 
 
@@ -218,6 +215,7 @@ G
 h 
 ## wieder raus
 q
+```
 
 <div class="page-break"></div>
 
@@ -412,6 +410,7 @@ useradd
 
 ## for admins interactive
 adduser
+```
 
 <div class="page-break"></div>
 
