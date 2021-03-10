@@ -82,6 +82,29 @@ root@ubuntu2004-101:~# echo "Klaus2" >> /root/namen
 root@ubuntu2004-101:~# grep '[kK][la]aus[0-9]' /root/namen
 ```
 
+## Mengeangabe 
+
+```
+# Achtung unbedingt egrep oder grep -E verwenden 
+cat /root/namen
+AxB nix
+AxB nix
+abc nix
+a nix
+
+egrep '^[a-zA-Z]{1,3} nix' /root/namen
+```
+
+```
+echo "ab nix" >> /root/namen
+# Mindestens 2 Zeichen 
+root@ubuntu2004-101:~# egrep '^[a-zA-Z]{2,} nix' /root/namen
+AxB nix
+AxB nix
+abc nix
+ab nix
+```
+
 
 ## Cheatsheets 
 
