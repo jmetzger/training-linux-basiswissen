@@ -29,3 +29,11 @@ less /var/log/mysql/error.log
 
 
 ```
+
+## Find error in logs quickly
+
+```
+cd /var/log/mysql 
+cat error.log | grep -i error
+```
+
