@@ -31,3 +31,16 @@ apt remove mariadb-server
 # Aufräumen / alle Pakete die nicht mehr benötigt werden
 apt autoremove 
 ```
+
+## Pakete händisch mit dpkg installieren 
+
+```
+# Schritt 1: Im Browser
+# Paket online finden und Link kopieren (Browser - Rechte Mauataste Link kopieren) 
+
+# Schritt 2: auf dem Linux Server
+sudo apt install wget
+cd /usr/src
+wget http://archive.ubuntu.com/ubuntu/pool/main/a/acl/acl_2.2.53-10build1_amd64.deb
+sudo dpkg -i acl_2.2.53-10build1_amd64.deb
+```
