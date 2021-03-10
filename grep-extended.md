@@ -76,6 +76,11 @@ klaus
 karin
 ```
 
+```
+echo "Klaus1" >> /root/namen
+root@ubuntu2004-101:~# echo "Klaus2" >> /root/namen
+root@ubuntu2004-101:~# grep '[kK][la]aus[0-9]' /root/namen
+```
 
 
 ## Cheatsheets 
