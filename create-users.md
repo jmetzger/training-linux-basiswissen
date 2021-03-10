@@ -8,3 +8,4 @@ useradd
 
 # for admins interactive
 adduser
+```
