@@ -44,3 +44,26 @@ cd /usr/src
 wget http://archive.ubuntu.com/ubuntu/pool/main/a/acl/acl_2.2.53-10build1_amd64.deb
 sudo dpkg -i acl_2.2.53-10build1_amd64.deb
 ```
+
+## Pakete mit apt search suchen 
+
+```
+# Vorbereitung
+apt update
+
+# suche nache apache 
+apt search apache 
+# mit pager
+apt search apache | less 
+
+# Alle Paket in denen apache am Anfang der Zeile 
+apt search ^apache | less
+
+```
+
+# Installieren mit apt install 
+
+```
+# mit genauem Namen 
+apt install apache2 
+```
