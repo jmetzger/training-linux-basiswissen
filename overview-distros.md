@@ -42,3 +42,7 @@ Parrot.   - Distributionen zum Hacken
 OpenWRT 
 DDWRT
 ```
+
+## Seite mit Übersicht aller Linux-Distros 
+
+  * https://distrowatch.com/
