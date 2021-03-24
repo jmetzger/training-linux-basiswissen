@@ -28,3 +28,11 @@ PageUp/PageDown
 G # für ans Ende der Datei springe
 1g # in die erste Zeile 
 ```
+
+## Suche mit in man-pages 
+
+```
+/Suchwort [Enter]
+n # nächster Treffer (kleines n)
+N # letzter Treffer 
+```
