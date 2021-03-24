@@ -7,7 +7,7 @@
 # cd ohne alles 
 cd 
 
-# Ins Wurzelverzeichnis 
+# Ins Wurzelverzeichnis des Filesystems wechseln // Windows -> C:\
 cd / 
 ```
 
