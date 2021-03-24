@@ -15,8 +15,8 @@
      * [Autovervollständen * und tab](#autovervollständen--und-tab)
      * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Erweiterte Befehle (Nice to have) 
-      * [Alias Befehle anzeigen](alias.md)
-      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
+     * [Alias Befehle anzeigen](#alias-befehle-anzeigen)
+     * [Welche Bibliotheken verwendet ein ausführbares Programm](#welche-bibliotheken-verwendet-ein-ausführbares-programm)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen-->-ls--la)
@@ -341,6 +341,26 @@ which false
 <div class="page-break"></div>
 
 ## Erweiterte Befehle (Nice to have) 
+
+### Alias Befehle anzeigen
+
+
+```
+## keine wirkliche Befehle, sondern nur andere Schreibweise/Abkürzungen
+## kann u.U. so auf anderen Distris nicht vorhanden sein
+alias 
+```
+
+<div class="page-break"></div>
+
+### Welche Bibliotheken verwendet ein ausführbares Programm
+
+
+```
+ldd /usr/bin/ls 
+```
+
+<div class="page-break"></div>
 
 ## Dateien und Verzeichnisse
 
