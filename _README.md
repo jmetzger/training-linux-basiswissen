@@ -14,9 +14,12 @@
      * [Datei anlegen - touch](#datei-anlegen---touch)
      * [Autovervollständen * und tab](#autovervollständen--und-tab)
      * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
+  1. Erweiterte Befehle (Nice to have) 
+      * [Alias Befehle anzeigen](alias.md)
+      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
-     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen)
+     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen-->-ls--la)
      * [Inhalt in Datei schreiben und anhängen](#inhalt-in-datei-schreiben-und-anhängen)
      * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
@@ -51,7 +54,7 @@
   1. Grafische Oberfläche und Installation 
      * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
      * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
-  * https://ubuntu.com/download/server#download
+     * [Installations-Images-Server](https://ubuntu.com/download/server#download)
   1. Wartung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
@@ -61,6 +64,7 @@
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
+     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
 
   1. Literatur 
@@ -118,6 +122,10 @@ Parrot.   - Distributionen zum Hacken
 OpenWRT 
 DDWRT
 ```
+
+### Seite mit Übersicht aller Linux-Distros 
+
+  * https://distrowatch.com/
 
 <div class="page-break"></div>
 
@@ -222,7 +230,7 @@ b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte)
 ```
 ## einloggen als normaler Benutzer z.B. benutzer: kurs 
 sudo su -
-## eingeben des Passworts des benutzer
+## eingeben des Passworts des Benutzers
 ```
 
 <div class="page-break"></div>
@@ -332,6 +340,8 @@ which false
 
 <div class="page-break"></div>
 
+## Erweiterte Befehle (Nice to have) 
+
 ## Dateien und Verzeichnisse
 
 ### Mit cd im System navigieren
@@ -344,7 +354,7 @@ which false
 ## cd ohne alles 
 cd 
 
-## Ins Wurzelverzeichnis 
+## Ins Wurzelverzeichnis des Filesystems wechseln // Windows -> C:\
 cd / 
 ```
 
@@ -361,7 +371,7 @@ cd /etc
 
 <div class="page-break"></div>
 
-### Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen
+### Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la
 
 
 ```
@@ -889,15 +899,30 @@ poweroff
 systemctl poweroff 
 ```
 
+### Wie sehe ich, wie ein Service konfiguriert ist / Dienstekonfiguration anzeigen ? 
+
+```
+## z.B. für Apache2
+systemctl cat apache2.service
+```
+
+### Wie kann ich rausfinden, wie die runlevel als targets heissen ?
+
+```
+cd /lib/systemd/system 
+root@ubuntu2004-104:/lib/systemd/system# ls -la run*target
+lrwxrwxrwx 1 root root 15 Jan  6 20:47 runlevel0.target -> poweroff.target
+lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel1.target -> rescue.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel2.target -> multi-user.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel3.target -> multi-user.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel4.target -> multi-user.target
+lrwxrwxrwx 1 root root 16 Jan  6 20:47 runlevel5.target -> graphical.target
+lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel6.target -> reboot.target
+```
+
 ### Welche Dienste sind aktiviert/deaktiviert 
 ```
 systemctl list-unit-files -t service
-```
-
-### Dienstekonfiguration anzeigen 
-
-```
-systemctl cat sshd.service 
 ```
 
 ### Dienste bearbeiten 
@@ -1089,6 +1114,32 @@ man ps
 info ps 
 ```
 
+### -h oder --help --> eines geht immer 
+
+```
+## Beispiel ls 
+ls -h # geht nicht für Hilfe 
+ls --help # geht !
+```
+
+### Navigation in den man-pages 
+
+```
+q - verlassen von man 
+Pfeil oben/unten 
+PageUp/PageDown 
+G # für ans Ende der Datei springe
+1g # in die erste Zeile 
+```
+
+### Suche mit in man-pages 
+
+```
+/Suchwort [Enter]
+n # nächster Treffer (kleines n)
+N # letzter Treffer 
+```
+
 <div class="page-break"></div>
 
 ## Grafische Oberfläche und Installation 
@@ -1179,6 +1230,29 @@ sudo apt install wget
 cd /usr/src
 wget http://archive.ubuntu.com/ubuntu/pool/main/a/acl/acl_2.2.53-10build1_amd64.deb
 sudo dpkg -i acl_2.2.53-10build1_amd64.deb
+```
+
+### Pakete mit apt search suchen 
+
+```
+## Vorbereitung
+apt update
+
+## suche nache apache 
+apt search apache 
+## mit pager
+apt search apache | less 
+
+## Alle Paket in denen apache am Anfang der Zeile 
+apt search ^apache | less
+
+```
+
+## Installieren mit apt install 
+
+```
+## mit genauem Namen 
+apt install apache2 
 ```
 
 <div class="page-break"></div>
@@ -1402,6 +1476,20 @@ firewall-cmd --runtime-to-permanent
 ### Scannen und Überprüfen mit telnet/nmap
 
 ## Netzwerk/Dienste 
+
+### IP-Adresse von DHCP-Server holen (quick-and-dirty)
+
+
+### Walkthrough 
+
+```
+## Ip nicht gesetzt - kurzfristig eine IP holen
+ip a # zeigt die Netzwerkschnittstellen an.
+dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen  
+ip a
+```
+
+<div class="page-break"></div>
 
 ### Auf welchen Ports lauscht mein Server
 
