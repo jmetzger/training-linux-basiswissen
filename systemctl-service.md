@@ -52,6 +52,20 @@ systemctl poweroff
 systemctl cat apache2.service
 ```
 
+## Wie kann ich rausfinden, wie die runlevel als targets heissen ?
+
+```
+cd /lib/systemd/system 
+root@ubuntu2004-104:/lib/systemd/system# ls -la run*target
+lrwxrwxrwx 1 root root 15 Jan  6 20:47 runlevel0.target -> poweroff.target
+lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel1.target -> rescue.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel2.target -> multi-user.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel3.target -> multi-user.target
+lrwxrwxrwx 1 root root 17 Jan  6 20:47 runlevel4.target -> multi-user.target
+lrwxrwxrwx 1 root root 16 Jan  6 20:47 runlevel5.target -> graphical.target
+lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel6.target -> reboot.target
+```
+
 ## Welche Dienste sind aktiviert/deaktiviert 
 ```
 systemctl list-unit-files -t service
