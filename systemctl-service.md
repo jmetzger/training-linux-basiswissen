@@ -45,6 +45,13 @@ poweroff
 systemctl poweroff 
 ```
 
+## Wie sehe ich, wie ein Service konfiguriert ist ? 
+
+```
+# z.B. für Apache2
+systemctl cat apache2.service
+```
+
 ## Welche Dienste sind aktiviert/deaktiviert 
 ```
 systemctl list-unit-files -t service
