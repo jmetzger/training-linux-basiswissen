@@ -16,7 +16,7 @@
      * [Welches Programm wird verwendet](which.md)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](cd.md)
-     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen](list.md)
+     * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](list.md)
      * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
