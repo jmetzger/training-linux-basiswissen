@@ -11,8 +11,12 @@ cp -a todo.txt /dokumente2
 # umbenennen
 mv datei1 neuernamedatei1 
 
-# verschieben
-mv datei1 /dokumente 
+# verschieben in Verzeichnis 
+mv datei1 /dokumente/
+# besser als:
+# mv datei1 /dokumente 
+# weil hier die Datei dokumente angelegt wird, wenn der Ordner /dokumente nicht existiert !! 
+
 ```
 
 ## Rechte behalten bei kopieren
