@@ -21,9 +21,10 @@
      * [Mit cd im System navigieren](cd.md)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](list.md)
      * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
+     * [Verzeichnisse anlegen](mkdir.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
-     * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
+    
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. Benutzer, Gruppen und Rechte 
@@ -32,6 +33,7 @@
      * [Benutzer anlegen](create-users.md) 
      * [sudo Benutzer erstellen](mod-user-sudo.md) 
   1. Dateimanipulation/Unix Tools
+     * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](zcat.md)
      * [wc - Zeilen zählen](wc.md)
