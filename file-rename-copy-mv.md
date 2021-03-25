@@ -25,7 +25,7 @@ mv datei1 /dokumente/
 # -a macht das 
 cp -a todo.txt todoneu.txt 
 
-# ohne -a werden symbolische links aufgelöst und die Rechte das ausführenden gesetzt
+# ohne -a werden symbolische links aufgelöst und die Rechte des ausführenden Nutzers gesetzt
 cp ab cd 
 
 ```
