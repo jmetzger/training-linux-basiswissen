@@ -23,6 +23,7 @@
      * [Inhalt in Datei schreiben und anhängen](file-write-append.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
+     * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
   1. Benutzer, Gruppen und Rechte 
