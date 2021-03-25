@@ -4,6 +4,8 @@
 
 ```
 dpkg -l 
+# oder 
+apt list --installed
 ```
 
 ## Alle Paket die zur Verfügung stehen 
