@@ -1,5 +1,13 @@
 # Rechte 
 
+## Arten 
+
+```
+r = Lesen 
+w = Schreiben
+x = Ausführen 
+```
+
 ## Aufbau triple 
 
 ```
