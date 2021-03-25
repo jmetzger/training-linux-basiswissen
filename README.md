@@ -71,8 +71,9 @@
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
-  1. Bash-Scripting 
+  1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
+     * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
 
   1. Literatur 
      * [Literatur](literatur.md) 
