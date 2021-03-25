@@ -14,8 +14,6 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 #  7  |  6  | 4
 ```
 
-```
-
 ## Berechtigungen mit Symbolen setzen 
 
 ```
