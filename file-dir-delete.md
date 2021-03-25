@@ -10,3 +10,22 @@ rm dateiname
 # Verzeichnis löschen 
 rm -r verzeichnis 
 ```
+
+## Symbolische Links löschen (Verhalten) 
+
+```
+cd
+touch woche.txt 
+ln -s woche.txt woche1.txt
+# file woche.txt is still present
+rm woche1.txt
+ls -la
+# Symbolischen Link erneut setzen 
+ln -s woche.txt woche1.txt
+# Symbolischer Link danach kaputt
+rm woche.txt
+ls -la
+# woche1.txt nicht aufrufbar, da der symbolische Link ins Leere zeigt. 
+cat woche1.txt
+
+```
