@@ -22,3 +22,14 @@ cd
 mkdir -p dokumente/projekt/plan 
 
 ```
+
+## Verzeichnisstruktur anzeigen 
+
+```
+sudo apt install tree 
+tree dokumente 
+
+# or /etc
+tree /etc | less 
+
+```
