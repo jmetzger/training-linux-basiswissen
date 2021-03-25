@@ -11,6 +11,16 @@ rm dateiname
 rm -r verzeichnis 
 ```
 
+## Mehrere Dateien löschen 
+
+```
+cd 
+touch datei1 datei2 datei3
+echo datei* 
+rm datei*
+```
+
+
 ## Symbolische Links löschen (Verhalten) 
 
 ```
