@@ -47,6 +47,7 @@
      * [Setzen und verwenden von Variablen](variables.md) 
   1. Dienste/Runlevel(Targets verwalten) 
      * [Die wichtigsten systemctl/service](systemctl-service.md)
+     * [Systemctl - timers](systemctl-timers.md)
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](parted-mkfs.md)
