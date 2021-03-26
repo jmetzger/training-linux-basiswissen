@@ -29,3 +29,15 @@ ufw allow 22 # for tcp and udp
 ufw allow ssh # uses /etc/services for detection of port - number
 ufw status 
 ```
+
+## Port wieder rausnehmen 
+
+```
+ufw delete allow http
+ufw delete allow ssh
+ufw delete allow 22 
+ufw delete rule 1 
+
+# ufw status numbered 
+
+```
