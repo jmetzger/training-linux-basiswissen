@@ -27,14 +27,19 @@ less /var/log/mysql/error.log
 /var/log/syslog
 # REdhat/Centos 
 /var/log/messages 
+```
 
+## Wie verfahren bei SystemV 
 
 ```
+Wie bei walkthrough aber ab Schritt 4
+
 
 ## Find error in logs quickly
 
 ```
 cd /var/log/mysql 
+# -i = case insensitive // egal ob gross- oder kleingeschrieben
 cat error.log | grep -i error
 ```
 
