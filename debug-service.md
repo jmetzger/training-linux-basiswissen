@@ -33,7 +33,7 @@ less /var/log/mysql/error.log
 
 ```
 Wie bei walkthrough aber ab Schritt 4
-
+```
 
 ## Find error in logs quickly
 
