@@ -23,6 +23,10 @@ mkdir /mnt/platte
 
 # Schritt 6: einhängen und aushängen
 mount /dev/sdb1 /mnt/platte 
+# Add-on: Eingehängte Partitionen anzeigen 
+mount 
+
+# Aushängen 
 umount /mnt/platte 
 
 # Schritt 7: Persistent konfiguriren
