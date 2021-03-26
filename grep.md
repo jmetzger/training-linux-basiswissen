@@ -25,7 +25,7 @@ cat /etc/services | grep  "s$"
 
 ```
 
-## Recursive Suchen (grep -r) 
+## Recursive Suchen (grep -r) - Schweizer Taschenmesser 
 
 ```
 grep -r "PermitRootLogin" /etc
