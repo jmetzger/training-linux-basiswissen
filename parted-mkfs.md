@@ -38,4 +38,8 @@ mount -av # v steht für geschwätzig.
 
 # Wenn das klappt: Schritt 9 
 reboot
+
+# Nach dem Rebooten 
+mount | grep platte  # taucht platte hier auf ? 
+
 ```
