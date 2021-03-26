@@ -3,7 +3,8 @@
 ## Walkthrough 
 
 ```
-# Dienst startet nicht 
+# Dienst startet nicht / nach Ausführen von systemctl restart wird Fehlermeldung ausgegeben
+systemctl restart mariadb.service 
 
 # Schritt 1 : status -> was sagen die logs (letzte 10 Zeilen) 
 systemctl status mariadb.service 
