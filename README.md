@@ -75,7 +75,6 @@
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
-
   1. Literatur 
      * [Literatur](literatur.md) 
 
