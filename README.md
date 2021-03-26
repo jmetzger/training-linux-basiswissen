@@ -80,6 +80,7 @@
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
+     * [cronjob (zentral) - crond](crond.md) 
   1. Literatur 
      * [Literatur](literatur.md) 
 
