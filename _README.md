@@ -21,8 +21,10 @@
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen-->-ls--la)
      * [Inhalt in Datei schreiben und anhängen](#inhalt-in-datei-schreiben-und-anhängen)
+     * [Verzeichnisse anlegen](#verzeichnisse-anlegen)
      * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
+    
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
   1. Benutzer, Gruppen und Rechte 
@@ -31,6 +33,7 @@
      * [Benutzer anlegen](#benutzer-anlegen)
      * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
   1. Dateimanipulation/Unix Tools
+     * [Anfang oder Ende einer Datei/Ausgabe anzeigen](#anfang-oder-ende-einer-dateiausgabe-anzeigen)
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#catheadtail-beginnende-einer-datei-anzeigen)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat---inhalte-einer-mit-gzip-komprimierten-datei-anzeigen)
      * [wc - Zeilen zählen](#wc---zeilen-zählen)
@@ -39,10 +42,13 @@
   1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
+     * [Rsyslog](#rsyslog)
   1. Variablen
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
   1. Dienste/Runlevel(Targets verwalten) 
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
+     * [Systemctl - timers](#systemctl---timers)
+     * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinit.d-systemctl)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
   1. Boot-Prozess und Kernel 
@@ -66,7 +72,16 @@
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
-
+  1. Tools/Verschiedens 
+     * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
+     * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
+     * [lokale Mails installieren](#lokale-mails-installieren)
+  1. Bash/Bash-Scripting 
+     * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
+     * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
+  1. Timers/cronjobs 
+     * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
+     * [cronjob (zentral) - crond](#cronjob-zentral---crond)
   1. Literatur 
      * [Literatur](#literatur)
 
@@ -407,10 +422,54 @@ ls -la
 
 ```
 cd /home/kurs 
+## Alternative 1
+## cd # wechselt auch ins Heimatverzeichnis 
+## Alternative 2
+## cd ~
+
 ## eingefügt am anfang, überschreibt alte Inhalte
 ls -la > todo 
 ## angehängt 
 echo "hans hat durst" >> todo 
+```
+
+<div class="page-break"></div>
+
+### Verzeichnisse anlegen
+
+
+### Einzelne Verzeichnisse anlegen 
+
+```
+## Verzeichnis Dokumente anlegen im aktuellen Verteichnis
+cd
+mkdir dokumente  
+
+## absolut verzeichnis anlegen 
+## Wird dann im Wurzelverzeichnis angelegt als root
+## als kurs-benutzer hätte ich dort keine Berechtigung 
+sudo mkdir /docs 
+
+```
+
+### Verzeichnisstruktur anlegen 
+
+```
+cd
+## Elternverzeichnisse werden automatisch angelegt 
+mkdir -p dokumente/projekt/plan 
+
+```
+
+### Verzeichnisstruktur anzeigen 
+
+```
+sudo apt install tree 
+tree dokumente 
+
+## or /etc
+tree /etc | less 
+
 ```
 
 <div class="page-break"></div>
@@ -429,6 +488,35 @@ rm dateiname
 rm -r verzeichnis 
 ```
 
+### Mehrere Dateien löschen 
+
+```
+cd 
+touch datei1 datei2 datei3
+echo datei* 
+rm datei*
+```
+
+
+### Symbolische Links löschen (Verhalten) 
+
+```
+cd
+touch woche.txt 
+ln -s woche.txt woche1.txt
+## file woche.txt is still present
+rm woche1.txt
+ls -la
+## Symbolischen Link erneut setzen 
+ln -s woche.txt woche1.txt
+## Symbolischer Link danach kaputt
+rm woche.txt
+ls -la
+## woche1.txt nicht aufrufbar, da der symbolische Link ins Leere zeigt. 
+cat woche1.txt
+
+```
+
 <div class="page-break"></div>
 
 ### Kopieren/Verschieben/Umbenennen von Dateien und Files
@@ -445,8 +533,12 @@ cp -a todo.txt /dokumente2
 ## umbenennen
 mv datei1 neuernamedatei1 
 
-## verschieben
-mv datei1 /dokumente 
+## verschieben in Verzeichnis 
+mv datei1 /dokumente/
+## besser als:
+## mv datei1 /dokumente 
+## weil hier die Datei dokumente angelegt wird, wenn der Ordner /dokumente nicht existiert !! 
+
 ```
 
 ### Rechte behalten bei kopieren
@@ -455,8 +547,11 @@ mv datei1 /dokumente
 ## -a macht das 
 cp -a todo.txt todoneu.txt 
 
-## ohne -a werden symbolische links aufgelöst und die Rechte das ausführenden gesetzt
+## ohne -a werden symbolische links aufgelöst und die Rechte des ausführenden Nutzers gesetzt
 cp ab cd 
+
+## Verzeichnisse kopieren
+cp -a /etc /etc3
 
 ```
 
@@ -494,6 +589,14 @@ pstree -p
 ### Rechte
 
 
+### Arten 
+
+```
+r = Lesen 
+w = Schreiben
+x = Ausführen 
+```
+
 ### Aufbau triple 
 
 ```
@@ -501,6 +604,11 @@ kurs@ubuntu2004-101:~$ # rwx | rw- | r--
 kurs@ubuntu2004-101:~$ #  u    g      o
 kurs@ubuntu2004-101:~$ # 421 | 42- | 4--
 kurs@ubuntu2004-101:~$ #  7  |  6  | 4
+
+## rwx | rw- | r--
+##  u    g      o
+## 421 | 42- | 4--
+##  7  |  6  | 4
 ```
 
 ### Berechtigungen mit Symbolen setzen 
@@ -519,6 +627,13 @@ cd /etc
 cat passwd
 cat shadow
 cat group 
+
+kurs@ubuntu2004-104:/etc$ ls -la passwd shadow group
+-rw-r--r-- 1 root root   1097 Mar 10 10:06 group
+-rw-r--r-- 1 root root   3164 Mar 10 10:06 passwd
+-rw-r----- 1 root shadow 1838 Mar 10 10:06 shadow
+
+
 ```
 
 <div class="page-break"></div>
@@ -557,6 +672,46 @@ sudo su -
 <div class="page-break"></div>
 
 ## Dateimanipulation/Unix Tools
+
+### Anfang oder Ende einer Datei/Ausgabe anzeigen
+
+
+### Die ersten 10 
+```
+## die ersten 10 Zeilen einer Datei anzeigen 
+head /etc/services 
+## Alternative 1 
+cat /etc/services | head
+
+## die letzten 10 Zeilen 
+tail /etc/services 
+cat /etc/services | tail 
+
+## einer ausgabe // erste 10 Zeilen eines Verzeichnislistings  
+ls -la | head 
+
+```
+
+### Die ersten 20
+
+```
+head -n 20 /etc/services 
+head -n20 /etc/services 
+head -20 /etc/services 
+head --lines=20 /etc/services
+
+```
+
+### Die letzten 20 
+
+```
+tail -n 20 /etc/services 
+tail -n20 /etc/services 
+tail -20 /etc/services 
+tail --lines=20 /etc/services
+```
+
+<div class="page-break"></div>
 
 ### cat/head/tail-Beginn/Ende einer Datei anzeigen
 
@@ -643,7 +798,7 @@ cat /etc/services | grep  "s$"
 
 ```
 
-### Recursive Suchen (grep -r) 
+### Recursive Suchen (grep -r) - Schweizer Taschenmesser 
 
 ```
 grep -r "PermitRootLogin" /etc
@@ -801,7 +956,8 @@ logger meine_nachricht
 ### Walkthrough 
 
 ```
-## Dienst startet nicht 
+## Dienst startet nicht / nach Ausführen von systemctl restart wird Fehlermeldung ausgegeben
+systemctl restart mariadb.service 
 
 ## Schritt 1 : status -> was sagen die logs (letzte 10 Zeilen) 
 systemctl status mariadb.service 
@@ -824,17 +980,40 @@ less /var/log/mysql/error.log
 /var/log/syslog
 ## REdhat/Centos 
 /var/log/messages 
+```
 
+### Wie verfahren bei SystemV 
 
+```
+Wie bei walkthrough aber ab Schritt 4
 ```
 
 ### Find error in logs quickly
 
 ```
 cd /var/log/mysql 
+## -i = case insensitive // egal ob gross- oder kleingeschrieben
 cat error.log | grep -i error
 ```
 
+
+<div class="page-break"></div>
+
+### Rsyslog
+
+
+### Alle Logs an zentralen Log-Server schicken
+
+
+```
+/etc/rsyslog.conf
+## udp 
+*.*  @192.168.10.254:514
+## tcp 
+*.*  @@192.168.10.254:514
+
+Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
+```
 
 <div class="page-break"></div>
 
@@ -1002,6 +1181,106 @@ systemctl start apache2
 
 <div class="page-break"></div>
 
+### Systemctl - timers
+
+
+### Show all timers 
+
+```
+## alle Timer anzeigen 
+systemctl list-timers 
+```
+
+### How ? 
+
+ * .timer and .service file next to each other 
+
+### Example ? 
+
+```
+## timer - file 
+root@ubuntu2004-104:/etc# systemctl cat systemd-tmpfiles-clean.timer
+## /lib/systemd/system/systemd-tmpfiles-clean.timer
+##  SPDX-License-Identifier: LGPL-2.1+
+##
+##  This file is part of systemd.
+##
+##  systemd is free software; you can redistribute it and/or modify it
+##  under the terms of the GNU Lesser General Public License as published by
+##  the Free Software Foundation; either version 2.1 of the License, or
+##  (at your option) any later version.
+
+[Unit]
+Description=Daily Cleanup of Temporary Directories
+Documentation=man:tmpfiles.d(5) man:systemd-tmpfiles(8)
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=1d
+
+
+### Service - file 
+root@ubuntu2004-104:/etc# systemctl cat systemd-tmpfiles-clean.service
+## /lib/systemd/system/systemd-tmpfiles-clean.service
+##  SPDX-License-Identifier: LGPL-2.1+
+##
+##  This file is part of systemd.
+##
+##  systemd is free software; you can redistribute it and/or modify it
+##  under the terms of the GNU Lesser General Public License as published by
+##  the Free Software Foundation; either version 2.1 of the License, or
+##  (at your option) any later version.
+
+[Unit]
+Description=Cleanup of Temporary Directories
+Documentation=man:tmpfiles.d(5) man:systemd-tmpfiles(8)
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=local-fs.target time-set.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=systemd-tmpfiles --clean
+SuccessExitStatus=DATAERR
+IOSchedulingClass=idle
+
+```
+
+### Example Reference 
+
+
+  * https://www.tutorialdocs.com/article/systemd-timer-tutorial.html
+
+
+### Personal Timer (timer for user) 
+
+  * https://nielsk.micro.blog/2015/11/11/creating-systemd-timers.html
+
+<div class="page-break"></div>
+
+### Gegenüberstellung service etc/init.d/ systemctl
+
+
+```
+SySV
+
+a) /etc/init.d/rsyslog status 
+/etc/init.d/rsyslog start
+/etc/init.d/rsyslog status
+
+b) service rsyslog 
+
+Systemd 
+
+## geht auch (unter der Haube wird systemctl verwendet) 
+service rsyslog status 
+
+
+```
+
+<div class="page-break"></div>
+
 ## Partitionierung und Filesystem
 
 ### parted and mkfs.ext4
@@ -1030,6 +1309,10 @@ mkdir /mnt/platte
 
 ## Schritt 6: einhängen und aushängen
 mount /dev/sdb1 /mnt/platte 
+## Add-on: Eingehängte Partitionen anzeigen 
+mount 
+
+## Aushängen 
 umount /mnt/platte 
 
 ## Schritt 7: Persistent konfiguriren
@@ -1041,6 +1324,10 @@ mount -av # v steht für geschwätzig.
 
 ## Wenn das klappt: Schritt 9 
 reboot
+
+## Nach dem Rebooten 
+mount | grep platte  # taucht platte hier auf ? 
+
 ```
 
 <div class="page-break"></div>
@@ -1211,6 +1498,8 @@ apt-get dist-upgrade
 
 ```
 dpkg -l 
+## oder 
+apt list --installed
 ```
 
 ### Alle Paket die zur Verfügung stehen 
@@ -1333,6 +1622,18 @@ ufw allow ssh # uses /etc/services for detection of port - number
 ufw status 
 ```
 
+### Port wieder rausnehmen 
+
+```
+ufw delete allow http
+ufw delete allow ssh
+ufw delete allow 22 
+
+## ufw status numbered 
+## e.g. 
+ufw delete 1 
+```
+
 <div class="page-break"></div>
 
 ### firewalld
@@ -1350,6 +1651,8 @@ ufw status
 
 ## Schritt 2: firewalld 
 apt install firewalld 
+systemctl start firewalld 
+systemctl enable firewalld 
 systemctl status firewalld 
 systemctl status ufw 
 
@@ -1523,6 +1826,171 @@ netstat -tupel
 
 <div class="page-break"></div>
 
+## Tools/Verschiedens 
+
+### Remote Desktop für Linux / durch Teilnehmer getestet
+
+  * https://wiki.ubuntuusers.de/Remmina/
+
+### Warum umask 002 und 0002 ? - Geschichte
+
+
+```
+## Just quoting redhat here.
+The setting which determines what permissions are applied to a newly created file or 
+directory is called a umask and is configured in the /etc/bashrc file. 
+
+Traditionally on UNIX systems, the umask is set to 022, which allows only the user 
+who created the file or directory to make modifications. Under this scheme, 
+all other users, including members of the creator's group, are not allowed 
+to make any modifications. However, under the UPG scheme, this "group protection" 
+is not necessary since every user has their own private group.
+
+## Ref:
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s1-users-groups-private-groups
+
+```
+
+<div class="page-break"></div>
+
+### lokale Mails installieren
+
+
+```
+apt install postfix mailutils 
+## Internet Host 
+
+echo "testmail" | mail -s "subject" root 
+
+## Gucken in der Datei 
+cat /var/mail/root 
+## nach der gesendeten Email 
+
+```
+
+<div class="page-break"></div>
+
+## Bash/Bash-Scripting 
+
+### Einfaches Script zur Datumsausgabe
+
+
+```
+## Mit nano öffnen / datei muss vorher nicht vorhanden sein
+## nano script.sh 
+## Folgendes muss drin stehen, mit 1. Zeile beginnend mit # 
+
+##!/bin/bash 
+date 
+
+## Speichern CRTL + O -> RETURN, CTRL X 
+
+## Ausführbar machen 
+chmod u+x script.sh
+./script.sh # Ausführen und wohlfühlen 
+
+```
+
+<div class="page-break"></div>
+
+### Ausführen/Verketten von mehreren Befehlen
+
+
+```
+## Beide Befehle ausführen, auch wenn der 1. fehlschlägt 
+befehl1; apt upgrade
+
+## 2. Befehl nur ausführen, wenn 1. erfolgreich war.
+apt update && apt upgrade 
+
+## 2. Befehl nur ausführen, wenn der 1. NICHT erfolgreich war 
+## befehl1 oder befehlt2 (im weitesten Sinne) 
+befehl1 || befehl2
+```
+
+<div class="page-break"></div>
+
+## Timers/cronjobs 
+
+### Cronjob - hourly einrichten
+
+
+### Walkthrough 
+
+```
+cd /etc/cron.hourly 
+## nano datum
+## wichtig ohne Endung 
+## Job wird dann um 17 nach ausgeführt ? 
+
+####
+
+##!/bin/bash
+date >> /var/log/datum.log
+
+chmod 755 datum  # es müssen x-Rechte (Ausführungsrechte gesetzt sein) 
+
+### Abwarten, Tee trinken 
+```
+ 
+
+<div class="page-break"></div>
+
+### cronjob (zentral) - crond
+
+
+```
+cd /etc/cron.d 
+### cronjob anlegen
+## Achtung: ohne Dateiendung 
+## ls -la trainingscript
+## root@ubuntu2004-104:/etc/cron.d# ls -la trainingscript
+## -rw-r--r-- 1 root root 471 Mar 26 12:44 trainingscript
+
+## cat trainingscript
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+## Example of job definition:
+## .---------------- minute (0 - 59)
+## |  .------------- hour (0 - 23)
+## |  |  .---------- day of month (1 - 31)
+## |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+## |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+## |  |  |  |  |
+## *  *  *  *  * user-name command to be executed
+*/2  *  *  *  * root  /root/script.sh
+
+
+### Script anlegen 
+cat script.sh
+##!/bin/bash
+TAG='FREITAG'
+echo " ---- " >> /var/log/scripting.log
+date >> /var/log/scripting.log
+echo $TAG >> /var/log/scripting.log
+
+### Script - Berechtigungen setzten 
+chmod u+x /root/script.sh 
+
+### Scriptausführung  testen 
+### trägt es etwas im Log ein -> /var/log/scripting.log 
+/root/script.sh
+
+
+##### Warten 
+
+
+### nach 2 Minuten log betrachten 
+ls -la /var/log/scripting.log 
+
+### cron daemon braucht nicht reloaded zu werden 
+
+
+```
+
+<div class="page-break"></div>
+
 ## Literatur 
 
 ### Literatur
@@ -1536,5 +2004,6 @@ netstat -tupel
 ### Cheatsheet 
 
   * [Cheatsheet bash](https://www2.icp.uni-stuttgart.de/~icp/mediawiki/images/b/bd/Sim_Meth_I_T0_cheat_sheet_10_11.pdf)
+  * [..ansonsten Google :o)](https://www.google.com/search?q=bash+cheatsheet)
 
 <div class="page-break"></div>
