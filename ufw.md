@@ -36,8 +36,8 @@ ufw status
 ufw delete allow http
 ufw delete allow ssh
 ufw delete allow 22 
-ufw delete rule 1 
 
 # ufw status numbered 
-
+# e.g. 
+ufw delete 1 
 ```
