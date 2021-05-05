@@ -58,7 +58,7 @@ apt search apache
 # mit pager
 apt search apache | less 
 
-# Alle Paket in denen apache am Anfang der Zeile 
+# Alle Paket in denen apache am Anfang der Zeile fehlt 
 apt search ^apache | less
 
 ```
