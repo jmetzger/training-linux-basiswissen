@@ -6,13 +6,15 @@
 service sshd status 
 systemctl status sshd 
 
-# Wie heisst der Dienst / welche Dienste gibt es ? 
+# Wie heisst der Dienst / welche Dienste gibt es ? (nur wenn der service aktiviert ist). 
 systemctl list-units -t service 
 # für apache
 systemctl list-units -t service | grep ^apache
 # die Abkürzung 
 systemctl -t service | grep ^apache
 
+# Wie finde ich einen service, der noch nicht aktiviert ist ? 
+systemctl list-unit-files -t service | grep ssh
 
 # Dienst aktivieren
 systemctl enable apache2 
