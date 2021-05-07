@@ -24,6 +24,7 @@
      * [Verzeichnisse anlegen](#verzeichnisse-anlegen)
      * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
+     * [Arbeiten mit vi](#arbeiten-mit-vi)
     
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
@@ -39,10 +40,12 @@
      * [wc - Zeilen zählen](#wc---zeilen-zählen)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
      * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
+     * [Finden von files nach Kriterien - find](#finden-von-files-nach-kriterien---find)
   1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
      * [Rsyslog](#rsyslog)
+     * [Journal analysieren](#journal-analysieren)
   1. Variablen
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
   1. Dienste/Runlevel(Targets verwalten) 
@@ -557,6 +560,90 @@ cp -a /etc /etc3
 
 <div class="page-break"></div>
 
+### Arbeiten mit vi
+
+
+### Zeilennummern aktivieren für alle
+
+```
+## Centos 
+##/etc/vimrc 
+## am ende
+set number
+
+## Ubuntu 
+## /etc/vim/vimrc.local 
+set number
+```
+
+### vimtutor 
+
+```
+## Interactives Tutorial zum Lernen von vi 
+## Wichtigste Befehle 
+vimtutor # sollte bereits mit vi installiert worden sein.
+```
+
+### Wichtigste Aktionen 
+
+```
+  1. # Öffnen eine neuer Datei mit vi 
+  vi dateiname 
+  
+  2. # Schreiben in der Datei 
+  i # drücken
+  
+  3. # Es erscheint unten in der Zeile 
+  # -- INSERT -- 
+  
+  4. # Nun können Sie etwas hineinschreiben 
+  
+  5a. Beenden ohne Speichern (wenn geänderter Inhalt vorhanden ist  
+  ESC + :q! # ESC Taste drücken, dann : und q! und enter 
+  
+  5b. Oder: Speichern und schliessen 
+  ESC + :x # ESC Taste drücken, dann : und w und enter 
+```  
+
+### Virtual Mode 
+
+```
+v Zeichenweise markieren einschalten
+V Zeilenweise markieren einschalten
+STRG + v Blockweise markieren 
+
+## mit Cursortasten auswählen / markieren 
+## Dann:
+x # Löschen des markierten Bereichs 
+```
+
+### Zeilen löschen im Normalmodus (Interactiver Modus) 
+
+```
+ESC + dd # eine Zeile löschen 
+## letzte Aktion rückgängig machen 
+ESC + u # eigentlich reicht 1x Escape 
+## mehrere Zeilen löschen z.B. 1000
+ESC + 1000dd # ESC - Taste drücken, dann 1000 eingeben, dann dd (sie sehen die 1000 nicht auf dem Bildschirm) 
+```
+
+### Neues Fenster und Fenster wechseln 
+
+```
+## innerhalb von vi 
+ESC + :  -> vsplit # aktuelles Fenster wird kopiert 
+## Fenster wechseln 
+ESC + : wincmd w 
+## oder 
+STRG + w w 
+```
+
+### Cheatsheet
+
+http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
+
+<div class="page-break"></div>
+
 ## Prozesse 
 
 ### Prozesse anzeigen - ps/pstree -p
@@ -934,6 +1021,18 @@ grep  "[[:digit:]]\{5\}" /root/namen
 
 <div class="page-break"></div>
 
+### Finden von files nach Kriterien - find
+
+
+### Simple find command 
+
+```
+## find directories with specific name 
+find / -name tmpfiles.d -type d 
+```
+
+<div class="page-break"></div>
+
 ## Logs/Loganalyse
 
 ### Logfile beobachten
@@ -1017,6 +1116,54 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 <div class="page-break"></div>
 
+### Journal analysieren
+
+
+### Show all boots 
+
+``` 
+ journalctl --list-boots
+ 0 3c3cf780186642ae9741b3d3811e95da Tue 2020-11-24 14:29:44 CET▒<80><94>T>
+lines 1-1/1 (END)
+```
+
+### Show boot log 
+
+```
+journalctl -b 
+```
+
+
+### Journal persistent 
+
+  * Normalerweise (auf den meisten Systemen), überlebt das Journal kein Reboot 
+ 
+```
+## persistent setzen
+## Achtung: in /etc/systemd/journald.conf muss Storage=auto gesetzt sein
+## Dies ist auch der Default - Fall 
+## Achtung Achtung: Alle gezeigten Einträge mit # am Anfang sind die Default-Werte (in journald.conf) 
+mkdir /var/log/journal 
+systemctl restart systemd-journal-flush.service 
+
+```
+
+### Restrict how much is logged / data 
+
+```
+## in /etc/systemd/journald.conf 
+SystemMaxUse=1G 
+```
+
+### journalctl 
+
+```
+## ubuntu
+journalctl -u ssh 
+```
+
+<div class="page-break"></div>
+
 ## Variablen
 
 ### Setzen und verwenden von Variablen
@@ -1059,13 +1206,15 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 service sshd status 
 systemctl status sshd 
 
-## Wie heisst der Dienst / welche Dienste gibt es ? 
+## Wie heisst der Dienst / welche Dienste gibt es ? (nur wenn der service aktiviert ist). 
 systemctl list-units -t service 
 ## für apache
 systemctl list-units -t service | grep ^apache
 ## die Abkürzung 
 systemctl -t service | grep ^apache
 
+## Wie finde ich einen service, der noch nicht aktiviert ist ? 
+systemctl list-unit-files -t service | grep ssh
 
 ## Dienst aktivieren
 systemctl enable apache2 
@@ -1552,7 +1701,7 @@ apt search apache
 ## mit pager
 apt search apache | less 
 
-## Alle Paket in denen apache am Anfang der Zeile 
+## Alle Paket in denen apache am Anfang der Zeile fehlt 
 apt search ^apache | less
 
 ```
@@ -2005,5 +2154,10 @@ ls -la /var/log/scripting.log
 
   * [Cheatsheet bash](https://www2.icp.uni-stuttgart.de/~icp/mediawiki/images/b/bd/Sim_Meth_I_T0_cheat_sheet_10_11.pdf)
   * [..ansonsten Google :o)](https://www.google.com/search?q=bash+cheatsheet)
+
+### Bash - Programmierung 
+
+  * [Bash Programmierung]https://tldp.org/LDP/Bash-Beginners-Guide/html/
+  * [Bash Advanced Programmierung](https://tldp.org/LDP/abs/html/loops1.html)
 
 <div class="page-break"></div>
