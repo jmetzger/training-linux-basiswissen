@@ -42,3 +42,11 @@ SystemMaxUse=1G
 # ubuntu
 journalctl -u ssh 
 ```
+
+## Show journalctl for specific Field 
+
+```
+journalctl -o json-pretty
+journalctl _PID=1 # show all entries for systemd - command startet as first program after kernel is loaded
+journalctl _UID=120 # show all log entries for specific user 
+```
