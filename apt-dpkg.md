@@ -76,3 +76,23 @@ apt install apache2
 dpkg -L openssh-server 
 
 ```
+
+## Paket runterladen, wenn bereits installiert 
+
+```
+apt install -d --reinstall openssh-server # -d steht für download-only
+# Lädt das Paket unter 
+# /var/cache/apt/archives runter 
+
+```
+
+## Welche Dateien sind im Paket, die ausgerollt werden ? (ohne Installation) 
+
+```
+cd /var/cache/apt/archives 
+dpkg --contents openssh-server-xyz.deb # im gleichen Verzeichnis oder vollen Pfad dorthin
+# oder Paket haben händisch in ein anderes Verzeichnis runtergeladen (z.B. mit wget)
+dpkg -c /usr/src/openssh-server-xyz.deb
+
+
+```
