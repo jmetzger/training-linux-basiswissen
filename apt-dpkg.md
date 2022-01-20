@@ -63,9 +63,16 @@ apt search ^apache | less
 
 ```
 
-# Installieren mit apt install 
+## Installieren mit apt install 
 
 ```
 # mit genauem Namen 
 apt install apache2 
+```
+
+## Liste der Files aus dem Paket (wenn installiert)
+
+```
+dpkg -L openssh-server 
+
 ```
