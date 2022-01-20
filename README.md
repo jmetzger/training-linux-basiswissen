@@ -80,6 +80,7 @@
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
      * [lokale Mails installieren](local-mail.md)
+     * [Debian/Ubuntu - deb - Paket entpacken](deb-unboxing.md)
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
