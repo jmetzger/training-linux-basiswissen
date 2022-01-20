@@ -32,6 +32,7 @@
      * [Rechte](rechte.md) 
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
      * [Benutzer anlegen](create-users.md) 
+     * [Benutzer löschen (debian)](deluser.md)
      * [sudo Benutzer erstellen](mod-user-sudo.md) 
   1. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
