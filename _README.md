@@ -28,10 +28,12 @@
     
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
+     * [Prioritäten und NiceNess](#prioritäten-und-niceness)
   1. Benutzer, Gruppen und Rechte 
      * [Rechte](#rechte)
      * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
      * [Benutzer anlegen](#benutzer-anlegen)
+     * [Benutzer löschen (debian)](#benutzer-löschen-debian)
      * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
   1. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](#anfang-oder-ende-einer-dateiausgabe-anzeigen)
@@ -68,6 +70,7 @@
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
+     * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-z.b.-php-cli-verwalten)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
@@ -75,10 +78,13 @@
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
+     * [Hostname setzen](#hostname-setzen)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
      * [lokale Mails installieren](#lokale-mails-installieren)
+     * [Debian/Ubuntu - deb - Paket entpacken](#debianubuntu---deb---paket-entpacken)
+     * [Geänderte Dateien zu anderem Server schicken](#geänderte-dateien-zu-anderem-server-schicken)
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
@@ -144,8 +150,6 @@ DDWRT
 ### Seite mit Übersicht aller Linux-Distros 
 
   * https://distrowatch.com/
-
-<div class="page-break"></div>
 
 ## Verzeichnisse und Dateitypen 
 
@@ -219,8 +223,6 @@ DDWRT
 
   * Normale Programme für alle (executables) 
 
-<div class="page-break"></div>
-
 ### Dateitypen
 
 
@@ -238,20 +240,16 @@ c Character-Device (Eingabegerät: Zeichenorientiert z.B. Tastatur)
 b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte) 
 ```
 
-<div class="page-break"></div>
-
 ## Basisbefehle
 
 ### In den Root-Benutzer wechseln
 
 
 ```
-## einloggen als normaler Benutzer z.B. benutzer: kurs 
+## einloggen als normaler Benutzer z.B. benutzer: kurs (wenn ich unter kurs eingeloggt bin) 
 sudo su -
 ## eingeben des Passworts des Benutzers
 ```
-
-<div class="page-break"></div>
 
 ### Wo bin ich ?
 
@@ -262,8 +260,6 @@ sudo su -
 ## pwd - Print working directory 
 pwd 
 ```
-
-<div class="page-break"></div>
 
 ### Praktische Ausgabe von langen Seiten - less
 
@@ -312,16 +308,12 @@ h
 q
 ```
 
-<div class="page-break"></div>
-
 ### Datei anlegen - touch
 
 
 ```
 touch dateiname 
 ```
-
-<div class="page-break"></div>
 
 ### Autovervollständen * und tab
 
@@ -345,8 +337,6 @@ echo todol<TAB> # bei einem weiteren Eintrag
 
 
 
-<div class="page-break"></div>
-
 ### Welches Programm wird verwendet
 
 
@@ -355,8 +345,6 @@ echo todol<TAB> # bei einem weiteren Eintrag
 ## und zeigt ersten Fund --> d.h. dieses Programm würde ausgeführt 
 which false 
 ```
-
-<div class="page-break"></div>
 
 ## Erweiterte Befehle (Nice to have) 
 
@@ -369,16 +357,12 @@ which false
 alias 
 ```
 
-<div class="page-break"></div>
-
 ### Welche Bibliotheken verwendet ein ausführbares Programm
 
 
 ```
 ldd /usr/bin/ls 
 ```
-
-<div class="page-break"></div>
 
 ## Dateien und Verzeichnisse
 
@@ -407,16 +391,12 @@ cd /etc
 ```
 
 
-<div class="page-break"></div>
-
 ### Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la
 
 
 ```
 ls -la 
 ```
-
-<div class="page-break"></div>
 
 ### Inhalt in Datei schreiben und anhängen
 
@@ -435,8 +415,6 @@ ls -la > todo
 ## angehängt 
 echo "hans hat durst" >> todo 
 ```
-
-<div class="page-break"></div>
 
 ### Verzeichnisse anlegen
 
@@ -474,8 +452,6 @@ tree dokumente
 tree /etc | less 
 
 ```
-
-<div class="page-break"></div>
 
 ### Verzeichnisse und Dateien löschen
 
@@ -520,8 +496,6 @@ cat woche1.txt
 
 ```
 
-<div class="page-break"></div>
-
 ### Kopieren/Verschieben/Umbenennen von Dateien und Files
 
 
@@ -557,8 +531,6 @@ cp ab cd
 cp -a /etc /etc3
 
 ```
-
-<div class="page-break"></div>
 
 ### Arbeiten mit vi
 
@@ -642,8 +614,6 @@ STRG + w w
 
 http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
 
-<div class="page-break"></div>
-
 ## Prozesse 
 
 ### Prozesse anzeigen - ps/pstree -p
@@ -669,7 +639,51 @@ systemctl status sshd
 pstree -p 
 ```
 
-<div class="page-break"></div>
+### Prioritäten und NiceNess
+
+
+### nice aus dem userspace möglich
+
+```
+## userspace - ich führe als Benutzer ein Programm 
+## nice - Festlegen ein programm zum Kernel ist 
+
+## Priorität in top - pr 
+## je niedriger die Zahl für den Prozess in top ist, desto 
+## höher die Priorität 
+## höchste Prioriät -100 
+-100 bis 39 
+
+## -100 = rt 
+## Statt -100 steht rt dort in top in der Spalte PR 
+
+## -59 höhe Priorität als 0 als 20 etc. 
+
+## Aus nice - Anfragen. von -20 -> +19 machen der Kernel
+## in der Regel 
+n + 20 z.B. Niceness= -20. = -20 + 20 = 0
+## D.h. höchte Prioriät über nice im Kernel ist 0 
+## die niedrigste Priorität 39 
+
+```
+
+### Prozesse in Realtime ausführen wie geht ? 
+
+```
+chrt # change realtime 
+## Welche Warteschlangen gibt es 
+chrt -m
+
+## Packe top in die realtime Warteschlange und führe es aus 
+## --rr realtime roundrobin Warteschlange 
+## Führe top mit der Priorität -100 aus 
+chrt --rr 99 top 
+```
+
+
+### Ref:
+
+  * https://medium.com/@joseagustin.barra/understanding-priority-levels-in-linux-cd8c82eb4dd
 
 ## Benutzer, Gruppen und Rechte 
 
@@ -704,8 +718,6 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 chmod g+w,o+r testfile
 ```
 
-<div class="page-break"></div>
-
 ### Dateien für Benutzer und Gruppen
 
 
@@ -723,8 +735,6 @@ kurs@ubuntu2004-104:/etc$ ls -la passwd shadow group
 
 ```
 
-<div class="page-break"></div>
-
 ### Benutzer anlegen
 
 
@@ -738,7 +748,13 @@ useradd
 adduser
 ```
 
-<div class="page-break"></div>
+### Benutzer löschen (debian)
+
+
+```
+## Remove training user and his file in home-directory
+deluser --remove-home training 
+```
 
 ### sudo Benutzer erstellen
 
@@ -755,8 +771,6 @@ id # shows the same but more info
 ## need to enter password here 
 sudo su -
 ```
-
-<div class="page-break"></div>
 
 ## Dateimanipulation/Unix Tools
 
@@ -798,8 +812,6 @@ tail -20 /etc/services
 tail --lines=20 /etc/services
 ```
 
-<div class="page-break"></div>
-
 ### cat/head/tail-Beginn/Ende einer Datei anzeigen
 
 
@@ -837,8 +849,6 @@ tail -n 100 syslog.1 >> fehlerlog
 cat fehlerlog
 ```
 
-<div class="page-break"></div>
-
 ### zcat - Inhalte einer mit gzip komprimierten Datei anzeigen
 
 ### wc - Zeilen zählen
@@ -854,8 +864,6 @@ wc -l /etc/services
 ```
 ls -la | wc -l 
 ```
-
-<div class="page-break"></div>
 
 ### Bestimmte Zeilen aus Datei anzeigen - grep
 
@@ -890,8 +898,6 @@ cat /etc/services | grep  "s$"
 ```
 grep -r "PermitRootLogin" /etc
 ```
-
-<div class="page-break"></div>
 
 ### Erweiterte Suche mit Grep
 
@@ -1019,8 +1025,6 @@ grep  "[[:digit:]]\{5\}" /root/namen
 
   * https://www.cyberciti.biz/faq/grep-regular-expressions/
 
-<div class="page-break"></div>
-
 ### Finden von files nach Kriterien - find
 
 
@@ -1030,8 +1034,6 @@ grep  "[[:digit:]]\{5\}" /root/namen
 ## find directories with specific name 
 find / -name tmpfiles.d -type d 
 ```
-
-<div class="page-break"></div>
 
 ## Logs/Loganalyse
 
@@ -1046,8 +1048,6 @@ tail -f /var/log/syslog
 logger meine_nachricht 
 
 ```
-
-<div class="page-break"></div>
 
 ### Dienste debuggen
 
@@ -1096,8 +1096,6 @@ cat error.log | grep -i error
 ```
 
 
-<div class="page-break"></div>
-
 ### Rsyslog
 
 
@@ -1113,8 +1111,6 @@ cat error.log | grep -i error
 
 Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
 ```
-
-<div class="page-break"></div>
 
 ### Journal analysieren
 
@@ -1162,7 +1158,13 @@ SystemMaxUse=1G
 journalctl -u ssh 
 ```
 
-<div class="page-break"></div>
+### Show journalctl for specific Field 
+
+```
+journalctl -o json-pretty
+journalctl _PID=1 # show all entries for systemd - command startet as first program after kernel is loaded
+journalctl _UID=120 # show all log entries for specific user 
+```
 
 ## Variablen
 
@@ -1192,8 +1194,6 @@ journalctl -u ssh
  echo $DATUM
  echo $DATUM >> /var/log/datumslog
 ```
-
-<div class="page-break"></div>
 
 ## Dienste/Runlevel(Targets verwalten) 
 
@@ -1328,8 +1328,6 @@ systemctl start apache2
 
 
 
-<div class="page-break"></div>
-
 ### Systemctl - timers
 
 
@@ -1406,8 +1404,6 @@ IOSchedulingClass=idle
 
   * https://nielsk.micro.blog/2015/11/11/creating-systemd-timers.html
 
-<div class="page-break"></div>
-
 ### Gegenüberstellung service etc/init.d/ systemctl
 
 
@@ -1427,8 +1423,6 @@ service rsyslog status
 
 
 ```
-
-<div class="page-break"></div>
 
 ## Partitionierung und Filesystem
 
@@ -1479,8 +1473,6 @@ mount | grep platte  # taucht platte hier auf ?
 
 ```
 
-<div class="page-break"></div>
-
 ## Boot-Prozess und Kernel 
 
 ### Grub konfigurieren
@@ -1512,16 +1504,12 @@ update-grub
 ## Step 4 - be happy 
 ```
 
-<div class="page-break"></div>
-
 ### Kernel-Version anzeigen
 
 
 ```
 uname -a 
 ```
-
-<div class="page-break"></div>
 
 ### Kernel-Module laden/entladen/zeigen
 
@@ -1551,8 +1539,6 @@ cd /lib/modules/5.4.0-66-generic
 find /lib/modules -name psmouse* 
 /lib/modules/5.4.0-66-generic/kernel/drivers/input/mouse/psmouse.ko
 ```
-
-<div class="page-break"></div>
 
 ## Hilfe 
 
@@ -1596,8 +1582,6 @@ n # nächster Treffer (kleines n)
 N # letzter Treffer 
 ```
 
-<div class="page-break"></div>
-
 ## Grafische Oberfläche und Installation 
 
 ### Gnome unter Ubuntu installieren
@@ -1608,14 +1592,10 @@ sudo apt install tasksel
 sudo tasksel install ubuntu-desktop 
 ```
 
-<div class="page-break"></div>
-
 ### X-Server - Ausgabe auf Windows umleiten
 
 
   * https://www.thomas-krenn.com/de/wiki/Grafische_Linux_Programme_remote_von_einem_Windows_PC_mit_Xming_nutzen
-
-<div class="page-break"></div>
 
 ### Installations-Images-Server
 
@@ -1637,8 +1617,6 @@ apt-get upgrade
 apt-get dist-upgrade
 
 ```
-
-<div class="page-break"></div>
 
 ### Paketmanager apt/dpkg
 
@@ -1706,14 +1684,39 @@ apt search ^apache | less
 
 ```
 
-## Installieren mit apt install 
+### Installieren mit apt install 
 
 ```
 ## mit genauem Namen 
 apt install apache2 
 ```
 
-<div class="page-break"></div>
+### Liste der Files aus dem Paket (wenn installiert)
+
+```
+dpkg -L openssh-server 
+
+```
+
+### Paket runterladen, wenn bereits installiert 
+
+```
+apt install -d --reinstall openssh-server # -d steht für download-only
+## Lädt das Paket unter 
+## /var/cache/apt/archives runter 
+
+```
+
+### Welche Dateien sind im Paket, die ausgerollt werden ? (ohne Installation) 
+
+```
+cd /var/cache/apt/archives 
+dpkg --contents openssh-server-xyz.deb # im gleichen Verzeichnis oder vollen Pfad dorthin
+## oder Paket haben händisch in ein anderes Verzeichnis runtergeladen (z.B. mit wget)
+dpkg -c /usr/src/openssh-server-xyz.deb
+
+
+```
 
 ### Archive runterladen und entpacken
 
@@ -1734,7 +1737,13 @@ cd foo
 tar xvf master.tar.gz
 ```
 
-<div class="page-break"></div>
+### Mehrere Versionen eines Programms z.B. php (cli) verwalten
+
+
+### Ref: 
+
+  * https://devanswers.co/run-multiple-php-versions-on-apache/
+
 
 ## Firewall und ports
 
@@ -1782,8 +1791,6 @@ ufw delete allow 22
 ## e.g. 
 ufw delete 1 
 ```
-
-<div class="page-break"></div>
 
 ### firewalld
 
@@ -1943,8 +1950,6 @@ firewall-cmd --runtime-to-permanent
   * https://www.linuxjournal.com/content/understanding-firewalld-multi-zone-configurations#:~:text=Going%20line%20by%20line%20through,or%20source%20associated%20with%20it.
   * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
 
-<div class="page-break"></div>
-
 ### Scannen und Überprüfen mit telnet/nmap
 
 ## Netzwerk/Dienste 
@@ -1961,8 +1966,6 @@ dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen
 ip a
 ```
 
-<div class="page-break"></div>
-
 ### Auf welchen Ports lauscht mein Server
 
 
@@ -1973,7 +1976,17 @@ lsof -i
 netstat -tupel
 ```
 
-<div class="page-break"></div>
+### Hostname setzen
+
+
+```
+## please do it root 
+hostnamectl
+hostnamectl set-hostname server1.training.local 
+## only reflects after new login 
+su - 
+
+```
 
 ## Tools/Verschiedens 
 
@@ -2000,8 +2013,6 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/re
 
 ```
 
-<div class="page-break"></div>
-
 ### lokale Mails installieren
 
 
@@ -2017,7 +2028,27 @@ cat /var/mail/root
 
 ```
 
-<div class="page-break"></div>
+### Debian/Ubuntu - deb - Paket entpacken
+
+
+```
+apt install -y binutils 
+cd /usr/src 
+mkdir unwrap-folder 
+mv openssh-server-xyz.deb unwrap-folder 
+cd unwrap-folder 
+tar x openssh-server-xyz.deb 
+## additionally might be necessary
+tar xvf data.tar.xz 
+tar xvf control.tar.xz 
+```
+
+### Geänderte Dateien zu anderem Server schicken
+
+
+```
+rsync --links -u -v -e ssh -r /var kurs@192.168.56.102:/home/kurs
+```
 
 ## Bash/Bash-Scripting 
 
@@ -2040,8 +2071,6 @@ chmod u+x script.sh
 
 ```
 
-<div class="page-break"></div>
-
 ### Ausführen/Verketten von mehreren Befehlen
 
 
@@ -2056,8 +2085,6 @@ apt update && apt upgrade
 ## befehl1 oder befehlt2 (im weitesten Sinne) 
 befehl1 || befehl2
 ```
-
-<div class="page-break"></div>
 
 ## Timers/cronjobs 
 
@@ -2082,8 +2109,6 @@ chmod 755 datum  # es müssen x-Rechte (Ausführungsrechte gesetzt sein)
 ### Abwarten, Tee trinken 
 ```
  
-
-<div class="page-break"></div>
 
 ### cronjob (zentral) - crond
 
@@ -2138,8 +2163,6 @@ ls -la /var/log/scripting.log
 
 ```
 
-<div class="page-break"></div>
-
 ## Literatur 
 
 ### Literatur
@@ -2159,5 +2182,3 @@ ls -la /var/log/scripting.log
 
   * [Bash Programmierung]https://tldp.org/LDP/Bash-Beginners-Guide/html/
   * [Bash Advanced Programmierung](https://tldp.org/LDP/abs/html/loops1.html)
-
-<div class="page-break"></div>
