@@ -28,6 +28,7 @@
     
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
+     * [Prioritäten und NiceNess](nice-pr.md)
   1. Benutzer, Gruppen und Rechte 
      * [Rechte](rechte.md) 
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
