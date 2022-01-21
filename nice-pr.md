@@ -29,8 +29,15 @@ n + 20 z.B. Niceness= -20. = -20 + 20 = 0
 
 ```
 chrt # change realtime 
+# Welche Warteschlangen gibt es 
+chrt -m
 
+# Packe top in die realtime Warteschlange und führe es aus 
+# --rr realtime roundrobin Warteschlange 
+# Führe top mit der Priorität -100 aus 
+chrt --rr 99 top 
 ```
+
 
 ## Ref:
 
