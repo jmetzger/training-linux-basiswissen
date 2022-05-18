@@ -77,7 +77,7 @@
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
-     * [Auf welchen Ports lauscht mein Server](lsof.md) 
+     * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
      * [Hostname setzen](hostnamectl.md)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
