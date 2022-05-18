@@ -1,5 +1,12 @@
 # Journalctl 
 
+## Journal für eine bestimmte unit anzeigen 
+
+```
+journalctl -u ssh.service 
+
+```
+
 ## Show all boots 
 
 ``` 
