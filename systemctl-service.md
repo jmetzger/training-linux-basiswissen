@@ -79,8 +79,11 @@ systemctl edit sshd.service
 [Unit]
 Description=Jochen's ssh-server 
 # Dann speichern und schliessen (Editor) 
+```
 
-systemctl daemon-reload 
+```
+# nur falls es nicht funktioniert !
+# systemctl daemon-reload 
 systemctl status 
 ```
 
