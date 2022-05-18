@@ -16,7 +16,7 @@
 # in welchen Endmodus -> Target soll ich mich hocharbeiten 
 graphical.target 
 
-graphical.target
-   multi-user.target
+graphical.target (isolateTarget) 
+   multi-user.target (isolatedTarget)
       basic.target 
 ```
