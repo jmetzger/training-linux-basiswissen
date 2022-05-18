@@ -8,6 +8,7 @@
 Centos 
 Redhat.  — rpm / (yum / dnf) 
 Fedora 
+Rocky Linux
 ```
 ### Debian Familie 
 
