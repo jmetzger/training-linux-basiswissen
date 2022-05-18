@@ -93,6 +93,7 @@
      * [cronjob (zentral) - crond](crond.md) 
   1. Literatur 
      * [Literatur](literatur.md) 
+     * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
 
 
 
