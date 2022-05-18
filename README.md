@@ -8,7 +8,7 @@
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
   1. Basisbefehle
-     * [In den Root-Benutzer wechseln](sudo.md)  
+     * [In den Root-Benutzer wechseln - sudo](sudo.md)  
      * [Wo bin ich ?](pwd.md)
      * [Praktische Ausgabe von langen Seiten - less](less.md) 
      * [Datei anlegen - touch](touch.md)
