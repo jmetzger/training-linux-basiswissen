@@ -13,7 +13,6 @@ systemctl list-units -t service | grep apache
 # die Abkürzung 
 systemctl -t service | grep apache
 
-# Wie finde ich einen service, der noch nicht aktiviert ist ? 
 systemctl list-unit-files -t service | grep ssh
 
 # Dienst aktivieren
