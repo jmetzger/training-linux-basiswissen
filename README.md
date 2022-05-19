@@ -93,6 +93,8 @@
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
+  1. Übungen 
+     * [Übung Dienste](/uebungen/uebung2-dienste.md)  
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
