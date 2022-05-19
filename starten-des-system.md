@@ -10,7 +10,7 @@
 5. Mutter aller Prozesse -> init -> systemd 
 ```
 
-### Reihenfolge (Phase 2) - systemd hat die Kontrolle 
+## Reihenfolge (Phase 2) - systemd hat die Kontrolle 
 
 ```
 # in welchen Endmodus -> Target soll ich mich hocharbeiten 
