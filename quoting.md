@@ -13,3 +13,15 @@ echo "Das ist's:"'Das ist das heutige $DATUM'
 
 
 ```
+
+```
+Mehrzeilges Beispiel 
+echo 'hallo
+> das geht so
+> .. oder auch icht'
+hallo
+das geht so
+.. oder auch icht
+
+
+```
