@@ -28,7 +28,7 @@ vimtutor # sollte bereits mit vi installiert worden sein.
   vi dateiname 
   
   2. # Schreiben in der Datei 
-  i # drücken
+  i # <- i-Taste drücken
   
   3. # Es erscheint unten in der Zeile 
   # -- INSERT -- 
