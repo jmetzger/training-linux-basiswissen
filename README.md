@@ -60,6 +60,7 @@
   1. Boot-Prozess und Kernel 
      * [Hintergründe zum Starten des Systems](/starten-des-system.md)
      * [Grub konfigurieren](grub.md)
+     * [Kernel Params beim Booten übergeben](/kernel-params.md)
      * [Kernel-Version anzeigen](kernel-version.md) 
      * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
   1. Hilfe 
