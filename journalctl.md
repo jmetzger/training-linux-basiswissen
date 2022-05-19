@@ -53,7 +53,16 @@ journalctl -u ssh
 ## Show journalctl for specific Field 
 
 ```
+# Hilfreich Damit man die Felder 
 journalctl -o json-pretty
 journalctl _PID=1 # show all entries for systemd - command startet as first program after kernel is loaded
 journalctl _UID=120 # show all log entries for specific user 
+```
+
+## Welche Hilfe gibt es ?
+
+```
+man journald.conf 
+man journalctl 
+man systemd.journal-fields
 ```
