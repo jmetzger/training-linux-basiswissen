@@ -97,7 +97,8 @@
      * [cronjob (zentral) - crond](crond.md) 
   1. Übungen 
      * [Übung Verzeichnis](/uebungen/uebung1-verzeichnisse-anlegen.md)
-     * [Übung Dienste](/uebungen/uebung2-dienste.md)  
+     * [Übung Dienste](/uebungen/uebung2-dienste.md) 
+     * [Übung Umleitung mit Variable]uebung3-umleitung-mit-variable.md 
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
