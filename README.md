@@ -94,6 +94,7 @@
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
   1. Übungen 
+     * [Übung Verzeichnis](/uebungen/uebung1-verzeichnisse-anlegen.md)
      * [Übung Dienste](/uebungen/uebung2-dienste.md)  
   1. Literatur 
      * [Literatur](literatur.md) 
