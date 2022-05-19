@@ -43,3 +43,11 @@ cd /var/log/mysql
 cat error.log | grep -i error
 ```
 
+## Schweizer Taschenmesser der Suche 
+
+
+```
+# Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
+grep -r gummitulpe /etc
+
+```
