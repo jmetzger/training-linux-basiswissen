@@ -29,6 +29,13 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 # r = 4, w = 2, x = 1
 ```
 
+## Beispiele 
+
+```
+- w -  
+0 2 0  = 020 
+```
+
 
 ## Berechtigungen mit Symbolen setzen 
 
