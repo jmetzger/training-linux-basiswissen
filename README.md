@@ -71,11 +71,12 @@
      * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
      * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
-  1. Wartung und Aktualisierung
+  1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Archive runterladen und entpacken](tar-download.md) 
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](update-alternatives.md)
+     * [Verzeichnisse in archiven sichern - tar](/backups/tar.md)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
