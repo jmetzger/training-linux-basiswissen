@@ -1,6 +1,6 @@
 # Quoting 
 
-## Beispiele
+## Beispiel 1:
 ```
 DATUM=$(date)
 root@ubuntu2004:~# echo "Das ist das heutige $DATUM"
@@ -14,6 +14,8 @@ echo "Das ist's:"'Das ist das heutige $DATUM'
 
 ```
 
+## Mehrzeiliges Beispiel 
+
 ```
 Mehrzeilges Beispiel 
 echo 'hallo
@@ -22,6 +24,19 @@ echo 'hallo
 hallo
 das geht so
 .. oder auch icht
+```
 
+## Hochkommas verwenden 
+
+```
+# Einfache gehen nur ausserhalb
+echo 'Test'\'' so geht es weiter'
+# oder mit $ 
+echo $'Test\' so geht es weiter'
+
+
+echo "\"Ein Sprichwort\""
+# oder
+echo '"Ein Sprichtwort"' 
 
 ```
