@@ -103,6 +103,7 @@
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
+     * [Wo finde ich Hilfe im Internet](hilfe-im-internet.md)
 
 
 
