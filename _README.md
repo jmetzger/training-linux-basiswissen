@@ -8,7 +8,7 @@
      * [Verzeichnisaufbau](#verzeichnisaufbau)
      * [Dateitypen](#dateitypen)
   1. Basisbefehle
-     * [In den Root-Benutzer wechseln](#in-den-root-benutzer-wechseln)
+     * [In den Root-Benutzer wechseln - sudo](#in-den-root-benutzer-wechseln---sudo)
      * [Wo bin ich ?](#wo-bin-ich-)
      * [Praktische Ausgabe von langen Seiten - less](#praktische-ausgabe-von-langen-seiten---less)
      * [Datei anlegen - touch](#datei-anlegen---touch)
@@ -48,16 +48,21 @@
      * [Dienste debuggen](#dienste-debuggen)
      * [Rsyslog](#rsyslog)
      * [Journal analysieren](#journal-analysieren)
-  1. Variablen
+  1. Bash: Variablen, Kommandosubstitution und Quotes 
+     * [Kommandos ausgeben und weiter verwenden](#kommandos-ausgeben-und-weiter-verwenden)
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
+     * [Quoting](#quoting)
   1. Dienste/Runlevel(Targets verwalten) 
+     * [Systemd Überblick](#systemd-überblick)
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
      * [Systemctl - timers](#systemctl---timers)
-     * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinit.d-systemctl)
+     * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinitd-systemctl)
   1. Partitionierung und Filesystem
-     * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
+     * [parted and mkfs.ext4](#parted-and-mkfsext4)
   1. Boot-Prozess und Kernel 
+     * [Hintergründe zum Starten des Systems](#hintergründe-zum-starten-des-systems)
      * [Grub konfigurieren](#grub-konfigurieren)
+     * [Kernel Params beim Booten übergeben](#kernel-params-beim-booten-übergeben)
      * [Kernel-Version anzeigen](#kernel-version-anzeigen)
      * [Kernel-Module laden/entladen/zeigen](#kernel-module-ladenentladenzeigen)
   1. Hilfe 
@@ -66,18 +71,19 @@
      * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
      * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download)
-  1. Wartung und Aktualisierung
+  1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
-     * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-z.b.-php-cli-verwalten)
+     * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-zb-php-cli-verwalten)
+     * [Verzeichnisse in archiven sichern - tar](#verzeichnisse-in-archiven-sichern---tar)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
-     * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
+     * [Auf welchen Ports lauscht mein Server - lsof](#auf-welchen-ports-lauscht-mein-server---lsof)
      * [Hostname setzen](#hostname-setzen)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
@@ -91,8 +97,15 @@
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
+  1. Übungen 
+     * [Übung Verzeichnis](#übung-verzeichnis)
+     * [Übung Dienste](#übung-dienste)
+     * [Übung Umleitung mit Variable](#übung-umleitung-mit-variable)
+     * [Übung user/password](#übung-userpassword)
   1. Literatur 
      * [Literatur](#literatur)
+     * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
+     * [Wo finde ich Hilfe im Internet](#wo-finde-ich-hilfe-im-internet)
 
 
 
@@ -112,6 +125,7 @@
 Centos 
 Redhat.  — rpm / (yum / dnf) 
 Fedora 
+Rocky Linux
 ```
 #### Debian Familie 
 
@@ -242,7 +256,7 @@ b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte)
 
 ## Basisbefehle
 
-### In den Root-Benutzer wechseln
+### In den Root-Benutzer wechseln - sudo
 
 
 ```
@@ -563,7 +577,7 @@ vimtutor # sollte bereits mit vi installiert worden sein.
   vi dateiname 
   
   2. # Schreiben in der Datei 
-  i # drücken
+  i # <- i-Taste drücken
   
   3. # Es erscheint unten in der Zeile 
   # -- INSERT -- 
@@ -711,6 +725,21 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 ## 421 | 42- | 4--
 ##  7  |  6  | 4
 ```
+
+### Bedeutung Oktalzahlen 
+
+```
+## rwx 
+## r = 4, w = 2, x = 1
+```
+
+### Beispiele 
+
+```
+- w -  
+0 2 0  = 020 
+```
+
 
 ### Berechtigungen mit Symbolen setzen 
 
@@ -1028,6 +1057,13 @@ grep  "[[:digit:]]\{5\}" /root/namen
 ### Finden von files nach Kriterien - find
 
 
+### Suchen nach allen Vorkommen von mariadb 
+
+```
+## iname - case insensitive 
+find / -iname '*mariadb*' 
+```
+
 ### Simple find command 
 
 ```
@@ -1095,6 +1131,14 @@ cd /var/log/mysql
 cat error.log | grep -i error
 ```
 
+### Schweizer Taschenmesser der Suche 
+
+
+```
+## Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
+grep -r gummitulpe /etc
+
+```
 
 ### Rsyslog
 
@@ -1114,6 +1158,13 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 ### Journal analysieren
 
+
+### Journal für eine bestimmte unit anzeigen 
+
+```
+journalctl -u ssh.service 
+
+```
 
 ### Show all boots 
 
@@ -1161,12 +1212,33 @@ journalctl -u ssh
 ### Show journalctl for specific Field 
 
 ```
+## Hilfreich Damit man die Felder 
 journalctl -o json-pretty
 journalctl _PID=1 # show all entries for systemd - command startet as first program after kernel is loaded
 journalctl _UID=120 # show all log entries for specific user 
 ```
 
-## Variablen
+### Welche Hilfe gibt es ?
+
+```
+man journald.conf 
+man journalctl 
+man systemd.journal-fields
+```
+
+## Bash: Variablen, Kommandosubstitution und Quotes 
+
+### Kommandos ausgeben und weiter verwenden
+
+
+```
+## Beispiele
+echo $(date) 
+echo "Heute ist:"$(date) 
+DATUM=$(date) 
+echo "Das Datum ist:"$DATUM 
+
+```
 
 ### Setzen und verwenden von Variablen
 
@@ -1195,7 +1267,70 @@ journalctl _UID=120 # show all log entries for specific user
  echo $DATUM >> /var/log/datumslog
 ```
 
+### Quoting
+
+
+### Beispiel 1:
+```
+DATUM=$(date)
+root@ubuntu2004:~# echo "Das ist das heutige $DATUM"
+Das ist das heutige Do 19. Mai 13:50:07 CEST 2022
+root@ubuntu2004:~# echo 'Das ist das heutige $DATUM'
+Das ist das heutige $DATUM
+
+## Verschiedene Quotes nacheinander 
+echo "Das ist's:"'Das ist das heutige $DATUM'
+
+
+```
+
+### Mehrzeiliges Beispiel 
+
+```
+Mehrzeilges Beispiel 
+echo 'hallo
+> das geht so
+> .. oder auch icht'
+hallo
+das geht so
+.. oder auch icht
+```
+
+### Hochkommas verwenden 
+
+```
+## Einfache gehen nur ausserhalb
+echo 'Test'\'' so geht es weiter'
+## oder mit $ 
+echo $'Test\' so geht es weiter'
+
+
+echo "\"Ein Sprichwort\""
+## oder
+echo '"Ein Sprichtwort"' 
+
+```
+
 ## Dienste/Runlevel(Targets verwalten) 
+
+### Systemd Überblick
+
+
+### Units 
+
+```
+*.target
+*.service
+*.timer 
+```
+
+### Targets 
+
+```
+multi-user.target (ehemals runlevel 3: Multi User mit Netzwerk) 
+grahical.target (ehemals runlevel 5: genau wie 3 mit grafischer Oberfläche) 
+
+
 
 ### Die wichtigsten systemctl/service
 
@@ -1209,11 +1344,10 @@ systemctl status sshd
 ## Wie heisst der Dienst / welche Dienste gibt es ? (nur wenn der service aktiviert ist). 
 systemctl list-units -t service 
 ## für apache
-systemctl list-units -t service | grep ^apache
+systemctl list-units -t service | grep apache
 ## die Abkürzung 
-systemctl -t service | grep ^apache
+systemctl -t service | grep apache
 
-## Wie finde ich einen service, der noch nicht aktiviert ist ? 
 systemctl list-unit-files -t service | grep ssh
 
 ## Dienst aktivieren
@@ -1280,8 +1414,11 @@ systemctl edit sshd.service
 [Unit]
 Description=Jochen's ssh-server 
 ## Dann speichern und schliessen (Editor) 
+```
 
-systemctl daemon-reload 
+```
+## nur falls es nicht funktioniert !
+## systemctl daemon-reload 
 systemctl status 
 ```
 
@@ -1475,6 +1612,30 @@ mount | grep platte  # taucht platte hier auf ?
 
 ## Boot-Prozess und Kernel 
 
+### Hintergründe zum Starten des Systems
+
+
+### Reihenfolge (Phase 1) 
+
+```
+1. BIOS-Selbsttest 
+2. MBR (512 Bytes auf der Festplatte) -> Bootloader Teil 1.
+3. Bootmanager (Grub) wird gestartet 
+4. Im Boot-Manager -> Auswahl welcher Eintrag soll verwendet werden 
+5. Mutter aller Prozesse -> init -> systemd 
+```
+
+### Reihenfolge (Phase 2) - systemd hat die Kontrolle 
+
+```
+## in welchen Endmodus -> Target soll ich mich hocharbeiten 
+graphical.target 
+
+graphical.target (isolateTarget) 
+   multi-user.target (isolatedTarget)
+      basic.target 
+```
+
 ### Grub konfigurieren
 
 
@@ -1502,6 +1663,24 @@ update-grub
 ## Ändern und dann CTRL bzw. STRG + x für das Booten nach Änderung 
 
 ## Step 4 - be happy 
+```
+
+### Kernel Params beim Booten übergeben
+
+
+### Welche kann ich in Ubuntu übergeben
+
+```
+Im Bootmanager (grub)  -> Menupunkt -> e - Taste drücken -> bei
+Zeile 
+linux 
+ganz am Ende
+
+man kernel-command-line
+
+
+Danach F10 oder CTRL-x 
+
 ```
 
 ### Kernel-Version anzeigen
@@ -1601,7 +1780,7 @@ sudo tasksel install ubuntu-desktop
 
   * https://ubuntu.com/download/server#download
 
-## Wartung und Aktualisierung
+## Wartung, Sicherung und Aktualisierung
 
 ### Aktualisierung des Systems
 
@@ -1743,6 +1922,40 @@ tar xvf master.tar.gz
 ### Ref: 
 
   * https://devanswers.co/run-multiple-php-versions-on-apache/
+
+
+### Verzeichnisse in archiven sichern - tar
+
+
+### Sichern 
+
+```
+tar cvfz /usr/src/_etc.20220522.tar.gz /etc 
+
+```
+
+## Listen der Dateien aus Archiv anzeigen
+
+```
+tar tf /usr/src/_etc.20220522.tar.gz 
+
+## Gibt es die Datei ? 
+tar tf /usr/src/_etc.20220522.tar.gz /etc/skel/.bashrc 
+
+```
+
+## Dateien aus Archiv entpacken 
+
+```
+mkdir auspackverzeichnis
+cp -a _etc.20220522.tar.gz auspackverzeichnis 
+cd auspacksverzeichins 
+tar xvf /usr/src/_etc.20220522.tar.gz 
+
+## Einzelne Dateien  
+tar xvf /usr/src/_etc.20220522.tar.gz /etc/skel/.bashrc 
+
+```
 
 
 ## Firewall und ports
@@ -1966,7 +2179,7 @@ dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen
 ip a
 ```
 
-### Auf welchen Ports lauscht mein Server
+### Auf welchen Ports lauscht mein Server - lsof
 
 
 ```
@@ -2163,6 +2376,37 @@ ls -la /var/log/scripting.log
 
 ```
 
+## Übungen 
+
+### Übung Verzeichnis
+
+
+```
+1. verzeichnis planung anlegen
+2. ins verzeichnis planung wechseln
+3. rekursiv struktur anlegen: woche1/tag1/stunden
+4. Leere datei anlegen : tag1
+5. verzeichnisstruktur wieder löschen
+```
+
+### Übung Dienste
+
+
+```
+1. Ihr sucht nach dem MariaDB-Server  mit Hilfe von apt search
+2. Ihr installiert den mariadb server mit dem Flag ohne Nachfrage -y 
+3. Ihr findet raus unter welchem Dienst der Server läuft (mariadb)  
+4. Ihr stoppt den Server 
+5. Ihr deaktiviert den (disable) 
+6. IHr startet den Server 
+7. Ihr aktiviert den Server für das nächste Reboot 
+8. Lass Euch im letzten Schritt alle logs anzeigen 
+```
+
+### Übung Umleitung mit Variable
+
+### Übung user/password
+
 ## Literatur 
 
 ### Literatur
@@ -2180,5 +2424,33 @@ ls -la /var/log/scripting.log
 
 ### Bash - Programmierung 
 
-  * [Bash Programmierung]https://tldp.org/LDP/Bash-Beginners-Guide/html/
+  * [Bash Programmierung](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
   * [Bash Advanced Programmierung](https://tldp.org/LDP/abs/html/loops1.html)
+
+### Cheatsheet Commandline
+
+  * https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/
+
+### Wo finde ich Hilfe im Internet
+
+
+### Einfache Fragen 
+
+```
+Linux quoting (bei google)
+In der Regel kommen wir dann auf Stackoverflow
+https://stackoverflow.com/questions/6697753/difference-between-single-and-double-quotes-in-bash
+
+```
+
+### Größere Fragen 
+
+```
+Wie installiere ich 
+apache2 ubuntu howto  
+apache2 ubuntu 20.04 howto 
+apache2 ubuntu 20.04. DocumentRoot 
+
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-de
+
+```
