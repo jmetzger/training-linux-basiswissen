@@ -22,6 +22,14 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 #  7  |  6  | 4
 ```
 
+## Bedeutung Oktalzahlen 
+
+```
+# rwx 
+# r = 4, w = 2, x = 1
+```
+
+
 ## Berechtigungen mit Symbolen setzen 
 
 ```
