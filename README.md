@@ -12,7 +12,7 @@
      * [Wo bin ich ?](pwd.md)
      * [Praktische Ausgabe von langen Seiten - less](less.md) 
      * [Datei anlegen - touch](touch.md)
-     * [Autovervollständen * und tab-Taste](autocomplete.md) 
+     * [Autovervollständigen * und tab-Taste](autocomplete.md) 
      * [Welches Programm wird verwendet](which.md)
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](alias.md)
