@@ -25,9 +25,9 @@ cd /etc/apt/sources.list.d
 ## Paket deinstallieren und aufräumen 
 
 ```
-# mit konfigurationsdateien deinstallieren
+# mit Konfigurationsdateien deinstallieren
 apt purge mariadb-server 
-# konfgiurationsdateien stehen lassen
+# Konfgurationsdateien stehen lassen
 apt remove mariadb-server 
 
 # Aufräumen / alle Pakete die nicht mehr benötigt werden
