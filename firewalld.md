@@ -92,8 +92,16 @@ firewall-cmd --get-services
 ## Adding/Removing a service 
 
 ```
-firewall-cmd --permanent --zone=public --add-service=ssh
+# Version 1 - more practical 
+# set in runtime 
+firewall-cmd --zone=public --add-service=http
+firewall-cmd --runtime-to-permanent 
+
+# Version 2 - less practical
+firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --reload 
+
+
 firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload 
 ```
