@@ -26,7 +26,7 @@ cd auspacksverzeichins
 tar xvf /usr/src/_etc.20220522.tar.gz 
 
 # Einzelne Dateien  
-tar xvf /usr/src/_etc.20220522.tar.gz /etc/skel/.bashrc 
+tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc 
 
 ```
 
