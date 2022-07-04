@@ -1,5 +1,13 @@
 # Find 
 
+## Suchen nach allen Vorkommen im Verzeichnis /etc mit 'ssh' im Namen  
+
+```
+# Bitte immer einfach Hochkommas verwenden.
+find /etc -iname 'ssh*'
+
+```
+
 ## Suchen nach allen Vorkommen von mariadb 
 
 ```
