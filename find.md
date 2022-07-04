@@ -5,7 +5,8 @@
 ```
 # Bitte immer einfach Hochkommas verwenden.
 find /etc -iname 'ssh*'
-
+# Wäre das gleiche wie. 
+find /etc -iname 'ssh*' -print 
 ```
 
 ## Suchen nach allen Vorkommen von mariadb 
