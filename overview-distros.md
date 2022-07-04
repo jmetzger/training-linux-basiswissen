@@ -6,15 +6,17 @@
 
 ```
 Centos 
-Redhat.  — rpm / (yum / dnf) 
+Redhat.  — rpm / (yum / dnf) (Support-Vertrag) 
 Fedora 
 Rocky Linux
+Scientific Linux 
 ```
+
 ### Debian Familie 
 
 ```
-Debian 
-Ubuntu. - dpkg / apt
+Debian (Stiftung)
+Ubuntu. - dpkg / apt (Support-Vertrag möglich)
 Mint 
 ```
 
@@ -24,6 +26,19 @@ Mint
 SLES (SuSE Linux Enterprise)
 OpenSuSE 
 ```
+
+## Was hat die jeweilige Familie gemeinsam ?
+
+```
+Installer 
+Grafische Oberfläche (GNOME) 
+Bestimmte Teilmenge von Anwendungen / Features
+Paket-Managment-System 
+
+Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
+
+```
+
 
 ## Distris zur Sicherheitsüberprüfung / Hacken 
 
