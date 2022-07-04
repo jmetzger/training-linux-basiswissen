@@ -21,4 +21,5 @@ find / -iname '*mariadb*'
 ```
 # find directories with specific name 
 find / -name tmpfiles.d -type d 
+find /etc -name 'ssh*' -type f
 ```
