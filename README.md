@@ -57,6 +57,7 @@
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](/systemd.md) 
      * [Die wichtigsten systemctl/service](systemctl-service.md)
+     * [Script mit systemd verwalten und EnvironmentVariablen](systemctl-service-oneshot-env.md)
      * [Systemctl - timers](systemctl-timers.md)
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
   1. Partitionierung und Filesystem
