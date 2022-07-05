@@ -33,6 +33,12 @@ apt search apache | grep -A 1 ^apache
 
 ```
 
+## Anzahl der Vorkommen anzeigen 
+
+```
+ps aux | grep -c apache
+```
+
 
 ## Recursive Suchen (grep -r) - Schweizer Taschenmesser 
 
