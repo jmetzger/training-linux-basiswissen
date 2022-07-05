@@ -54,6 +54,42 @@ systemctl start script
 systemctl status script 
 ```
 
+## Schritt 4: Datei /etc/default/script mit env-variablen anlegen
+
+```
+# vi /etc/default/script 
+SCRIPT_VERSION=1.0 
+SCRIPT_MENU=simple 
+
+```
+
+## Schritt 5: Service im Bereich [Service] wie folgt modifizieren
+
+```
+# systemctl edit --full script.sh 
+# ... 
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/script-ng.sh
+RemainAfterExit=true
+StandardOutput=journal
+EnvironmentFile=/etc/default/script 
+Environment="SPEED=fast"
+Environment="DRINKS=all"
+
+```
+
+## Schritt 6: Restart 
+
+```
+systemctl restart script.service
+# Sichtprüfung im Journal 
+systemctl status script
+
+# in den logs
+cat /var/log/script-ng.log 
+
+```
 
 ## Referenz:
 
