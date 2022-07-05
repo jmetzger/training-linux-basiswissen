@@ -25,6 +25,15 @@ cat /etc/services | grep  "s$"
 
 ```
 
+## Ergebnis und 1 Zeile danach 
+
+```
+apt search apache | grep -A 1 ^apache
+# Alternativ für -B 10 davor (10 Zeilen davor) 
+
+```
+
+
 ## Recursive Suchen (grep -r) - Schweizer Taschenmesser 
 
 ```
