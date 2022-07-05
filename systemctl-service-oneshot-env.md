@@ -14,7 +14,7 @@ env >> /var/log/script-ng.sh
 
 ```
 chmod u+x /usr/local/bin/script-ng.sh 
-script.sh 
+script-ng.sh 
 # Sichtprüfung im Log
 cat /var/log/script-ng.sh 
 ```
