@@ -46,6 +46,15 @@ WantedBy=multi-user.target
 # editor speichern und schliessen
 ```
 
+## Schritt 3: Testen 
+
+```
+systemctl status script
+systemctl start script 
+systemctl status script 
+```
+
+
 ## Referenz:
 
   * https://gist.github.com/drmalex07/d006f12914b21198ee43
