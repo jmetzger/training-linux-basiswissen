@@ -17,6 +17,7 @@
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](alias.md)
      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
+     * [Dateien und Ordner vergleichen - diff](diff.md) 
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](cd.md)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](list.md)
