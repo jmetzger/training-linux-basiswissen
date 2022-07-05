@@ -18,3 +18,32 @@ script-ng.sh
 # Sichtprüfung im Log
 cat /var/log/script-ng.sh 
 ```
+
+## Schritt 2: service ohne env erstellen.
+
+```
+# --force weil datei nicht existiert.
+# --full eine vollständige service-datei und nicht überschwierig 
+systemctl edit --full --force script.service 
+```
+
+```
+[Unit]
+Description=script von jochen
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/script-ng.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+
+
+## Referenz:
+
+  * https://gist.github.com/drmalex07/d006f12914b21198ee43
