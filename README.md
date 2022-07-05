@@ -52,6 +52,7 @@
      * [Kommandos ausgeben und weiter verwenden](command-substitution.md)
      * [Setzen und verwenden von Variablen](variables.md)
      * [Quoting](quoting.md) 
+     * [Die history](history.md)
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](/systemd.md) 
      * [Die wichtigsten systemctl/service](systemctl-service.md)
