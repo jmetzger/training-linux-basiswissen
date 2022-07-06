@@ -74,8 +74,9 @@ reboot
 # 1. neue partition erstellen (auch auf komplett neuer Platte möglich) 
 # 2. pvcreate /dev/sdb1 
 # 3. vgextend vg /dev/sdb1 
-sudo lvresize -L +5G --resizefs LVMVolGroup/test
 
+# --resizefs
+sudo lvresize -L +200M --resizefs vg0/data
 
 ```
 
