@@ -14,6 +14,11 @@ cd /usr/src/pakete/
 tar cfvz pakete.tar.gz pakete
 # faked, instead use usb-stick 
 scp pakete.tar.gz 11trainingdo@10.135.0.10:/home/11trainingdo
+
+
+# for usage on online server 
+apt install apt-offline 
+
 ```
 
 ```
@@ -41,15 +46,21 @@ sudo apt-offline set ~/my.sig
 scp 11trainingdo@<ip-of-offline-computer>:/home/11trainingdo/my.sig .
 scp my.sig 11trainingdo@<ip-private-ip>:/home/11trainingdo
 
-# on online-computer
+# ---> 
+
+# on ONLINE-computer
 sudo apt-offline get -d /my-packages my.sig
 # tar folder /my-packages
 sudo tar cvfz my-packages.tar.gz /my-packages 
 
 # Step 3:
-# copy tar to offline computer and unpack it 
+# copy tar to OFFLINE computer and unpack it 
 # on offline computer 
-cd /
+# normally usb-stick
+scp my-packages.tar.gz 11trainingdo@10.135.0.10:/home/11trainingdo
+
+# OFFLINE server 
+cd 
 sudo tar xvf my-packages.tar.gz 
 sudo apt-offline install /my-packages 
 
