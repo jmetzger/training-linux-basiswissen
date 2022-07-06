@@ -31,14 +31,7 @@ firewall-cmd --state
   
   * firewall-cmd 
 
-## Best way to add a new rule 
-```
-# Step1: do it persistent -> written to disk 
-firewall-cmd --add-port=82/tcp --permanent  
 
-# Step 2: + reload firewall 
-firewall-cmd --reload 
-```
 
 ## Zones documentation 
 
@@ -58,6 +51,27 @@ firewall-cmd --get-active-zones
 # in our case empty 
 ```
 
+## Add Interface to Zone = Active Zone 
+
+```
+firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
+firewall-cmd --reload 
+firewall-cmd --get-active-zones 
+public
+  interfaces: enp0s3
+
+```
+
+
+## Best way to add a new rule 
+```
+# Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --permanent  
+
+# Step 2: + reload firewall 
+firewall-cmd --reload 
+```
+
 ## Show information about all zones that are used 
 ```
 firewall-cmd --list-all 
@@ -65,9 +79,13 @@ firewall-cmd --list-all-zones
 ```
 
 
-## Add Interface to Zone ~ Active Zone 
+## Add Interface to Zone = Active Zone 
 
 ```
+# Schritt 1: Welche Interfaces gibt es 
+ip -br address 
+ip -br a
+
 firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
 firewall-cmd --reload 
 firewall-cmd --get-active-zones 
