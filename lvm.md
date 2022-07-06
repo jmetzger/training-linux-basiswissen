@@ -50,7 +50,7 @@ mkdir -p /mnt/platte
 mount /dev/vg0/data /mnt/platte
 ```
 
-# Schritt 6: /etc/fstab 
+## Schritt 6: /etc/fstab 
 
 ```
 umount /mnt/platte
@@ -65,3 +65,17 @@ reboot
 
 
 ```
+
+## Schritt 7: Vergrößern des Logical Volumes 
+
+```
+# Voraussetzung, ausreichend Speicher in der volumegroup 
+# oder dazufügen
+# 1. neue partition erstellen (auch auf komplett neuer Platte möglich) 
+# 2. pvcreate /dev/sdb1 
+# 3. vgextend vg /dev/sdb1 
+sudo lvresize -L +5G --resizefs LVMVolGroup/test
+
+
+```
+
