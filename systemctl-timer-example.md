@@ -48,3 +48,13 @@ OnCalendar=*:0/5
 [Install]
 WantedBy=basic.target
 ```
+
+```
+systemctl enable scriptv2.timer
+
+systemctl status scriptv2.timer
+systemctl start scriptv2.timer
+systemctl status scriptv2.timer
+
+systemctl list-timers
+```
