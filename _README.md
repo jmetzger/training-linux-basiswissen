@@ -12,11 +12,12 @@
      * [Wo bin ich ?](#wo-bin-ich-)
      * [Praktische Ausgabe von langen Seiten - less](#praktische-ausgabe-von-langen-seiten---less)
      * [Datei anlegen - touch](#datei-anlegen---touch)
-     * [Autovervollständen * und tab](#autovervollständen--und-tab)
+     * [Autovervollständigen * und tab-Taste](#autovervollständigen--und-tab-taste)
      * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](#alias-befehle-anzeigen)
      * [Welche Bibliotheken verwendet ein ausführbares Programm](#welche-bibliotheken-verwendet-ein-ausführbares-programm)
+     * [Dateien und Ordner vergleichen - diff](#dateien-und-ordner-vergleichen---diff)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen-->-ls--la)
@@ -52,10 +53,14 @@
      * [Kommandos ausgeben und weiter verwenden](#kommandos-ausgeben-und-weiter-verwenden)
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
      * [Quoting](#quoting)
+     * [Die history](#die-history)
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](#systemd-überblick)
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
+     * [Script mit systemd verwalten und EnvironmentVariablen](#script-mit-systemd-verwalten-und-environmentvariablen)
+     * [Systemd Service endless loop](#systemd-service-endless-loop)
      * [Systemctl - timers](#systemctl---timers)
+     * [systemctl - timers - Übung](#systemctl---timers---übung)
      * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinitd-systemctl)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](#parted-and-mkfsext4)
@@ -85,6 +90,7 @@
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [Auf welchen Ports lauscht mein Server - lsof](#auf-welchen-ports-lauscht-mein-server---lsof)
      * [Hostname setzen](#hostname-setzen)
+     * [netplan unter Ubuntu](#netplan-unter-ubuntu)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
@@ -94,6 +100,9 @@
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
+     * [Vordefinierte Variablen z.B $0](#vordefinierte-variablen-zb-$0)
+     * [Funktionen in der bash](#funktionen-in-der-bash)
+     * [Best practice structure bash - scripts](#best-practice-structure-bash---scripts)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
@@ -106,6 +115,12 @@
      * [Literatur](#literatur)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](#wo-finde-ich-hilfe-im-internet)
+
+
+
+
+
+
 
 
 
@@ -123,15 +138,17 @@
 
 ```
 Centos 
-Redhat.  — rpm / (yum / dnf) 
+Redhat.  — rpm / (yum / dnf) (Support-Vertrag) 
 Fedora 
 Rocky Linux
+Scientific Linux 
 ```
+
 #### Debian Familie 
 
 ```
-Debian 
-Ubuntu. - dpkg / apt
+Debian (Stiftung)
+Ubuntu. - dpkg / apt (Support-Vertrag möglich)
 Mint 
 ```
 
@@ -140,6 +157,50 @@ Mint
 ```
 SLES (SuSE Linux Enterprise)
 OpenSuSE 
+```
+
+### Was hat die jeweilige Familie gemeinsam ?
+
+```
+Installer 
+Grafische Oberfläche (GNOME) 
+Bestimmte Teilmenge von Anwendungen / Features
+Paket-Managment-System 
+
+Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
+
+```
+
+### Varianten Ubuntu 
+
+```
+Ubuntu Server 
+Ubuntu Desktop 
+
+-> immer die Ubuntu Server -> Netzwerk serverorientiert 
+```
+
+### Varianten Debian 
+
+```
+Immer: Debian Minimal Version verwenden
+(Wir fangen mit dem kleinsten gemeinsamen Nenner an:) 
+https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso
+```
+
+### Redhat 
+
+```
+RHEL 8 (Redhat Enterprise Linux) 
+Rocky Linux 8 (Stand 2022) 
+```
+
+### SuSE 
+
+```
+Subscription: SLES 15 (SuSE Linux Enterprise Server) 
+
+
 ```
 
 ### Distris zur Sicherheitsüberprüfung / Hacken 
@@ -301,6 +362,8 @@ cat /etc/services | less
 /suchbegriff + RETURN
 ## nächstes Suchergebnis
 n 
+## voriges Suchergebnis 
+N
 ```
 
 ###  Springen ans Ende/an den Anfang  
@@ -329,7 +392,7 @@ q
 touch dateiname 
 ```
 
-### Autovervollständen * und tab
+### Autovervollständigen * und tab-Taste
 
 
 ### Autovervollständigen *
@@ -354,10 +417,18 @@ echo todol<TAB> # bei einem weiteren Eintrag
 ### Welches Programm wird verwendet
 
 
+### which verwenden
 ```
 ## Sucht in der Pfad-Variablen $PATH nach dem programm
 ## und zeigt ersten Fund --> d.h. dieses Programm würde ausgeführt 
 which false 
+```
+
+### Pfad ausgeben 
+
+```
+env 
+echo $PATH
 ```
 
 ## Erweiterte Befehle (Nice to have) 
@@ -365,10 +436,33 @@ which false
 ### Alias Befehle anzeigen
 
 
+### Alias anzeigen
+
 ```
 ## keine wirkliche Befehle, sondern nur andere Schreibweise/Abkürzungen
 ## kann u.U. so auf anderen Distris nicht vorhanden sein
 alias 
+```
+
+### Alias anlegen 
+
+```
+## in der Session 
+alias hallo='ls -la'
+
+## persistent bei jedem aufruf einer bash 
+## unter ubuntu 20.04.
+## bash_aliases wird in ~/.bashrc geladen 
+echo "alias hallo2='ls -la'" > ~/.bash_aliases 
+
+## zum Testen 
+## 1. Entweder 
+## Neue bash starten 
+bash 
+## Sourcen zum einmaligen Testen
+source ~/.bash_aliases 
+
+
 ```
 
 ### Welche Bibliotheken verwendet ein ausführbares Programm
@@ -376,6 +470,21 @@ alias
 
 ```
 ldd /usr/bin/ls 
+```
+
+### Dateien und Ordner vergleichen - diff
+
+
+### Dateien vergleichen 
+
+```
+diff dateia /path/zu/dateib 
+```
+
+### Ordner vergleichen 
+
+```
+diff -r /etc /etc2 
 ```
 
 ## Dateien und Verzeichnisse
@@ -880,6 +989,11 @@ cat fehlerlog
 
 ### zcat - Inhalte einer mit gzip komprimierten Datei anzeigen
 
+
+```
+zcat services.gz 
+```
+
 ### wc - Zeilen zählen
 
 
@@ -922,10 +1036,29 @@ cat /etc/services | grep  "s$"
 
 ```
 
+### Ergebnis und 1 Zeile danach 
+
+```
+apt search apache | grep -A 1 ^apache
+## Alternativ für -B 10 davor (10 Zeilen davor) 
+
+```
+
+### Anzahl der Vorkommen anzeigen 
+
+```
+ps aux | grep -c apache
+```
+
+
 ### Recursive Suchen (grep -r) - Schweizer Taschenmesser 
 
 ```
 grep -r "PermitRootLogin" /etc
+
+## Mit Zeilennumber 
+grep -nr "PermitRootLogin" /etc
+
 ```
 
 ### Erweiterte Suche mit Grep
@@ -1057,6 +1190,15 @@ grep  "[[:digit:]]\{5\}" /root/namen
 ### Finden von files nach Kriterien - find
 
 
+### Suchen nach allen Vorkommen im Verzeichnis /etc mit 'ssh' im Namen  
+
+```
+## Bitte immer einfach Hochkommas verwenden.
+find /etc -iname 'ssh*'
+## Wäre das gleiche wie. 
+find /etc -iname 'ssh*' -print 
+```
+
 ### Suchen nach allen Vorkommen von mariadb 
 
 ```
@@ -1069,6 +1211,7 @@ find / -iname '*mariadb*'
 ```
 ## find directories with specific name 
 find / -name tmpfiles.d -type d 
+find /etc -name 'ssh*' -type f
 ```
 
 ## Logs/Loganalyse
@@ -1163,13 +1306,13 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 ```
 journalctl -u ssh.service 
-
+journalctl -u ssh.service -e --since "2022-07-05 08:00" --until "2022-07-05 09:00"
 ```
 
 ### Show all boots 
 
 ``` 
- journalctl --list-boots
+journalctl --list-boots
  0 3c3cf780186642ae9741b3d3811e95da Tue 2020-11-24 14:29:44 CET▒<80><94>T>
 lines 1-1/1 (END)
 ```
@@ -1308,6 +1451,31 @@ echo $'Test\' so geht es weiter'
 echo "\"Ein Sprichwort\""
 ## oder
 echo '"Ein Sprichtwort"' 
+
+```
+
+### Die history
+
+
+### history aufrufen 
+
+```
+history
+```
+
+### Befehl aus der historie ausführen 
+
+```
+!23 # der befehl 23 wird direkt 
+## Achtung wird direkt ausgeführt ohne Nachfrage 
+```
+
+### STRG + r -> suche 
+
+
+```
+suchstring eingeben, und er zeigt Eintrag aus der history, den man direkt
+mit Return ausführen kann. 
 
 ```
 
@@ -1465,6 +1633,144 @@ systemctl start apache2
 
 
 
+### Script mit systemd verwalten und EnvironmentVariablen
+
+
+### Schritt 1: Script erstellen 
+
+```
+##!/bin/bash 
+## vi /usr/local/bin/script-ng.sh
+echo "script script-ng schreibt was ins log...." 
+env
+date >> /var/log/script-ng.sh
+env >> /var/log/script-ng.sh
+
+```
+
+```
+chmod u+x /usr/local/bin/script-ng.sh 
+script-ng.sh 
+## Sichtprüfung im Log
+cat /var/log/script-ng.sh 
+```
+
+### Schritt 2: service ohne env erstellen.
+
+```
+## --force weil datei nicht existiert.
+## --full eine vollständige service-datei und nicht überschwierig 
+systemctl edit --full --force script.service 
+```
+
+```
+[Unit]
+Description=script von jochen
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/script-ng.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+```
+## editor speichern und schliessen
+```
+
+### Schritt 3: Testen 
+
+```
+systemctl status script
+systemctl start script 
+systemctl status script 
+```
+
+### Schritt 4: Datei /etc/default/script mit env-variablen anlegen
+
+```
+## vi /etc/default/script 
+SCRIPT_VERSION=1.0 
+SCRIPT_MENU=simple 
+
+```
+
+### Schritt 5: Service im Bereich [Service] wie folgt modifizieren
+
+```
+## systemctl edit --full script.sh 
+## ... 
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/script-ng.sh
+RemainAfterExit=true
+StandardOutput=journal
+EnvironmentFile=/etc/default/script 
+Environment="SPEED=fast"
+Environment="DRINKS=all"
+
+```
+
+### Schritt 6: Restart 
+
+```
+systemctl restart script.service
+## Sichtprüfung im Journal 
+systemctl status script
+
+## in den logs
+cat /var/log/script-ng.log 
+
+```
+
+### Referenz:
+
+  * https://gist.github.com/drmalex07/d006f12914b21198ee43
+
+### Systemd Service endless loop
+
+
+### Walkthrough 
+
+```
+##!/bin/bash
+## vi /usr/local/bin/loop.sh 
+while /bin/true
+do
+  date 
+  echo "neuer Durchlauf"
+  sleep 5
+done
+```
+
+```
+chmod u+x loop.sh
+```
+
+```
+## systemctl edit --force --full loop.service 
+[Unit]
+Description=script von jochen
+
+[Service]
+Type=simple 
+ExecStart=/usr/local/bin/loop.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+systemctl status loop
+systemctl start loop
+systemctl status loop
+## Evtl. aktivieren für nächsten reboot
+```
+
 ### Systemctl - timers
 
 
@@ -1540,6 +1846,68 @@ IOSchedulingClass=idle
 ### Personal Timer (timer for user) 
 
   * https://nielsk.micro.blog/2015/11/11/creating-systemd-timers.html
+
+### systemctl - timers - Übung
+
+
+### Schritt 1: script erstellen und testen
+
+```
+##!/bin/bash 
+## vi /usr/local/bin/scriptv2.sh
+LOGTO=/var/log/scriptv2.log
+echo "script script-ng schreibt was ins log...." 
+env
+date >> $LOGTO
+env >> $LOGTO
+```
+
+```
+chmod u+x /usr/local/bin/scriptv2.sh
+scriptv2.sh
+```
+
+### Schritt 2: Service erstellen und testen 
+
+```
+## systemctl edit --force --full scriptv2.service 
+[Unit]
+Description=simple script for testing timer 
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/scriptv2.sh
+##RemainAfterExit=true
+StandardOutput=journal
+```
+
+```
+systemctl status scriptv2
+systemctl start scriptv2
+systemctl status scriptv2
+```
+
+### Schritt 3: Timer erstellen und testen 
+
+```
+## systemctl edit --force --full scriptv2.timer
+[Unit]
+Description=Timer for scriptv2
+[Timer]
+OnCalendar=*:0/5
+
+[Install]
+WantedBy=basic.target
+```
+
+```
+systemctl enable scriptv2.timer
+
+systemctl status scriptv2.timer
+systemctl start scriptv2.timer
+systemctl status scriptv2.timer
+
+systemctl list-timers
+```
 
 ### Gegenüberstellung service etc/init.d/ systemctl
 
@@ -1825,9 +2193,9 @@ cd /etc/apt/sources.list.d
 ### Paket deinstallieren und aufräumen 
 
 ```
-## mit konfigurationsdateien deinstallieren
+## mit Konfigurationsdateien deinstallieren
 apt purge mariadb-server 
-## konfgiurationsdateien stehen lassen
+## Konfgurationsdateien stehen lassen
 apt remove mariadb-server 
 
 ## Aufräumen / alle Pakete die nicht mehr benötigt werden
@@ -1934,7 +2302,7 @@ tar cvfz /usr/src/_etc.20220522.tar.gz /etc
 
 ```
 
-## Listen der Dateien aus Archiv anzeigen
+## Liste der Dateien aus Archiv anzeigen
 
 ```
 tar tf /usr/src/_etc.20220522.tar.gz 
@@ -1953,7 +2321,7 @@ cd auspacksverzeichins
 tar xvf /usr/src/_etc.20220522.tar.gz 
 
 ## Einzelne Dateien  
-tar xvf /usr/src/_etc.20220522.tar.gz /etc/skel/.bashrc 
+tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc 
 
 ```
 
@@ -2039,14 +2407,7 @@ firewall-cmd --state
   
   * firewall-cmd 
 
-### Best way to add a new rule 
-```
-## Step1: do it persistent -> written to disk 
-firewall-cmd --add-port=82/tcp --permanent  
 
-## Step 2: + reload firewall 
-firewall-cmd --reload 
-```
 
 ### Zones documentation 
 
@@ -2066,14 +2427,7 @@ firewall-cmd --get-active-zones
 ## in our case empty 
 ```
 
-### Show information about all zones that are used 
-```
-firewall-cmd --list-all 
-firewall-cmd --list-all-zones 
-```
-
-
-### Add Interface to Zone ~ Active Zone 
+### Add Interface to Zone = Active Zone 
 
 ```
 firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
@@ -2083,6 +2437,14 @@ public
   interfaces: enp0s3
 
 ```
+
+### Show information about all zones that are used 
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all-zones 
+```
+
+
 ### Default Zone 
 
 ```
@@ -2090,31 +2452,40 @@ public
 ## .. add things to this zone 
 firewall-cmd --get-default-zone
 public
-
 ```
 
-### Show services 
+### Show services / Info
 ```
 firewall-cmd --get-services 
+firewall-cmd --info-service=http
 ```
+
 ### Adding/Removing a service 
 
 ```
-firewall-cmd --permanent --zone=public --add-service=ssh
+## Version 1 - more practical 
+## set in runtime 
+firewall-cmd --zone=public --add-service=http
+firewall-cmd --runtime-to-permanent 
+
+## Version 2 - less practical
+firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --reload 
+```
+
+```
+### Service wieder entfernen
 firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload 
 ```
 
-### Add/Remove ports 
+### Best way to add a new rule 
 ```
-## add port
-firewall-cmd --add-port=82/tcp --zone=public --permanent
-firewall-cmd --reload
+## Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --permanent  
 
-## remove port
-firewall-cmd --remove-port=82/tcp --zone=public --permanent
-firewall-cmd --reload
+## Step 2: + reload firewall 
+firewall-cmd --reload 
 ```
 
 ### Enable / Disabled icmp 
@@ -2151,9 +2522,6 @@ firewall-cmd --zone=public --list-rich-rules
 
 ## persist all runtime rules 
 firewall-cmd --runtime-to-permanent
-
-
-
 
 ```
 
@@ -2200,6 +2568,61 @@ hostnamectl set-hostname server1.training.local
 su - 
 
 ```
+
+### netplan unter Ubuntu
+
+
+### Desktop 
+
+```
+## /etc/netplan/01-network-manager-all.yaml
+## On Desktop-Systems everything is handled by the Network-Manager 
+## Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+```
+
+### Umschalten auf anderen Renderer 
+
+```
+## ...yaml
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp0s3:
+            dhcp4: true
+
+## check  changes 
+netplan try 
+## apply changes
+netplan apply 
+
+```
+
+### Statische Adresse konfigurieren 
+
+```
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp0s3:
+            addresses:
+                - 10.10.10.2/24
+            gateway4: 10.10.10.1
+            nameservers:
+                search: [mydomain, otherdomain]
+                addresses: [10.10.10.1, 1.1.1.1]
+
+```
+
+
+### Referenz 
+
+  * https://netplan.io/examples/
+
 
 ## Tools/Verschiedens 
 
@@ -2297,6 +2720,93 @@ apt update && apt upgrade
 ## 2. Befehl nur ausführen, wenn der 1. NICHT erfolgreich war 
 ## befehl1 oder befehlt2 (im weitesten Sinne) 
 befehl1 || befehl2
+```
+
+### Vordefinierte Variablen z.B $0
+
+
+
+```
+##!/bin/bash
+echo "0:"$0
+echo "1:"$1
+echo "2:"$2
+echo "@:"$@
+echo '#'$#
+echo Hallo heute ist:$(date)
+
+##exit 22
+```
+
+### Funktionen in der bash
+
+
+```
+##!/bin/bash
+## vi /usr/local/bin/functiontest.sh
+## chmod u+x /usr/local/bin/functiontest.sh  
+
+LOGTO=/var/log/logme
+
+function logto {
+  # echo "hello jochen"
+  date >> $LOGTO
+  echo "hello jochen: $1" >> $LOGTO
+}
+
+logto 'Hans hat Glück'
+echo "----"
+cat $LOGTO
+```
+
+```
+## im script wird Funktion aufgerufen 
+functiontest.sh
+```
+
+### Best practice structure bash - scripts
+
+
+### File 1: config.sh 
+
+```
+## vi /usr/local/bin/config.sh
+LOGTO=/var/log/logme
+DATUM=$(date) 
+```
+
+### File 2: functions.sh 
+
+```
+## vi /usr/local/bin/functions.sh
+function logto {
+  # echo "hello jochen"
+  date >> $LOGTO
+  echo "hello jochen: $1" >> $LOGTO
+}
+```
+
+### File 3: script.sh 
+
+```
+## vi /usr/local/bin/script.sh
+##!/bin/bash
+  
+source /usr/local/bin/config.sh
+source /usr/local/bin/functions.sh
+
+
+logto 'Hans hat Glück'
+echo "----"
+cat $LOGTO
+echo $LOGTO 
+echo $DATUM
+
+```
+
+```
+chmod u+x script.sh
+script.sh
 ```
 
 ## Timers/cronjobs 
