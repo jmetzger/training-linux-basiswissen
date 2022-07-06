@@ -78,6 +78,12 @@ firewall-cmd --get-default-zone
 public
 ```
 
+## Show services / Info
+```
+firewall-cmd --get-services 
+firewall-cmd --info-service=http
+```
+
 ## Best way to add a new rule 
 ```
 # Step1: do it persistent -> written to disk 
@@ -93,9 +99,10 @@ firewall-cmd --reload
 
 
 
-## Show services 
+## Show services / Info
 ```
 firewall-cmd --get-services 
+firewall-cmd --info-service=http
 ```
 ## Adding/Removing a service 
 
