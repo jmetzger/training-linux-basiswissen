@@ -80,3 +80,7 @@ sudo lvresize -L +200M --resizefs vg0/data
 
 ```
 
+## Reference:
+
+   
+  * lvresize: https://www.digitalocean.com/community/tutorials/how-to-use-lvm-to-manage-storage-devices-on-ubuntu-18-04
