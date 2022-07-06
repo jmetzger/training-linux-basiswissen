@@ -62,6 +62,21 @@ public
 
 ```
 
+## Show information about all zones that are used 
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all-zones 
+```
+
+
+## Default Zone 
+
+```
+# if not specifically mentioned when using firewall-cmd
+# .. add things to this zone 
+firewall-cmd --get-default-zone
+public
+```
 
 ## Best way to add a new rule 
 ```
@@ -72,36 +87,11 @@ firewall-cmd --add-port=82/tcp --permanent
 firewall-cmd --reload 
 ```
 
-## Show information about all zones that are used 
-```
-firewall-cmd --list-all 
-firewall-cmd --list-all-zones 
-```
 
 
-## Add Interface to Zone = Active Zone 
 
-```
-# Schritt 1: Welche Interfaces gibt es 
-ip -br address 
-ip -br a
 
-firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
-firewall-cmd --reload 
-firewall-cmd --get-active-zones 
-public
-  interfaces: enp0s3
 
-```
-## Default Zone 
-
-```
-# if not specifically mentioned when using firewall-cmd
-# .. add things to this zone 
-firewall-cmd --get-default-zone
-public
-
-```
 
 ## Show services 
 ```
