@@ -10,3 +10,7 @@ env
 date >> $LOGTO
 env >> $LOGTO
 ```
+
+```
+chmod u+x /usr/local/bin/scriptv2.sh
+```
