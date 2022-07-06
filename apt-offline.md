@@ -1,5 +1,9 @@
 # Install offline 
 
+## What is it ? 
+
+  * apt-offline is a tool, that makes it possible to update a system that is offline 
+
 ## Install apt-offline on offline system 
 
 ```
@@ -69,4 +73,5 @@ sudo apt-offline install /my-packages
 
 ## Reference
 
-https://itsfoss.com/upgrade-or-update-ubuntu-offline-without-internet/#:~:text=Updating%20or%20upgrading%20Ubuntu%20with,about%20the%20latest%20updates%20available.
+  * https://itsfoss.com/upgrade-or-update-ubuntu-offline-without-internet/#:~:text=Updating%20or%20upgrading%20Ubuntu%20with,about%20the%20latest%20updates%20available.
+  * https://github.com/rickysarraf/apt-offline
