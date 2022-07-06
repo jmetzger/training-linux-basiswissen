@@ -60,6 +60,7 @@
      * [Script mit systemd verwalten und EnvironmentVariablen](systemctl-service-oneshot-env.md)
      * [Systemd Service endless loop](systemctl-service-simple-loop.md)
      * [Systemctl - timers](systemctl-timers.md)
+     * [systemctl - timers - Übung](systemctl-timer-example.md)
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](parted-mkfs.md)
