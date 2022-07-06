@@ -89,6 +89,7 @@
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
      * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
      * [Hostname setzen](hostnamectl.md)
+     * [netplan unter Ubuntu](netplan.md)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
