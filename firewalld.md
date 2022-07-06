@@ -112,20 +112,6 @@ firewall-cmd --add-port=82/tcp --permanent
 firewall-cmd --reload 
 ```
 
-
-
-
-## Add/Remove ports 
-```
-# add port
-firewall-cmd --add-port=82/tcp --zone=public --permanent
-firewall-cmd --reload
-
-# remove port
-firewall-cmd --remove-port=82/tcp --zone=public --permanent
-firewall-cmd --reload
-```
-
 ## Enable / Disabled icmp 
 ```
 firewall-cmd --get-icmptypes
@@ -160,9 +146,6 @@ firewall-cmd --zone=public --list-rich-rules
 
 # persist all runtime rules 
 firewall-cmd --runtime-to-permanent
-
-
-
 
 ```
 
