@@ -30,7 +30,7 @@ ExecStart=/usr/local/bin/scriptv2.sh
 StandardOutput=journal
 ```
 
-````
+```
 systemctl status scriptv2
 systemctl start scriptv2
 systemctl status scriptv2
@@ -41,8 +41,7 @@ systemctl status scriptv2
 ```
 # systemctl edit --force --full scriptv2.timer
 [Unit]
-Description=Timer for Scan Service
-
+Description=Timer for scriptv2
 [Timer]
 OnCalendar=*:0/5
 
