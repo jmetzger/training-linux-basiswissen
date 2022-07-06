@@ -41,3 +41,27 @@ vgdisplay
 lvcreate -n data -L500M vg0
 lvdisplay
 ```
+
+## Schritt 5: filesystem aufbringen (ext4) und probehalber mounten 
+
+```
+mkfs.ext4 /dev/vg0/data
+mkdir -p /mnt/platte
+mount /dev/vg0/data /mnt/platte
+```
+
+# Schritt 6: /etc/fstab 
+
+```
+umount /mnt/platte
+# vi /etc/fstab 
+/dev/vg0/data /mnt/platte  ext4  defaults 0 1 
+
+mount -av
+
+reboot 
+
+# teste, ist platte wieder eingehängt
+
+
+```
