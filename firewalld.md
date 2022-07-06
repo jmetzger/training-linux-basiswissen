@@ -84,26 +84,6 @@ firewall-cmd --get-services
 firewall-cmd --info-service=http
 ```
 
-## Best way to add a new rule 
-```
-# Step1: do it persistent -> written to disk 
-firewall-cmd --add-port=82/tcp --permanent  
-
-# Step 2: + reload firewall 
-firewall-cmd --reload 
-```
-
-
-
-
-
-
-
-## Show services / Info
-```
-firewall-cmd --get-services 
-firewall-cmd --info-service=http
-```
 ## Adding/Removing a service 
 
 ```
@@ -115,11 +95,25 @@ firewall-cmd --runtime-to-permanent
 # Version 2 - less practical
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --reload 
+```
 
-
+```
+## Service wieder entfernen
 firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload 
 ```
+
+## Best way to add a new rule 
+```
+# Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --permanent  
+
+# Step 2: + reload firewall 
+firewall-cmd --reload 
+```
+
+
+
 
 ## Add/Remove ports 
 ```
