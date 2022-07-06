@@ -1,5 +1,6 @@
 # Beispiel eines Timers zum Üben 
 
+## Schritt 1: script erstellen und testen
 
 ```
 #!/bin/bash 
@@ -13,7 +14,10 @@ env >> $LOGTO
 
 ```
 chmod u+x /usr/local/bin/scriptv2.sh
+scriptv2.sh
 ```
+
+## Schritt 2: Service erstellen und testen 
 
 ```
 # systemctl edit --force --full scriptv2.service 
@@ -30,4 +34,18 @@ StandardOutput=journal
 systemctl status scriptv2
 systemctl start scriptv2
 systemctl status scriptv2
+```
+
+## Schritt 3: Timer erstellen und testen 
+
+```
+# systemctl edit --force --full scriptv2.timer
+[Unit]
+Description=Timer for Scan Service
+
+[Timer]
+OnCalendar=*:0/5
+
+[Install]
+WantedBy=basic.target
 ```
