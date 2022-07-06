@@ -101,6 +101,7 @@
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
      * [Vordefinierte Variablen z.B $0](predefined-bash-vars.md)
+     * [Funktionen in der bash](/bash/functions.md)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
@@ -117,7 +118,7 @@
 
 
 
-## Backlog
+
 
 
 
