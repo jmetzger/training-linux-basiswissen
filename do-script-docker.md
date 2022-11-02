@@ -23,7 +23,8 @@ usermod -aG sshadmin root
 echo "AllowGroups sshadmin" >> /etc/ssh/sshd_config 
 systemctl reload sshd 
 
-## now install docker 
+# specifically fix do - stuff in new versions of cloud-init 
+sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config.d/50-cloud-init.conf
 
 apt update
 # install dependencies 
