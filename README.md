@@ -102,6 +102,7 @@
      * [Vordefinierte Variablen z.B $0](predefined-bash-vars.md)
      * [Funktionen in der bash](/bash/functions.md)
      * [Best practice structure bash - scripts](/bash/best-practice-structure.md)
+     * [Neue Umgebungsvariable setzen](/bash/neue-env-variable-setzen.md)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
