@@ -11,7 +11,7 @@ do
   echo "Adding user $USER"
   useradd -s /bin/bash $USER
   usermod -aG sshadmin $USER
-  echo "$USER:11dortmund22" | chpasswd
+  echo "$USER:hier-kommt-das-passwort-rein" | chpasswd
 done
 
 # We can sudo with 11trainingdo
