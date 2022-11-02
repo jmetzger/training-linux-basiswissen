@@ -25,8 +25,7 @@
      * [Verzeichnisse anlegen](mkdir.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
-     * [Arbeiten mit vi](vi.md)
-    
+     * [Arbeiten mit vi](vi.md)    
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
      * [Prioritäten und NiceNess](nice-pr.md)
@@ -111,6 +110,9 @@
      * [Übung Dienste](/uebungen/uebung2-dienste.md) 
      * [Übung Umleitung mit Variable](uebung3-umleitung-mit-variable.md) 
      * [Übung user/password](uebung4-user-and-password-change.md)
+  1. Digitalocean 
+     * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md)
+ 
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
