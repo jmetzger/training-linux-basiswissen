@@ -112,12 +112,12 @@
      * [Übung Umleitung mit Variable](uebung3-umleitung-mit-variable.md) 
      * [Übung user/password](uebung4-user-and-password-change.md)
   1. Digitalocean 
-     * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md)
- 
+     * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md) 
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](hilfe-im-internet.md)
+     * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
 
 
 
