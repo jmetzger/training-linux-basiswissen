@@ -118,6 +118,7 @@
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](hilfe-im-internet.md)
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
+     * [Linux Malware Scanner](https://www.rfxn.com/projects/linux-malware-detect/)
 
 
 
