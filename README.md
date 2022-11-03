@@ -80,7 +80,9 @@
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Archive runterladen und entpacken](tar-download.md) 
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](update-alternatives.md)
-     * [Verzeichnisse in archiven sichern - tar](/backups/tar.md)
+     * [Verzeichnisse in archiven sichern - tar](/backups/tar.md)     
+  1. Absicherung System 
+     * [ssh absichern](ssh-absichern.md) 
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
