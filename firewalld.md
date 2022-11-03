@@ -14,9 +14,9 @@ ufw status
 ```
 # Schritt 2: firewalld 
 apt install firewalld 
-systemctl start firewalld 
-systemctl enable firewalld 
 systemctl status firewalld 
+
+# doublecheck ufw 
 systemctl status ufw 
 
 ```
