@@ -56,11 +56,11 @@ firewall-cmd --get-active-zones
 ## Add Interface to Zone = Active Zone 
 
 ```
-firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
-firewall-cmd --reload 
+firewall-cmd --zone=public --add-interface=enp0s3 
+firewall-cmd --runtime-to-permanent 
 firewall-cmd --get-active-zones 
-public
-  interfaces: enp0s3
+# public
+#  interfaces: enp0s3
 
 ```
 
