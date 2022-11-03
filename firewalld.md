@@ -9,7 +9,9 @@ systemctl disable ufw
 ufw disable # zur Sicherheit 
 ufw status
 # -> disabled # this has to be the case 
+```
 
+```
 # Schritt 2: firewalld 
 apt install firewalld 
 systemctl start firewalld 
