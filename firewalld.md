@@ -1,4 +1,4 @@
-# firewalld (ubuntu 20.04)  
+# firewalld (ubuntu 20.04LTS/22.04LTS)  
 
 ## Install firewalld and restrict ufw 
 
