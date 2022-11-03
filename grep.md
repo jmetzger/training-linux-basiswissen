@@ -45,6 +45,9 @@ ps aux | grep -c apache
 ```
 grep -r "PermitRootLogin" /etc
 
+# case insensitiv # egal ob gross oder klein
+grep -ir "LISTEN" /etc
+
 # Mit Zeilennumber 
 grep -nr "PermitRootLogin" /etc
 
