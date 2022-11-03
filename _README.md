@@ -26,7 +26,6 @@
      * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
      * [Arbeiten mit vi](#arbeiten-mit-vi)
-    
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
      * [Prioritäten und NiceNess](#prioritäten-und-niceness)
@@ -82,6 +81,8 @@
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-zb-php-cli-verwalten)
      * [Verzeichnisse in archiven sichern - tar](#verzeichnisse-in-archiven-sichern---tar)
+  1. Absicherung System 
+     * [ssh absichern](#ssh-absichern)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
@@ -103,6 +104,7 @@
      * [Vordefinierte Variablen z.B $0](#vordefinierte-variablen-zb-$0)
      * [Funktionen in der bash](#funktionen-in-der-bash)
      * [Best practice structure bash - scripts](#best-practice-structure-bash---scripts)
+     * [Neue Umgebungsvariable setzen](#neue-umgebungsvariable-setzen)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
@@ -111,10 +113,14 @@
      * [Übung Dienste](#übung-dienste)
      * [Übung Umleitung mit Variable](#übung-umleitung-mit-variable)
      * [Übung user/password](#übung-userpassword)
+  1. Digitalocean 
+     * [Script zum Aufsetzen eines Server mit Docker](#script-zum-aufsetzen-eines-server-mit-docker)
   1. Literatur 
      * [Literatur](#literatur)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](#wo-finde-ich-hilfe-im-internet)
+     * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
+     * [Linux Malware Scanner](https://www.rfxn.com/projects/linux-malware-detect/)
 
 
 
@@ -1055,6 +1061,9 @@ ps aux | grep -c apache
 
 ```
 grep -r "PermitRootLogin" /etc
+
+## case insensitiv # egal ob gross oder klein
+grep -ir "LISTEN" /etc
 
 ## Mit Zeilennumber 
 grep -nr "PermitRootLogin" /etc
@@ -2326,6 +2335,43 @@ tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc
 ```
 
 
+## Absicherung System 
+
+### ssh absichern
+
+
+### Walkthrough 
+
+
+```
+## Schritt 1: 
+## nano /etc/ssh/sshd_config 
+## ganz unten hinzufügeb 
+AllowGroups sshadmin 
+```
+``
+## wichtig !! auch der root-Benutzer, muss dann der Gruppe angehören
+## sollte ich mich mit dem Root-Benutzer über public/private key verbinden 
+
+
+```
+## Schritt 2: 
+## Jeden Benutzer der sich mit ssh verbinden können soll, der Gruppe sshadmin hinzfügen 
+usermod -aG sshadmin kurs 
+
+```
+
+```
+## Schritt 3:
+systemctl restart sshd 
+```
+
+### Achtung: /etc/ssh/sshd_config.d 
+
+```
+Diese Dateien überschreiben die config aus /etc/ssh/sshd_config 
+```
+
 ## Firewall und ports
 
 ### ufw (uncomplicated firewall)
@@ -2385,12 +2431,14 @@ systemctl disable ufw
 ufw disable # zur Sicherheit 
 ufw status
 ## -> disabled # this has to be the case 
+```
 
+```
 ## Schritt 2: firewalld 
 apt install firewalld 
-systemctl start firewalld 
-systemctl enable firewalld 
 systemctl status firewalld 
+
+## doublecheck ufw 
 systemctl status ufw 
 
 ```
@@ -2430,11 +2478,11 @@ firewall-cmd --get-active-zones
 ### Add Interface to Zone = Active Zone 
 
 ```
-firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
-firewall-cmd --reload 
+firewall-cmd --zone=public --add-interface=enp0s3 
+firewall-cmd --runtime-to-permanent 
 firewall-cmd --get-active-zones 
-public
-  interfaces: enp0s3
+## public
+##  interfaces: enp0s3
 
 ```
 
@@ -2691,6 +2739,8 @@ rsync --links -u -v -e ssh -r /var kurs@192.168.56.102:/home/kurs
 ### Einfaches Script zur Datumsausgabe
 
 
+### Beliebiges Verzeichnis 
+
 ```
 ## Mit nano öffnen / datei muss vorher nicht vorhanden sein
 ## nano script.sh 
@@ -2705,6 +2755,38 @@ date
 chmod u+x script.sh
 ./script.sh # Ausführen und wohlfühlen 
 
+```
+
+### Besser: /usr/local/bin 
+
+#### Gründe 
+
+ * Wird gefunden, egal in welchem Verzeichnis ich bin ?
+ * Warum ? Weil /usr/local/bin Teil der PATH-Variablen ist 
+
+#### Beispiel 
+
+```
+cd /usr/local/bin 
+## Mit nano öffnen / datei muss vorher nicht vorhanden sein
+## nano script.sh 
+## Folgendes muss drin stehen, mit 1. Zeile beginnend mit # 
+
+##!/bin/bash 
+date 
+
+## Speichern CRTL + O -> RETURN, CTRL X 
+
+## Ausführbar machen 
+chmod u+x script.sh
+
+## z.B. 
+cd /etc
+## Script wird ausführt, weil die bash es im Verzeichnis /usr/local/bin findet
+## anhand von $PATH 
+echo $PATH
+env 
+script.sh
 ```
 
 ### Ausführen/Verketten von mehreren Befehlen
@@ -2807,6 +2889,24 @@ echo $DATUM
 ```
 chmod u+x script.sh
 script.sh
+```
+
+### Neue Umgebungsvariable setzen
+
+
+### example 
+
+```
+sudo su -
+cd 
+## root-verzeichnis /root 
+pwd 
+echo "export NACHNAME=Mustermann" >> .bashrc
+
+### testen - neu als root einloggen  
+su -
+## Jetzt müsste NACHNAME in den Umgebungsvariablen zu sehen sein 
+env 
 ```
 
 ## Timers/cronjobs 
@@ -2917,6 +3017,54 @@ ls -la /var/log/scripting.log
 
 ### Übung user/password
 
+## Digitalocean 
+
+### Script zum Aufsetzen eines Server mit Docker
+
+
+### cloud-init script 
+
+```
+##!/bin/bash
+groupadd sshadmin
+USERS="11trainingdo"
+for USER in $USERS
+do
+  echo "Adding user $USER"
+  useradd -s /bin/bash $USER
+  usermod -aG sshadmin $USER
+  echo "$USER:hier-kommt-das-passwort-rein" | chpasswd
+done
+
+## We can sudo with 11trainingdo
+usermod -aG sudo 11trainingdo 
+
+## Setup ssh stuff 
+sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+usermod -aG sshadmin root
+echo "AllowGroups sshadmin" >> /etc/ssh/sshd_config 
+systemctl reload sshd 
+
+## specifically fix do - stuff in new versions of cloud-init 
+sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config.d/50-cloud-init.conf
+
+apt update
+## install dependencies 
+sudo apt install apt-transport-https curl gnupg-agent ca-certificates software-properties-common -y
+
+## get the gpgkey
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+## prepare repo for jammy (22.04 LTS)
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+
+## now install the packages 
+apt install docker-ce docker-ce-cli containerd.io -y
+
+
+
+```
+
 ## Literatur 
 
 ### Literatur
@@ -2964,3 +3112,11 @@ apache2 ubuntu 20.04. DocumentRoot
 https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-de
 
 ```
+
+### RDP-Client unter Windows
+
+  * https://linuxwiki.de/rdesktop
+
+### Linux Malware Scanner
+
+  * https://www.rfxn.com/projects/linux-malware-detect/
