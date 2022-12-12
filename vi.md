@@ -1,24 +1,18 @@
-# vi/vim
+# vi/vim (SLES) 
 
-## Zeilennummern aktivieren für alle
+## vim installieren (falls nicht installiert) 
 
 ```
-# Centos 
-#/etc/vimrc 
-# am ende
+zypper install vim
+```
+
+## Zeilennummern aktivieren für meinen User 
+
+```
+cd 
+vi .vimrc
+# eitragen 
 set number
-
-# Ubuntu 
-# /etc/vim/vimrc.local 
-set number
-```
-
-## vimtutor 
-
-```
-# Interactives Tutorial zum Lernen von vi 
-# Wichtigste Befehle 
-vimtutor # sollte bereits mit vi installiert worden sein.
 ```
 
 ## Wichtigste Aktionen 
