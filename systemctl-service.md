@@ -123,6 +123,21 @@ systemctl unmask apache2
 systemctl start apache2
 ```
 
+## Dienste finetunen (von zu Fall zu Fall möglich) 
+
+```
+
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=400
+StartLimitBurst=3
+
+
+https://unix.stackexchange.com/questions/507911/systemctl-what-is-the-meaning-of-restart-always
+
+```
+
+
 ## systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
