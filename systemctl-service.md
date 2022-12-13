@@ -143,4 +143,19 @@ https://unix.stackexchange.com/questions/507911/systemctl-what-is-the-meaning-of
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
 
 
+## journalctl 
 
+```
+journalctl -u apache2.service 
+# kurz. nur bei services 
+journalctl -u apache2
+
+# fortwährend 
+journalctl -u apache2 -f 
+
+# json pretty ausgabe
+# hilft beim identifizieren von feldern 
+journalctl -u apache2.service -o json-pretty
+
+
+```
