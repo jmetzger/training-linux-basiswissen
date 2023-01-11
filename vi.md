@@ -1,10 +1,17 @@
-# vi/vim (SLES) 
+# vi/vim
 
 ## vim installieren (falls nicht installiert) 
 
 ```
+# SLES 
 zypper install vim
 ```
+
+```
+# Ubuntu 
+apt install vim
+```
+
 
 ## Zeilennummern aktivieren für meinen User 
 
