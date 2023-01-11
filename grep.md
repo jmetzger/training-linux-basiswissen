@@ -48,7 +48,7 @@ grep -r "PermitRootLogin" /etc
 # case insensitiv # egal ob gross oder klein
 grep -ir "LISTEN" /etc
 
-# Mit Zeilennumber 
+# Mit Zeilennummer 
 grep -nr "PermitRootLogin" /etc
 
 ```
