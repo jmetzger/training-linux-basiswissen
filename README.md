@@ -7,6 +7,9 @@
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
+  1. Administration / Tipps & Tricks 
+     * [IP-Adresse herausfinden](ip.md)
+
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](sudo.md)  
      * [Wo bin ich ?](pwd.md)
