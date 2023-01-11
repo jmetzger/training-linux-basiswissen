@@ -1,4 +1,4 @@
-# Dateien anlegen 
+# Leere Dateien anlegen 
 
 ```
 touch dateiname 
