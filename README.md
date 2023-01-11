@@ -9,7 +9,6 @@
      * [Dateitypen](dateitypen.md) 
   1. Administration / Tipps & Tricks 
      * [IP-Adresse herausfinden](ip.md)
-
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](sudo.md)  
      * [Wo bin ich ?](pwd.md)
@@ -19,7 +18,6 @@
      * [Welches Programm wird verwendet](which.md)
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](alias.md)
-     * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
      * [Dateien und Ordner vergleichen - diff](diff.md) 
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](cd.md)
@@ -125,9 +123,10 @@
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
      * [Linux Malware Scanner](https://www.rfxn.com/projects/linux-malware-detect/)
 
+## Backlog 
 
-
-
+  1. Erweiterte Befehle (Nice to have) 
+     * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
 
 
 
