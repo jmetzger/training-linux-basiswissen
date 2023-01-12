@@ -49,7 +49,7 @@ enp0s8:
     - 192.168.56.101/24
   routes:
     - to: default
-      via: 10.10.10.1
+      via: 10.0.2.2
   nameservers:
     search: [training.local]
     addresses: [8.8.8.8]
