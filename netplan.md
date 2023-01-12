@@ -38,7 +38,9 @@ ip route
 
 ```
 # Verwendete Nameserver rausfinden
+cat /etc/resolv.conf
 
+```
 
 ```
 enp0s8:
