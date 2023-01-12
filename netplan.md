@@ -43,9 +43,10 @@ cat /etc/resolv.conf
 ```
 
 ```
+# ergänzen 
 enp0s8:
   addresses:
-  - 192.168.56.101/24
+    - 192.168.56.101/24
   routes:
     - to: default
       via: 10.10.10.1
