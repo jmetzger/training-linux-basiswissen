@@ -68,6 +68,13 @@ network:
                 addresses: [8.8.8.8]
 ```
 
+```
+netplan apply ---debug 
+# or
+netplan apply
+# or 
+netplan try 
+```
 
 ## Alternative: ifupdown - package als Alternative 
 
