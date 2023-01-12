@@ -88,10 +88,11 @@
      * [firewalld](firewalld.md)
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
   1. Netzwerk/Dienste 
-     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
-     * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
+     * [Wie Netzwerk einrichten in unterschiedlichen Distros](netzwerk-einrichten-distris.md)
      * [Hostname setzen](hostnamectl.md)
      * [netplan unter Ubuntu](netplan.md)
+     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
+     * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
