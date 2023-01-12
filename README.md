@@ -95,6 +95,7 @@
      * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
+     * [Script Beispiel](/bash/beispiele-scripte-1.md)
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
      * [Vordefinierte Variablen z.B $0](predefined-bash-vars.md)
      * [Funktionen in der bash](/bash/functions.md)
