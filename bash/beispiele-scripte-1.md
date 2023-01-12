@@ -23,7 +23,7 @@ chmod o+x liste.sh
 liste.sh 
 ```
 
-# Beispiel 2: for mit befehl und Konfig-Datei 
+## Beispiel 2: for mit befehl und Konfig-Datei 
 
 ```
 # vi /etc/liste.conf 
@@ -57,3 +57,38 @@ chmod o+x /usr/local/bin/liste.sh
 # testen 
 liste.sh
 ```
+
+## Beispiel 3: mit Übergabe parameter 
+
+```
+vi /usr/local/bin/dirmaker.sh
+```
+
+```
+#!/bin/bash
+
+#echo $0
+#echo $1
+# echo $#
+
+if test "$1" = ""
+then
+  read -p "Verzeichnisname?" VERZ
+else
+  VERZ=$1
+  echo $VERZ
+fi
+
+
+if test ! -d /tmp/$VERZ
+then
+  echo "Verzeichnis /tmp/$VERZ existiert nicht"
+  echo "..."
+  echo "... wird angelegt"
+  mkdir /tmp/$VERZ
+
+else
+  echo "Verzeichnis /tmp/$VERZ existiert. Punkt !"
+  ls -la /tmp/$VERZ
+fi
+
