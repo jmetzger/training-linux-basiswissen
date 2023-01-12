@@ -29,7 +29,6 @@
      * [Arbeiten mit vi](vi.md)    
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
-     * [Prioritäten und NiceNess](nice-pr.md)
   1. Benutzer, Gruppen und Rechte 
      * [Rechte](rechte.md) 
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
@@ -93,12 +92,6 @@
      * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
      * [Hostname setzen](hostnamectl.md)
      * [netplan unter Ubuntu](netplan.md)
-  1. Tools/Verschiedens 
-     * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
-     * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
-     * [lokale Mails installieren](local-mail.md)
-     * [Debian/Ubuntu - deb - Paket entpacken](deb-unboxing.md)
-     * [Geänderte Dateien zu anderem Server schicken](rsync.md)
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
@@ -114,8 +107,6 @@
      * [Übung Dienste](/uebungen/uebung2-dienste.md) 
      * [Übung Umleitung mit Variable](uebung3-umleitung-mit-variable.md) 
      * [Übung user/password](uebung4-user-and-password-change.md)
-  1. Digitalocean 
-     * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md) 
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
@@ -127,6 +118,16 @@
 
   1. Erweiterte Befehle (Nice to have) 
      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
+  1. Tools/Verschiedens 
+     * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
+     * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
+     * [lokale Mails installieren](local-mail.md)
+     * [Debian/Ubuntu - deb - Paket entpacken](deb-unboxing.md)
+     * [Geänderte Dateien zu anderem Server schicken](rsync.md)
+  1. Prozesse 
+     * [Prioritäten und NiceNess](nice-pr.md)
+  1. Digitalocean 
+     * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md) 
 
 
 
