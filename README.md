@@ -91,7 +91,7 @@
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](netzwerk-einrichten-distris.md)
      * [Hostname setzen](hostnamectl.md)
      * [netplan unter Ubuntu](netplan.md)
-     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
+     * [Netzwerk unter SLES - OpenSuSE - wicked](wicked.md)
      * [Auf welchen Ports lauscht mein Server - lsof](lsof.md) 
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
@@ -127,6 +127,8 @@
      * [Geänderte Dateien zu anderem Server schicken](rsync.md)
   1. Prozesse 
      * [Prioritäten und NiceNess](nice-pr.md)
+  1. Netzwerk 
+     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
   1. Digitalocean 
      * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md) 
 
