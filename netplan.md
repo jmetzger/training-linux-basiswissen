@@ -41,31 +41,15 @@ ip route
 
 
 ```
-
-```
-network:
-    version: 2
-    renderer: networkd
-    ethernets:
-        enp0s8:
-            addresses:
-                - 192.168.56.101/24
-            gateway4: 10.0.2.2
-            nameservers:
-                search: [training.local]
-                addresses: [8.8.8.8]
-
-```
-
-```
-# nur ergänzen 
-        enp0s8:
-            addresses:
-                - 192.168.56.101/24
-            gateway4: 10.0.2.2
-            nameservers:
-                search: [training.local]
-                addresses: [8.8.8.8]
+enp0s8:
+  addresses:
+  - 192.168.56.101/24
+  routes:
+    - to: default
+      via: 10.10.10.1
+  nameservers:
+    search: [training.local]
+    addresses: [8.8.8.8]
 ```
 
 ```
@@ -75,6 +59,13 @@ netplan apply
 # or 
 netplan try 
 ```
+
+## Interface händisch (nicht persistent) stoppen 
+
+```
+ip link set dev enp0s8 down
+```
+
 
 ## Alternative: ifupdown - package als Alternative 
 
