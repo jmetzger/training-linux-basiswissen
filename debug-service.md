@@ -10,12 +10,9 @@ systemctl restart mariadb.service
 systemctl status mariadb.service 
 
 # Nicht fündig-> Schritt 2:
-jourrnalctl -xe
+jourrnalctl -xeu mariadb.service 
 
 # Nicht fündig -> Schritt 3:
-journalctl -u mariadb.service 
-
-# Nicht fündig -> Schritt 4:
 # Spezifisches Log von Dienst suchen 
 # und evtl. LogLevel von Dienst hochsetzen
 # z.B. bei mariadb (durch Internetrecherche herausfinden) 
