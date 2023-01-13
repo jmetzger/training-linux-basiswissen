@@ -47,3 +47,9 @@ ls -la
 find . type -f --delete 
 
 ```
+
+## nach inum (inode number suchen) 
+
+```
+find / -inum +524300 -inum -525000 -exec ls -lai {} \;
+```
