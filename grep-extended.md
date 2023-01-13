@@ -112,10 +112,17 @@ echo "12345 namen" >> /root/namen
 grep  "[[:digit:]]\{5\}" /root/namen
 ```
 
+## Alle Zeilen mit port beginnend mit 1 und dann beliebig viele Zahlen und dann /tcp 
+
+```
+cat /etc/services | grep -E '\s1[0-9]+\/tcp'
+```
 
 ## Cheatsheets 
 
   * https://cheatography.com/tme520/cheat-sheets/grep-english/
+
+
 
 
 
