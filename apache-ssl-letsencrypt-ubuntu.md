@@ -1,10 +1,10 @@
 # Apache SSL with letsencrypt ssl 
 
-## Step 0:
+## Step 1:
 
 ```
 # prerequisite - apache runs already 
-apt update 
+sudo apt update 
 sudo apt install certbot python3-certbot-apache
 ```
 
