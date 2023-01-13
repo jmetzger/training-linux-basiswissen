@@ -7,6 +7,8 @@
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](#verzeichnisaufbau)
      * [Dateitypen](#dateitypen)
+  1. Administration / Tipps & Tricks 
+     * [IP-Adresse herausfinden](#ip-adresse-herausfinden)
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](#in-den-root-benutzer-wechseln---sudo)
      * [Wo bin ich ?](#wo-bin-ich-)
@@ -16,7 +18,6 @@
      * [Welches Programm wird verwendet](#welches-programm-wird-verwendet)
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](#alias-befehle-anzeigen)
-     * [Welche Bibliotheken verwendet ein ausführbares Programm](#welche-bibliotheken-verwendet-ein-ausführbares-programm)
      * [Dateien und Ordner vergleichen - diff](#dateien-und-ordner-vergleichen---diff)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
@@ -28,7 +29,6 @@
      * [Arbeiten mit vi](#arbeiten-mit-vi)
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
-     * [Prioritäten und NiceNess](#prioritäten-und-niceness)
   1. Benutzer, Gruppen und Rechte 
      * [Rechte](#rechte)
      * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
@@ -61,6 +61,12 @@
      * [Systemctl - timers](#systemctl---timers)
      * [systemctl - timers - Übung](#systemctl---timers---übung)
      * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinitd-systemctl)
+  1. Administration 
+     * [Dienste debuggen](#dienste-debuggen)
+     * [Neue Partition mit lvm](#neue-partition-mit-lvm)
+     * [Verzeichnisse backup/restore mit tar](#verzeichnisse-backuprestore-mit-tar)
+  1. Apache 
+     * [SSL - LetsEncrypt mit Ubuntu 22.04](#ssl---letsencrypt-mit-ubuntu-2204)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](#parted-and-mkfsext4)
   1. Boot-Prozess und Kernel 
@@ -88,18 +94,14 @@
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
-     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
-     * [Auf welchen Ports lauscht mein Server - lsof](#auf-welchen-ports-lauscht-mein-server---lsof)
+     * [Wie Netzwerk einrichten in unterschiedlichen Distros](#wie-netzwerk-einrichten-in-unterschiedlichen-distros)
      * [Hostname setzen](#hostname-setzen)
      * [netplan unter Ubuntu](#netplan-unter-ubuntu)
-  1. Tools/Verschiedens 
-     * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
-     * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
-     * [lokale Mails installieren](#lokale-mails-installieren)
-     * [Debian/Ubuntu - deb - Paket entpacken](#debianubuntu---deb---paket-entpacken)
-     * [Geänderte Dateien zu anderem Server schicken](#geänderte-dateien-zu-anderem-server-schicken)
+     * [Netzwerk unter SLES - OpenSuSE - wicked](#netzwerk-unter-sles---opensuse---wicked)
+     * [Auf welchen Ports lauscht mein Server - lsof](#auf-welchen-ports-lauscht-mein-server---lsof)
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
+     * [Script Beispiel](#script-beispiel)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
      * [Vordefinierte Variablen z.B $0](#vordefinierte-variablen-zb-$0)
      * [Funktionen in der bash](#funktionen-in-der-bash)
@@ -113,8 +115,6 @@
      * [Übung Dienste](#übung-dienste)
      * [Übung Umleitung mit Variable](#übung-umleitung-mit-variable)
      * [Übung user/password](#übung-userpassword)
-  1. Digitalocean 
-     * [Script zum Aufsetzen eines Server mit Docker](#script-zum-aufsetzen-eines-server-mit-docker)
   1. Literatur 
      * [Literatur](#literatur)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
@@ -122,9 +122,22 @@
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
      * [Linux Malware Scanner](https://www.rfxn.com/projects/linux-malware-detect/)
 
+## Backlog 
 
-
-
+  1. Erweiterte Befehle (Nice to have) 
+     * [Welche Bibliotheken verwendet ein ausführbares Programm](#welche-bibliotheken-verwendet-ein-ausführbares-programm)
+  1. Tools/Verschiedens 
+     * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
+     * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
+     * [lokale Mails installieren](#lokale-mails-installieren)
+     * [Debian/Ubuntu - deb - Paket entpacken](#debianubuntu---deb---paket-entpacken)
+     * [Geänderte Dateien zu anderem Server schicken](#geänderte-dateien-zu-anderem-server-schicken)
+  1. Prozesse 
+     * [Prioritäten und NiceNess](#prioritäten-und-niceness)
+  1. Netzwerk 
+     * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
+  1. Digitalocean 
+     * [Script zum Aufsetzen eines Server mit Docker](#script-zum-aufsetzen-eines-server-mit-docker)
 
 
 
@@ -321,6 +334,17 @@ c Character-Device (Eingabegerät: Zeichenorientiert z.B. Tastatur)
 b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte) 
 ```
 
+## Administration / Tipps & Tricks 
+
+### IP-Adresse herausfinden
+
+
+```
+ip a 
+## noch schöner - ausgabe ist schlanker 
+ip -br a 
+```
+
 ## Basisbefehle
 
 ### In den Root-Benutzer wechseln - sudo
@@ -330,6 +354,9 @@ b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte)
 ## einloggen als normaler Benutzer z.B. benutzer: kurs (wenn ich unter kurs eingeloggt bin) 
 sudo su -
 ## eingeben des Passworts des Benutzers
+
+## oder gleichbedeutend:
+sudo -i 
 ```
 
 ### Wo bin ich ?
@@ -469,13 +496,6 @@ bash
 source ~/.bash_aliases 
 
 
-```
-
-### Welche Bibliotheken verwendet ein ausführbares Programm
-
-
-```
-ldd /usr/bin/ls 
 ```
 
 ### Dateien und Ordner vergleichen - diff
@@ -664,25 +684,26 @@ cp -a /etc /etc3
 ### Arbeiten mit vi
 
 
-### Zeilennummern aktivieren für alle
+### vim installieren (falls nicht installiert) 
 
 ```
-## Centos 
-##/etc/vimrc 
-## am ende
-set number
+## SLES 
+zypper install vim
+```
 
+```
 ## Ubuntu 
-## /etc/vim/vimrc.local 
+apt install vim
+```
+
+
+### Zeilennummern aktivieren für meinen User 
+
+```
+cd 
+vi .vimrc
+## eitragen 
 set number
-```
-
-### vimtutor 
-
-```
-## Interactives Tutorial zum Lernen von vi 
-## Wichtigste Befehle 
-vimtutor # sollte bereits mit vi installiert worden sein.
 ```
 
 ### Wichtigste Aktionen 
@@ -767,52 +788,6 @@ systemctl status sshd
 ```
 pstree -p 
 ```
-
-### Prioritäten und NiceNess
-
-
-### nice aus dem userspace möglich
-
-```
-## userspace - ich führe als Benutzer ein Programm 
-## nice - Festlegen ein programm zum Kernel ist 
-
-## Priorität in top - pr 
-## je niedriger die Zahl für den Prozess in top ist, desto 
-## höher die Priorität 
-## höchste Prioriät -100 
--100 bis 39 
-
-## -100 = rt 
-## Statt -100 steht rt dort in top in der Spalte PR 
-
-## -59 höhe Priorität als 0 als 20 etc. 
-
-## Aus nice - Anfragen. von -20 -> +19 machen der Kernel
-## in der Regel 
-n + 20 z.B. Niceness= -20. = -20 + 20 = 0
-## D.h. höchte Prioriät über nice im Kernel ist 0 
-## die niedrigste Priorität 39 
-
-```
-
-### Prozesse in Realtime ausführen wie geht ? 
-
-```
-chrt # change realtime 
-## Welche Warteschlangen gibt es 
-chrt -m
-
-## Packe top in die realtime Warteschlange und führe es aus 
-## --rr realtime roundrobin Warteschlange 
-## Führe top mit der Priorität -100 aus 
-chrt --rr 99 top 
-```
-
-
-### Ref:
-
-  * https://medium.com/@joseagustin.barra/understanding-priority-levels-in-linux-cd8c82eb4dd
 
 ## Benutzer, Gruppen und Rechte 
 
@@ -1065,7 +1040,7 @@ grep -r "PermitRootLogin" /etc
 ## case insensitiv # egal ob gross oder klein
 grep -ir "LISTEN" /etc
 
-## Mit Zeilennumber 
+## Mit Zeilennummer 
 grep -nr "PermitRootLogin" /etc
 
 ```
@@ -1098,7 +1073,7 @@ egrep  -i '^(mysql|Moira)' /etc/services
 ```
 ## -A x-Zeilen danach, z.B. -A 4 --> 4 Zeilen danach 
 ## -B x-Zeilen davor 
-egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services'^(mysql|Moira)' /etc/services
+egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services
 ```
 
 ### Einzelne Zeichen als Suchmuster nehmen 
@@ -1185,10 +1160,17 @@ echo "12345 namen" >> /root/namen
 grep  "[[:digit:]]\{5\}" /root/namen
 ```
 
+### Alle Zeilen mit port beginnend mit 1 und dann beliebig viele Zahlen und dann /tcp 
+
+```
+cat /etc/services | grep -E '\s1[0-9]+\/tcp'
+```
 
 ### Cheatsheets 
 
   * https://cheatography.com/tme520/cheat-sheets/grep-english/
+
+
 
 
 
@@ -1223,6 +1205,36 @@ find / -name tmpfiles.d -type d
 find /etc -name 'ssh*' -type f
 ```
 
+### Suchen mit exec ausführen 
+
+```
+find . type f -exec ls -la {} \;
+
+```
+
+### Suchen und löschen 
+
+```
+cd
+mkdir foo
+cd foo/
+touch dateia dateib
+find .  -type f
+## Achtung zwischen {} und \; ist ein Leerzeichen 
+find .  -type f  -exec rm {} \;
+ls -la
+
+## Alternativ 
+find . type -f --delete 
+
+```
+
+### nach inum (inode number suchen) 
+
+```
+find / -inum +524300 -inum -525000 -exec ls -lai {} \;
+```
+
 ## Logs/Loganalyse
 
 ### Logfile beobachten
@@ -1250,12 +1262,9 @@ systemctl restart mariadb.service
 systemctl status mariadb.service 
 
 ## Nicht fündig-> Schritt 2:
-jourrnalctl -xe
+jourrnalctl -xeu mariadb.service 
 
 ## Nicht fündig -> Schritt 3:
-journalctl -u mariadb.service 
-
-## Nicht fündig -> Schritt 4:
 ## Spezifisches Log von Dienst suchen 
 ## und evtl. LogLevel von Dienst hochsetzen
 ## z.B. bei mariadb (durch Internetrecherche herausfinden) 
@@ -1265,7 +1274,7 @@ less /var/log/mysql/error.log
 ## Allgemeines Log
 ## Debian/Ubuntu 
 /var/log/syslog
-## REdhat/Centos 
+## REdhat/Centos & SLES (OpenSuSE) 
 /var/log/messages 
 ```
 
@@ -1635,12 +1644,42 @@ systemctl unmask apache2
 systemctl start apache2
 ```
 
+### Dienste finetunen (von zu Fall zu Fall möglich) 
+
+```
+
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=400
+StartLimitBurst=3
+
+
+https://unix.stackexchange.com/questions/507911/systemctl-what-is-the-meaning-of-restart-always
+
+```
+
+
 ### systemctl Cheatsheet 
 
   * https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
 
 
+### journalctl 
 
+```
+journalctl -u apache2.service 
+## kurz. nur bei services 
+journalctl -u apache2
+
+## fortwährend 
+journalctl -u apache2 -f 
+
+## json pretty ausgabe
+## hilft beim identifizieren von feldern 
+journalctl -u apache2.service -o json-pretty
+
+
+```
 
 ### Script mit systemd verwalten und EnvironmentVariablen
 
@@ -1937,6 +1976,260 @@ service rsyslog status
 
 
 ```
+
+## Administration 
+
+### Dienste debuggen
+
+
+### Walkthrough 
+
+```
+## Dienst startet nicht / nach Ausführen von systemctl restart wird Fehlermeldung ausgegeben
+systemctl restart mariadb.service 
+
+## Schritt 1 : status -> was sagen die logs (letzte 10 Zeilen) 
+systemctl status mariadb.service 
+
+## Nicht fündig-> Schritt 2:
+jourrnalctl -xeu mariadb.service 
+
+## Nicht fündig -> Schritt 3:
+## Spezifisches Log von Dienst suchen 
+## und evtl. LogLevel von Dienst hochsetzen
+## z.B. bei mariadb (durch Internetrecherche herausfinden) 
+less /var/log/mysql/error.log 
+
+## Nicht fündig -> Schritt 5
+## Allgemeines Log
+## Debian/Ubuntu 
+/var/log/syslog
+## REdhat/Centos & SLES (OpenSuSE) 
+/var/log/messages 
+```
+
+### Wie verfahren bei SystemV 
+
+```
+Wie bei walkthrough aber ab Schritt 4
+```
+
+### Find error in logs quickly
+
+```
+cd /var/log/mysql 
+## -i = case insensitive // egal ob gross- oder kleingeschrieben
+cat error.log | grep -i error
+```
+
+### Schweizer Taschenmesser der Suche 
+
+
+```
+## Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
+grep -r gummitulpe /etc
+
+```
+
+### Neue Partition mit lvm
+
+
+### keine Befehle lvdisplay,vgdisplay etc.
+
+```
+apt install lvm2
+```
+
+
+### Schritt 1: Partitionen vorbereiten 
+
+```
+## parted /dev/sda 
+
+## partitionen erstellen z.B. 1 und 2 
+## 2x mkpart .....
+## und ein flag für lvm setzen
+(parted) set 1 lvm on
+(parted) set 2 lvm on 
+
+quit 
+```
+
+### Schritt 2: Physical Volumes vorbereiten (1. lvm Schritt) 
+
+```
+pvcreate /dev/sda1 /dev/sda2
+pvdisplay 
+```
+
+### Schritt 3: Volumen Group erstellen (vg) 
+
+```
+vgcreate vg0 /dev/sda1 /dev/sda2
+vgdisplay
+```
+
+### Schritt 4: Logical Volume erstellen (lv) 
+
+```
+lvcreate -n data -L500M vg0
+lvdisplay
+```
+
+### Schritt 5: filesystem aufbringen (ext4) und probehalber mounten 
+
+```
+mkfs.ext4 /dev/vg0/data
+mkdir -p /mnt/platte
+mount /dev/vg0/data /mnt/platte
+```
+
+### Schritt 6: /etc/fstab 
+
+```
+umount /mnt/platte
+## vi /etc/fstab 
+/dev/vg0/data /mnt/platte  ext4  defaults 0 1 
+
+mount -av
+
+reboot 
+
+## teste, ist platte wieder eingehängt
+
+
+```
+
+### Schritt 7: Vergrößern des Logical Volumes 
+
+```
+## Voraussetzung, ausreichend Speicher in der volumegroup 
+## oder dazufügen
+## 1. neue partition erstellen (auch auf komplett neuer Platte möglich) 
+## 2. pvcreate /dev/sdb1 
+## 3. vgextend vg /dev/sdb1 
+
+## --resizefs
+sudo lvresize -L +200M --resizefs vg0/data
+
+```
+
+### Fall 2: logical volume erweitern 
+
+```
+## gleich mit Erweiterung des Filesystems 
+lvextend --resizefs -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+
+```
+
+
+### Reference:
+
+   
+  * lvresize: https://www.digitalocean.com/community/tutorials/how-to-use-lvm-to-manage-storage-devices-on-ubuntu-18-04
+
+### Verzeichnisse backup/restore mit tar
+
+
+### Sichern / Backup 
+
+```
+cd /usr/src
+tar cfvz _etc.20220617.tar.gz /etc
+tar tf _etc.20220617.tar.gz
+```
+
+### Entpacken (Vorbereitung) 
+
+```
+mkdir foo
+mv _etc.20220617.tar.gz foo
+cd foo
+```
+
+### Entpacken (Variante 1)
+
+```
+tar xvf _etc.20220617.tar.gz
+
+## Aufräumen
+rm -fR etc/
+```
+
+### Entpacken (Variante 2) 
+
+```
+tar tf _etc.20220617.tar.gz
+
+## Achtung Fehler - weil falscher Pfad 
+tar xvf _etc.20220617.tar.gz etc/sysctl.d/99-sysctl.conf /etc/services
+echo $?
+
+## So geht's 
+tar xvf _etc.20220617.tar.gz etc/sysctl.d/99-sysctl.conf etc/services
+ls -la
+```
+
+### Referenz:
+
+  * https://linuxconfig.org/how-to-create-incremental-and-differential-backups-with-tar
+
+## Apache 
+
+### SSL - LetsEncrypt mit Ubuntu 22.04
+
+
+### Step 1:
+
+```
+## prerequisite - apache runs already 
+sudo apt update 
+sudo apt install -y certbot python3-certbot-apache
+```
+
+### Step 2: checking virtualhost comfiguration
+
+```
+sudo nano /etc/apache2/sites-available/projekt1-training-local.conf
+
+```
+
+
+
+### Attention: virtual host - domain must be different than hostname 
+
+```
+e.g. ap1.t3isp.de (virtual host domain) != hostname 
+## if this is not the case change hostname
+hostnamectl set-hostname main.training.local 
+
+## be sure to restart apache to take 
+systemctl restart httpd 
+
+```
+
+
+### Step 3: Use certbot to configure 
+
+```
+certbot --apache --register-unsafely-without-email 
+```
+
+### Test with your browser 
+
+```
+https://ap1.t3isp.de 
+
+```
+
+### Test Certificate with ssl labs 
+
+  * https://ssllabs.com
+
+### Refs:
+
+  * https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-22-04
+  
 
 ## Partitionierung und Filesystem
 
@@ -2583,26 +2876,49 @@ firewall-cmd --runtime-to-permanent
 
 ## Netzwerk/Dienste 
 
-### IP-Adresse von DHCP-Server holen (quick-and-dirty)
+### Wie Netzwerk einrichten in unterschiedlichen Distros
 
 
-### Walkthrough 
-
-```
-## Ip nicht gesetzt - kurzfristig eine IP holen
-ip a # zeigt die Netzwerkschnittstellen an.
-dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen  
-ip a
-```
-
-### Auf welchen Ports lauscht mein Server - lsof
-
+### Debian 
 
 ```
-## Zeigt alle ports an auf die gelauscht wird (ipv4) 
-lsof -i 
-## alternative
-netstat -tupel
+/etc/network/interfaces (ifupdown - package) 
+```
+
+### Ubuntu 
+
+#### Desktop 
+
+```
+netplan -> NetworkManager 
+## Zum Konfigurieren 
+nmtui 
+nmcli 
+```
+
+### Server 
+
+```
+netplan -> networkd
+/etc/netplan 
+netplan - Kommando 
+```
+
+### SLES 15 
+
+```
+wicked 
+yast 
+
+```
+
+### Redhat / Centos / Rocky 
+
+```
+NetworkManager
+## Tools 
+nmtui 
+nmcli 
 ```
 
 ### Hostname setzen
@@ -2652,19 +2968,48 @@ netplan apply
 ### Statische Adresse konfigurieren 
 
 ```
-network:
-    version: 2
-    renderer: networkd
-    ethernets:
-        enp0s3:
-            addresses:
-                - 10.10.10.2/24
-            gateway4: 10.10.10.1
-            nameservers:
-                search: [mydomain, otherdomain]
-                addresses: [10.10.10.1, 1.1.1.1]
+## routing rausfinden
+ip route 
+```
 
 ```
+## Verwendete Nameserver rausfinden
+cat /etc/resolv.conf
+
+```
+
+```
+## ergänzen 
+enp0s8:
+  addresses:
+    - 192.168.56.101/24
+  routes:
+    - to: default
+      via: 10.0.2.2
+  nameservers:
+    search: [training.local]
+    addresses: [8.8.8.8]
+```
+
+```
+netplan apply ---debug 
+## or
+netplan apply
+## or 
+netplan try 
+```
+
+### Interface händisch (nicht persistent) stoppen 
+
+```
+ip link set dev enp0s8 down
+```
+
+
+### Alternative: ifupdown - package als Alternative 
+
+  * Empfehlung: Wir bleiben dabei, was das System mir anbieten (also netplan) 
+  * ifupdown bietet die klassischen /etc/network/interfaces zur Konfiguration 
 
 
 ### Referenz 
@@ -2672,66 +3017,65 @@ network:
   * https://netplan.io/examples/
 
 
-## Tools/Verschiedens 
+### Netzwerk unter SLES - OpenSuSE - wicked
 
-### Remote Desktop für Linux / durch Teilnehmer getestet
 
-  * https://wiki.ubuntuusers.de/Remmina/
+### Dienste
 
-### Warum umask 002 und 0002 ? - Geschichte
+#### Netzwerk-Client starten 
+
+```
+systemctl status network 
+## oder 
+systemctl status wicked 
+```
+
+### Wicked-Daemon 
+
+```
+systemctl status wickedd.service 
+```
+
+### Welche Dienste gibt es ? 
+
+```
+systemctl list-units -t service | grep wicked
+```
+
+
+### Journal abrufen 
+
+```
+journalctl -u wicked.service 
+```
+
+### wicked - commands 
+
+```
+wicked show all 
+wicked show lo 
+wicked show eth0
+
+wicked show-xml all
+```
+
+### Wicked Netzwerk-Karte hochziehen/runterziehen 
+
+```
+wicked ifdown eth0
+wicked show eth0 
+wicked ifup eth0 
+wicked show eth0 
+```
+
+### Auf welchen Ports lauscht mein Server - lsof
 
 
 ```
-## Just quoting redhat here.
-The setting which determines what permissions are applied to a newly created file or 
-directory is called a umask and is configured in the /etc/bashrc file. 
-
-Traditionally on UNIX systems, the umask is set to 022, which allows only the user 
-who created the file or directory to make modifications. Under this scheme, 
-all other users, including members of the creator's group, are not allowed 
-to make any modifications. However, under the UPG scheme, this "group protection" 
-is not necessary since every user has their own private group.
-
-## Ref:
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s1-users-groups-private-groups
-
-```
-
-### lokale Mails installieren
-
-
-```
-apt install postfix mailutils 
-## Internet Host 
-
-echo "testmail" | mail -s "subject" root 
-
-## Gucken in der Datei 
-cat /var/mail/root 
-## nach der gesendeten Email 
-
-```
-
-### Debian/Ubuntu - deb - Paket entpacken
-
-
-```
-apt install -y binutils 
-cd /usr/src 
-mkdir unwrap-folder 
-mv openssh-server-xyz.deb unwrap-folder 
-cd unwrap-folder 
-tar x openssh-server-xyz.deb 
-## additionally might be necessary
-tar xvf data.tar.xz 
-tar xvf control.tar.xz 
-```
-
-### Geänderte Dateien zu anderem Server schicken
-
-
-```
-rsync --links -u -v -e ssh -r /var kurs@192.168.56.102:/home/kurs
+## Zeigt alle ports an auf die gelauscht wird (ipv4) 
+lsof -i 
+## alternative
+netstat -tupel
 ```
 
 ## Bash/Bash-Scripting 
@@ -2788,6 +3132,102 @@ echo $PATH
 env 
 script.sh
 ```
+
+### Script Beispiel
+
+
+### Beispiel 1: for 
+
+```
+cd /usr/local/bin
+vi liste.sh
+```
+
+```
+##!/bin/bash
+
+LISTE="etc dev boot"
+for i in $LISTE
+do
+  ls -la "/$i"
+done
+```
+
+```
+chmod o+x liste.sh
+## Testen 
+liste.sh 
+```
+
+### Beispiel 2: for mit befehl und Konfig-Datei 
+
+```
+## vi /etc/liste.conf 
+```
+
+```
+LOGTO=/var/log/liste.log
+```
+
+```
+## vi /usr/local/bin/liste.sh
+```
+
+```
+##!/bin/bash
+## DATUM=$(date)
+source /etc/liste.conf
+echo $LOGTO
+
+
+LISTE=$(echo $PATH | tr ':' ' ')
+
+for i in $LISTE
+do
+  ls -la "/$i" >> $LOGTO
+done
+```
+
+```
+chmod o+x /usr/local/bin/liste.sh 
+## testen 
+liste.sh
+```
+
+### Beispiel 3: mit Übergabe parameter 
+
+```
+vi /usr/local/bin/dirmaker.sh
+```
+
+```
+##!/bin/bash
+
+##echo $0
+##echo $1
+## echo $#
+
+if test "$1" = ""
+then
+  read -p "Verzeichnisname?" VERZ
+else
+  VERZ=$1
+  echo $VERZ
+fi
+
+
+if test ! -d /tmp/$VERZ
+then
+  echo "Verzeichnis /tmp/$VERZ existiert nicht"
+  echo "..."
+  echo "... wird angelegt"
+  mkdir /tmp/$VERZ
+
+else
+  echo "Verzeichnis /tmp/$VERZ existiert. Punkt !"
+  ls -la /tmp/$VERZ
+fi
+
 
 ### Ausführen/Verketten von mehreren Befehlen
 
@@ -3017,54 +3457,6 @@ ls -la /var/log/scripting.log
 
 ### Übung user/password
 
-## Digitalocean 
-
-### Script zum Aufsetzen eines Server mit Docker
-
-
-### cloud-init script 
-
-```
-##!/bin/bash
-groupadd sshadmin
-USERS="11trainingdo"
-for USER in $USERS
-do
-  echo "Adding user $USER"
-  useradd -s /bin/bash $USER
-  usermod -aG sshadmin $USER
-  echo "$USER:hier-kommt-das-passwort-rein" | chpasswd
-done
-
-## We can sudo with 11trainingdo
-usermod -aG sudo 11trainingdo 
-
-## Setup ssh stuff 
-sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
-usermod -aG sshadmin root
-echo "AllowGroups sshadmin" >> /etc/ssh/sshd_config 
-systemctl reload sshd 
-
-## specifically fix do - stuff in new versions of cloud-init 
-sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config.d/50-cloud-init.conf
-
-apt update
-## install dependencies 
-sudo apt install apt-transport-https curl gnupg-agent ca-certificates software-properties-common -y
-
-## get the gpgkey
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-## prepare repo for jammy (22.04 LTS)
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
-
-## now install the packages 
-apt install docker-ce docker-ce-cli containerd.io -y
-
-
-
-```
-
 ## Literatur 
 
 ### Literatur
@@ -3120,3 +3512,184 @@ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-s
 ### Linux Malware Scanner
 
   * https://www.rfxn.com/projects/linux-malware-detect/
+
+## Erweiterte Befehle (Nice to have) 
+
+### Welche Bibliotheken verwendet ein ausführbares Programm
+
+
+```
+ldd /usr/bin/ls 
+```
+
+## Tools/Verschiedens 
+
+### Remote Desktop für Linux / durch Teilnehmer getestet
+
+  * https://wiki.ubuntuusers.de/Remmina/
+
+### Warum umask 002 und 0002 ? - Geschichte
+
+
+```
+## Just quoting redhat here.
+The setting which determines what permissions are applied to a newly created file or 
+directory is called a umask and is configured in the /etc/bashrc file. 
+
+Traditionally on UNIX systems, the umask is set to 022, which allows only the user 
+who created the file or directory to make modifications. Under this scheme, 
+all other users, including members of the creator's group, are not allowed 
+to make any modifications. However, under the UPG scheme, this "group protection" 
+is not necessary since every user has their own private group.
+
+## Ref:
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s1-users-groups-private-groups
+
+```
+
+### lokale Mails installieren
+
+
+```
+apt install postfix mailutils 
+## Internet Host 
+
+echo "testmail" | mail -s "subject" root 
+
+## Gucken in der Datei 
+cat /var/mail/root 
+## nach der gesendeten Email 
+
+```
+
+### Debian/Ubuntu - deb - Paket entpacken
+
+
+```
+apt install -y binutils 
+cd /usr/src 
+mkdir unwrap-folder 
+mv openssh-server-xyz.deb unwrap-folder 
+cd unwrap-folder 
+tar x openssh-server-xyz.deb 
+## additionally might be necessary
+tar xvf data.tar.xz 
+tar xvf control.tar.xz 
+```
+
+### Geänderte Dateien zu anderem Server schicken
+
+
+```
+rsync --links -u -v -e ssh -r /var kurs@192.168.56.102:/home/kurs
+```
+
+## Prozesse 
+
+### Prioritäten und NiceNess
+
+
+### nice aus dem userspace möglich
+
+```
+## userspace - ich führe als Benutzer ein Programm 
+## nice - Festlegen ein programm zum Kernel ist 
+
+## Priorität in top - pr 
+## je niedriger die Zahl für den Prozess in top ist, desto 
+## höher die Priorität 
+## höchste Prioriät -100 
+-100 bis 39 
+
+## -100 = rt 
+## Statt -100 steht rt dort in top in der Spalte PR 
+
+## -59 höhe Priorität als 0 als 20 etc. 
+
+## Aus nice - Anfragen. von -20 -> +19 machen der Kernel
+## in der Regel 
+n + 20 z.B. Niceness= -20. = -20 + 20 = 0
+## D.h. höchte Prioriät über nice im Kernel ist 0 
+## die niedrigste Priorität 39 
+
+```
+
+### Prozesse in Realtime ausführen wie geht ? 
+
+```
+chrt # change realtime 
+## Welche Warteschlangen gibt es 
+chrt -m
+
+## Packe top in die realtime Warteschlange und führe es aus 
+## --rr realtime roundrobin Warteschlange 
+## Führe top mit der Priorität -100 aus 
+chrt --rr 99 top 
+```
+
+
+### Ref:
+
+  * https://medium.com/@joseagustin.barra/understanding-priority-levels-in-linux-cd8c82eb4dd
+
+## Netzwerk 
+
+### IP-Adresse von DHCP-Server holen (quick-and-dirty)
+
+
+### Walkthrough 
+
+```
+## Ip nicht gesetzt - kurzfristig eine IP holen
+ip a # zeigt die Netzwerkschnittstellen an.
+dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen  
+ip a
+```
+
+## Digitalocean 
+
+### Script zum Aufsetzen eines Server mit Docker
+
+
+### cloud-init script 
+
+```
+##!/bin/bash
+groupadd sshadmin
+USERS="11trainingdo"
+for USER in $USERS
+do
+  echo "Adding user $USER"
+  useradd -s /bin/bash $USER
+  usermod -aG sshadmin $USER
+  echo "$USER:hier-kommt-das-passwort-rein" | chpasswd
+done
+
+## We can sudo with 11trainingdo
+usermod -aG sudo 11trainingdo 
+
+## Setup ssh stuff 
+sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+usermod -aG sshadmin root
+echo "AllowGroups sshadmin" >> /etc/ssh/sshd_config 
+systemctl reload sshd 
+
+## specifically fix do - stuff in new versions of cloud-init 
+sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config.d/50-cloud-init.conf
+
+apt update
+## install dependencies 
+sudo apt install apt-transport-https curl gnupg-agent ca-certificates software-properties-common -y
+
+## get the gpgkey
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+## prepare repo for jammy (22.04 LTS)
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+
+## now install the packages 
+apt install docker-ce docker-ce-cli containerd.io -y
+
+
+
+```
