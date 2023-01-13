@@ -63,6 +63,7 @@
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
   1. Administration 
      * [Dienste debuggen](debug-service.md)
+     * [Neue Partition mit lvm](lvm.md)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](apache-ssl-letsencrypt-ubuntu.md)
   1. Partitionierung und Filesystem
