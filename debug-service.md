@@ -22,7 +22,7 @@ less /var/log/mysql/error.log
 # Allgemeines Log
 # Debian/Ubuntu 
 /var/log/syslog
-# REdhat/Centos 
+# REdhat/Centos & SLES (OpenSuSE) 
 /var/log/messages 
 ```
 
