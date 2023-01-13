@@ -80,6 +80,15 @@ sudo lvresize -L +200M --resizefs vg0/data
 
 ```
 
+## Fall 2: logical volume erweitern 
+
+```
+# gleich mit Erweiterung des Filesystems 
+lvextend --resizefs -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+
+```
+
+
 ## Reference:
 
    
