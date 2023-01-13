@@ -25,7 +25,7 @@ egrep  -i '^(mysql|Moira)' /etc/services
 ```
 # -A x-Zeilen danach, z.B. -A 4 --> 4 Zeilen danach 
 # -B x-Zeilen davor 
-egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services'^(mysql|Moira)' /etc/services
+egrep  -A 4 -B 4 -i '^(mysql|Moira)' /etc/services
 ```
 
 ## Einzelne Zeichen als Suchmuster nehmen 
