@@ -23,3 +23,27 @@ find / -iname '*mariadb*'
 find / -name tmpfiles.d -type d 
 find /etc -name 'ssh*' -type f
 ```
+
+## Suchen mit exec ausführen 
+
+```
+find . type f -exec ls -la {} \;
+
+```
+
+## Suchen und löschen 
+
+```
+cd
+mkdir foo
+cd foo/
+touch dateia dateib
+find .  -type f
+# Achtung zwischen {} und \; ist ein Leerzeichen 
+find .  -type f  -exec rm {} \;
+ls -la
+
+# Alternativ 
+find . type -f --delete 
+
+```
