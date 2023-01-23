@@ -95,6 +95,21 @@ DDWRT
 ```
 
 ```
+### Android 
+
+```
+Linux-System unter der Haube 
+2. Zwischenschicht (Java ?)  
+```
+
+### Linux für IoT / Appliances 
+
+```
+Linux wird speziell dafür kompiliert 
+# Frameworks mit denen ich das machen kann 
+
+
+```
 
 ## Seite mit Übersicht aller Linux-Distros 
 
