@@ -5,8 +5,8 @@
 ### Redhat-Familie 
 
 ```
-Centos 
-Redhat.  — rpm / (yum / dnf) (Support-Vertrag) 
+Centos (Centos 8) 
+Redhat.  — rpm / (yum / dnf) (Support-Vertrag) - RHEL 9 (Redhat Enterprise Linux) 
 Fedora 
 Rocky Linux / Alma Linux 
 Scientific Linux 
