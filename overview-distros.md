@@ -23,7 +23,7 @@ Mint
 ### SuSE - Familie 
 
 ```
-SLES (SuSE Linux Enterprise)
+SLES (SuSE Linux Enterprise - SLES 15) 
 OpenSuSE 
 ```
 
