@@ -4,6 +4,7 @@
 
 ```
 adduser newuser
+## append - hinzufügen zu der Gruppe 
 usermod -aG sudo newuser
 ## testing 
 su - newuser
