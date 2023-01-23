@@ -8,7 +8,7 @@
 Centos 
 Redhat.  — rpm / (yum / dnf) (Support-Vertrag) 
 Fedora 
-Rocky Linux
+Rocky Linux / Alma Linux 
 Scientific Linux 
 ```
 
