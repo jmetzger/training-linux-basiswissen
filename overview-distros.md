@@ -15,7 +15,7 @@ Scientific Linux
 ### Debian Familie 
 
 ```
-Debian (Stiftung)
+Debian (Verein)
 Ubuntu. - dpkg / apt (Support-Vertrag möglich)
 Mint 
 ```
