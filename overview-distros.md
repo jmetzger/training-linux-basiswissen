@@ -59,8 +59,8 @@ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.3.0-amd64-ne
 ## Redhat 
 
 ```
-RHEL 8 (Redhat Enterprise Linux) 
-Rocky Linux 8 (Stand 2022) 
+RHEL 9 (Redhat Enterprise Linux) 
+Rocky Linux 9 (Stand 2023) 
 ```
 
 ## SuSE 
