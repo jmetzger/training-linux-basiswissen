@@ -78,7 +78,7 @@ Kali Linux
 Parrot.   - Distributionen zum Hacken 
 ```
 
-## Live-DVD (Linux ohne Installation) 
+## Live-DVD/USB (Linux ohne Installation) 
 
   * Knoppix - Live DVD - brauche nicht installieren 
 
