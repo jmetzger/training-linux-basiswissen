@@ -102,14 +102,30 @@ Linux-System unter der Haube
 2. Zwischenschicht (Java ?)  
 ```
 
-### Linux für IoT / Appliances 
+### Linux für IoT / Appliances / embedded devices
 
 ```
 Linux wird speziell dafür kompiliert 
 # Frameworks mit denen ich das machen kann 
 
+Linux Yocto (Teile von Linux Gentoo) 
 
 ```
+
+### Android 
+
+```
+o als Basis Linux 
+o glibc -> eigene 
+o pthread -> eigene 
+o IPC (Interprocess Communication) - eigene Bibliothek 
+o virtuelle Maschine wird gestartet 
+  o  Java Virtual Machine -> Apache -> DVM (D (Ort of Island, Virtual Machine) 
+  o  jede Anwenduung wird in einer Sandbox in einer VM gestartet 
+```
+
+ * https://www.heise.de/ratgeber/Innenansichten-eines-Smartphone-Betriebssystems-1901647.html
+  
 
 ## Seite mit Übersicht aller Linux-Distros 
 
