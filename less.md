@@ -27,6 +27,17 @@ n
 N
 ```
 
+## Rückwärts suchen in less 
+
+```
+#Innerhalb von less
+?suchbegriff + RETURN
+# nächstes Suchergebnis
+n 
+# voriges Suchergebnis 
+N
+```
+
 ##  Springen ans Ende/an den Anfang  
 ```
 # Innerhalb von less
