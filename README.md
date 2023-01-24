@@ -45,6 +45,7 @@
      * [Finden von files nach Kriterien - find](find.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
+     * [Logfile unter /var/log analysieren](var_log_analyze.md)
      * [Dienste debuggen](debug-service.md)
      * [Rsyslog](rsyslog.md)
      * [Journal analysieren](journalctl.md) 
