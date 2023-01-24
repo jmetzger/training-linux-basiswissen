@@ -42,3 +42,25 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 ```
 chmod g+w,o+r testfile
 ```
+
+## Die Maske als Basis für neue Dateien 
+
+```
+# als kurs benutzer automatisch so gesetzt für alle unpriviligierten
+umask 
+0002 
+
+# als Basis für Dateien 
+   6 6 6 
+-  0 0 2
+========
+   6 6 4 - neue Dateien werden mit 664 angelegt 
+   
+# als Basis für Verzeichnisse
+   7 7 7
+-  0 0 2
+========
+   7 7 5 - neue Dateien werden mit 664 angelegt
+
+
+```
