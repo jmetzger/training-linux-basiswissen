@@ -61,6 +61,9 @@ apt search apache | less
 # Alle Paket in denen apache am Anfang der Zeile fehlt 
 apt search ^apache | less
 
+# Oder um noch weiter zu verfeinern 
+apt search apache | grep ^apache 
+
 ```
 
 ## Installieren mit apt install 
