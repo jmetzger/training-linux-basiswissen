@@ -46,9 +46,10 @@
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
      * [Logfile unter /var/log analysieren](var_log_analyze.md)
+     * [Logrotate - Rotation](logrotate.md)
      * [Dienste debuggen](debug-service.md)
      * [Rsyslog](rsyslog.md)
-     * [Journal analysieren](journalctl.md) 
+     * [Journal analysieren](journalctl.md)   
   1. Bash: Variablen, Kommandosubstitution und Quotes 
      * [Kommandos ausgeben und weiter verwenden](command-substitution.md)
      * [Setzen und verwenden von Variablen](variables.md)
