@@ -17,7 +17,7 @@ zypper search apache2
 zypper install -y apache2 
 ```
 
-## Step 2: Dienstnamen herausfinden (weil nicht gestartet -> SLES/OpenSuSE) 
+## Step 2: Dienstnamen herausfinden (weil nicht gestartet -> SLES/OpenSuSE) und starten/aktivieren
 
 ```
 # Ministep 2.1 - Dienstnamen rausfinden
@@ -34,7 +34,8 @@ systemctl start apache2.service
 systemctl is-enabled apache2.service 
 systemctl enable apache2.service 
 
-
+# Evtl nochmal status abfragen
+systemctl status apache2.service 
 
 
 ```
