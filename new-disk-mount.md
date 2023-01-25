@@ -1,6 +1,6 @@
 # Create new partition on new disk and mount it 
 
-## Walkthrough 
+## Walkthrough (Creaation and mountoing manually)
 
 ```
 # Step 0: 
@@ -33,6 +33,18 @@ cd ..
 # Step 6: Platte wieder aushängen zum Testen 
 umount /mnt/platte 
 # keine Dateien mehr zu sehen 
+ls -la /mnt/platte 
 
 ```
-ls -la /mnt/platte 
+
+## Mount persistently with testing 
+
+```
+nano /etc/fstab
+```
+
+```
+## add these lines 
+/dev/sdb1 /mnt/platte ext4 defaults 0 0
+```
+
