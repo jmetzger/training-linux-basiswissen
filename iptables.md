@@ -99,6 +99,20 @@ iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
 iptables -F
 ```
 
+## Regeln persistent setzen 
+
+```
+apt install iptables-persistent 
+# wahrscheinlich 
+zypper install iptables-service 
+
+systemctl cat iptables-service 
+systemctl status iptables-service 
+
+# Regeln speichern, um sie beim Booten zu setzen
+iptables-save > /etc/iptables/rules.v4 
+```
+
 
 ## Ausblick 
 
