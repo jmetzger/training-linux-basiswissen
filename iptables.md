@@ -118,3 +118,7 @@ iptables-save > /etc/iptables/rules.v4
 
   * Unter der Haube wird heute inftables verwendet 
   * s. iptables -L (alt: legacy) 
+
+## Referenzen 
+
+ * https://www.karlrupp.net/de/computer/nat_tutorial
