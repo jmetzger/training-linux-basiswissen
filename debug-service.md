@@ -46,5 +46,8 @@ cat error.log | grep -i error
 ```
 # Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
 grep -r gummitulpe /etc
-
+# mit zeilennummer 
+grep -nr gummitulpe /etc
+# mit zeilennummer und egal ob gross oder kleingeschrieben 
+grep -inr GUMMITULPE /etc
 ```
