@@ -8,6 +8,18 @@
 Quelle: https://webguy.vip/example-of-iptables/
 ```
 
+## Was wird unter der Haube verwendet (iptables oder nf_tables) 
+
+```
+# Hier unter der Haube nf_tables 
+iptables --version 
+# iptables v1.8.7 (nf_tables)
+
+# Ansonsten muss hier (legacy) stehen 
+# Dann ist es ein reines iptables 
+```
+
+
 ## Tables 
 
 ```
@@ -55,15 +67,19 @@ change default policy:
 ## Beispiel: ssh / apache konfigurieren
 
 ```
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -L -v
+```
+
+```
 # Variante, nur eingehender Traffic wird gefiltert 
 # Standard policy of drop setzen 
 iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
-
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 
 iptables -L -v
 ```
