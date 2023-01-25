@@ -48,3 +48,9 @@ nano /etc/fstab
 /dev/sdb1 /mnt/platte ext4 defaults 0 0
 ```
 
+```
+## Test it
+# does it mount properly 
+# mounts everything from /etc/fstab of not mounted yet 
+mount -av 
+```
