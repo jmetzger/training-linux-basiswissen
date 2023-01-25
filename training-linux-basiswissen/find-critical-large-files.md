@@ -54,3 +54,9 @@ grep -r rsyslogd /lib/systemd/system
 grep -r rsyslogd /etc/systemd/system 
 ```
 
+## Optional: fuser findet das Programm nicht 
+
+```
+# ich probiere direkt nach dem Logfile zu suchen 
+grep -r 'script.log' /usr/local/bin
+```
