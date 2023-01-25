@@ -71,6 +71,7 @@
      * [Dienste debuggen](debug-service.md)
      * [Neue Partition mit lvm](lvm.md)
      * [Verzeichnisse backup/restore mit tar](tar.md)
+     * [Dateien per scp übertragen](scp.md)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](apache-ssl-letsencrypt-ubuntu.md)
   1. Partitionierung und Filesystem
@@ -100,6 +101,7 @@
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
+     * [iptables Wirkweise und Beispiele](iptables.md)      
   1. Netzwerk/Dienste 
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](netzwerk-einrichten-distris.md)
      * [Hostname setzen](hostnamectl.md)
@@ -123,8 +125,7 @@
      * [Übung Umleitung mit Variable](uebung3-umleitung-mit-variable.md) 
      * [Übung user/password](uebung4-user-and-password-change.md)
   1. Extras 
-     * [Apache-Tomcat](apache-tomcat.md) 
-  
+     * [Apache-Tomcat](apache-tomcat.md)  
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
