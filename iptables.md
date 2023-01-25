@@ -67,6 +67,7 @@ change default policy:
 ## Beispiel: ssh / apache konfigurieren
 
 ```
+# Variante nur eingehender Traffic 
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
@@ -76,15 +77,7 @@ iptables -L -v
 iptables -P INPUT DROP
 ```
 
-```
-# Variante, nur eingehender Traffic wird gefiltert 
-# Standard policy of drop setzen 
 
-iptables -P FORWARD DROP
-iptables -P OUTPUT ACCEPT
-
-iptables -L -v
-```
 
 ```
 # Variante mit ausgehendem Traffic 
