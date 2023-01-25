@@ -9,6 +9,9 @@
      * [Dateitypen](#dateitypen)
   1. Administration / Tipps & Tricks 
      * [IP-Adresse herausfinden](#ip-adresse-herausfinden)
+     * [Welches Programm macht mein Filesystem voll](#welches-programm-macht-mein-filesystem-voll)
+     * [Neue Festplatte/Partition erstellen und einhängen](#neue-festplattepartition-erstellen-und-einhängen)
+     * [Windows Share mounten](#windows-share-mounten)
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](#in-den-root-benutzer-wechseln---sudo)
      * [Wo bin ich ?](#wo-bin-ich-)
@@ -45,6 +48,8 @@
      * [Finden von files nach Kriterien - find](#finden-von-files-nach-kriterien---find)
   1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
+     * [Logfile unter /var/log analysieren](#logfile-unter-varlog-analysieren)
+     * [Logrotate - Rotation](#logrotate---rotation)
      * [Dienste debuggen](#dienste-debuggen)
      * [Rsyslog](#rsyslog)
      * [Journal analysieren](#journal-analysieren)
@@ -56,6 +61,7 @@
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](#systemd-überblick)
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
+     * [Dienste installieren und (optional) starten](#dienste-installieren-und-optional-starten)
      * [Script mit systemd verwalten und EnvironmentVariablen](#script-mit-systemd-verwalten-und-environmentvariablen)
      * [Systemd Service endless loop](#systemd-service-endless-loop)
      * [Systemctl - timers](#systemctl---timers)
@@ -65,6 +71,7 @@
      * [Dienste debuggen](#dienste-debuggen)
      * [Neue Partition mit lvm](#neue-partition-mit-lvm)
      * [Verzeichnisse backup/restore mit tar](#verzeichnisse-backuprestore-mit-tar)
+     * [Dateien per scp übertragen](#dateien-per-scp-übertragen)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](#ssl---letsencrypt-mit-ubuntu-2204)
   1. Partitionierung und Filesystem
@@ -84,6 +91,7 @@
   1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
+     * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-zb-php-cli-verwalten)
      * [Verzeichnisse in archiven sichern - tar](#verzeichnisse-in-archiven-sichern---tar)
@@ -93,6 +101,7 @@
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
+     * [iptables Wirkweise und Beispiele](#iptables-wirkweise-und-beispiele)
   1. Netzwerk/Dienste 
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](#wie-netzwerk-einrichten-in-unterschiedlichen-distros)
      * [Hostname setzen](#hostname-setzen)
@@ -107,6 +116,7 @@
      * [Funktionen in der bash](#funktionen-in-der-bash)
      * [Best practice structure bash - scripts](#best-practice-structure-bash---scripts)
      * [Neue Umgebungsvariable setzen](#neue-umgebungsvariable-setzen)
+     * [Servername und User mit bash-script aufsetzen](#servername-und-user-mit-bash-script-aufsetzen)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
@@ -115,6 +125,8 @@
      * [Übung Dienste](#übung-dienste)
      * [Übung Umleitung mit Variable](#übung-umleitung-mit-variable)
      * [Übung user/password](#übung-userpassword)
+  1. Extras 
+     * [Apache-Tomcat](#apache-tomcat)
   1. Literatur 
      * [Literatur](#literatur)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
@@ -156,17 +168,17 @@
 #### Redhat-Familie 
 
 ```
-Centos 
-Redhat.  — rpm / (yum / dnf) (Support-Vertrag) 
+Centos (Centos 8) 
+Redhat.  — rpm / (yum / dnf) (Support-Vertrag) - RHEL 9 (Redhat Enterprise Linux) 
 Fedora 
-Rocky Linux
+Rocky Linux / Alma Linux 
 Scientific Linux 
 ```
 
 #### Debian Familie 
 
 ```
-Debian (Stiftung)
+Debian (Verein)
 Ubuntu. - dpkg / apt (Support-Vertrag möglich)
 Mint 
 ```
@@ -174,7 +186,7 @@ Mint
 #### SuSE - Familie 
 
 ```
-SLES (SuSE Linux Enterprise)
+SLES (SuSE Linux Enterprise - SLES 15) 
 OpenSuSE 
 ```
 
@@ -210,8 +222,8 @@ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.3.0-amd64-ne
 ### Redhat 
 
 ```
-RHEL 8 (Redhat Enterprise Linux) 
-Rocky Linux 8 (Stand 2022) 
+RHEL 9 (Redhat Enterprise Linux) 
+Rocky Linux 9 (Stand 2023) 
 ```
 
 ### SuSE 
@@ -229,7 +241,7 @@ Kali Linux
 Parrot.   - Distributionen zum Hacken 
 ```
 
-### Live-DVD (Linux ohne Installation) 
+### Live-DVD/USB (Linux ohne Installation) 
 
   * Knoppix - Live DVD - brauche nicht installieren 
 
@@ -240,6 +252,43 @@ Parrot.   - Distributionen zum Hacken
 OpenWRT 
 DDWRT
 ```
+
+### Rescue Linux 
+
+```
+
+```
+#### Android 
+
+```
+Linux-System unter der Haube 
+2. Zwischenschicht (Java ?)  
+```
+
+#### Linux für IoT / Appliances / embedded devices
+
+```
+Linux wird speziell dafür kompiliert 
+## Frameworks mit denen ich das machen kann 
+
+Linux Yocto (Teile von Linux Gentoo) 
+
+```
+
+#### Android 
+
+```
+o als Basis Linux 
+o glibc -> eigene 
+o pthread -> eigene 
+o IPC (Interprocess Communication) - eigene Bibliothek 
+o virtuelle Maschine wird gestartet 
+  o  Java Virtual Machine -> Apache -> DVM (D (Ort of Island, Virtual Machine) 
+  o  jede Anwenduung wird in einer Sandbox in einer VM gestartet 
+```
+
+ * https://www.heise.de/ratgeber/Innenansichten-eines-Smartphone-Betriebssystems-1901647.html
+  
 
 ### Seite mit Übersicht aller Linux-Distros 
 
@@ -345,6 +394,164 @@ ip a
 ip -br a 
 ```
 
+### Welches Programm macht mein Filesystem voll
+
+
+### Schritt 1: Datei identifizieren durch Suche 
+
+```
+## Variante 1: 
+## Welche Partition ist betroffen 
+## -h human readable, m megabytes 
+df -hm /var 
+
+## Variante 2:
+## Zeigt alle verzeichnisse mit verwendeter Größe an 
+du -hm /var 
+## auch nochmal sichtbar des großen betroffenen Verzeichnisses 
+```
+
+```
+ls -la /var/lib/snapd/snaps
+total 399368
+drwxr-xr-x  3 root root      4096 Jan 25 04:49 .
+drwxr-xr-x 22 root root      4096 Jan 25 04:54 ..
+-rw-------  2 root root  64970752 Aug  9 11:58 core20_1587.snap
+-rw-------  1 root root  66347008 Jan 23 10:22 core20_1778.snap
+-rw-------  1 root root 107986944 Jan 23 10:22 lxd_23541.snap
+-rw-------  1 root root 117387264 Jan 25 04:49 lxd_24322.snap
+drwxr-xr-x  2 root root      4096 Aug  8 09:17 partial
+-rw-------  1 root root  52248576 Jan 23 10:22 snapd_17950.snap
+```
+
+```
+## Variante 3: Gezielt nach Dateien suchen, die größer sind als z.B. 2M 
+find /var -type f -size +2M -exec ls -la {} \;
+```
+
+### Schritt 2: Welche Programm verursacht das ? 
+
+```
+### Minischritt 1:
+## zeige das programm, welche in syslog schreibt 
+fuser /var/log/syslog 
+## process id rausbekommen 
+## /var/log/syslog:     112920
+
+### Minischritt 2: wie wollen den Prozess haben -> d.h. welches programm
+ps -ef | grep 112920
+## Ergebnis 
+syslog    112920       1  0 Jan24 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+
+### Minischritt 3: Finde heraus, ob ein Dienst (Service) startet 
+## Dienste in /usr/lib/systemd/system /lib/systemd/system /etc/systemd/system definiert 
+## in Konfigurations
+grep -r rsyslogd /usr/lib/systemd/system 
+grep -r rsyslogd /lib/systemd/system 
+grep -r rsyslogd /etc/systemd/system 
+```
+
+### Optional: fuser findet das Programm nicht 
+
+```
+## ich probiere direkt nach dem Logfile zu suchen 
+grep -r 'script.log' /usr/local/bin
+```
+
+### Neue Festplatte/Partition erstellen und einhängen
+
+
+### Walkthrough (Creaation and mountoing manually)
+
+```
+## Step 0: 
+Eventually stop server to create new disk
+
+## Step 1:
+Create Disk (e.g. on virtualbox)
+
+## Step 2: 
+## Boot server and look for disk
+## should show up here without partitions 
+lsblk 
+
+## Step 3: Create partition(s) on disk 
+parted /dev/sdb 
+parted>mktable msdos 
+parted>mkpart 
+parted>quit 
+
+## Step 4: Filesystem aufgebracht 
+mkfs.ext4 /dev/sdb1 
+
+## Step 5: Mountpunkt erstellen 
+mkdir /mnt/platte 
+mount /dev/sdb1 /mnt/platte 
+cd /mnt/platte 
+touch README 
+cd ..
+
+## Step 6: Platte wieder aushängen zum Testen 
+umount /mnt/platte 
+## keine Dateien mehr zu sehen 
+ls -la /mnt/platte 
+
+```
+
+### Mount persistently with testing 
+
+```
+nano /etc/fstab
+```
+
+```
+### add these lines 
+/dev/sdb1 /mnt/platte ext4 defaults 0 0
+```
+
+```
+### Test it
+## does it mount properly 
+## mounts everything from /etc/fstab of not mounted yet 
+mount -av 
+```
+
+### Windows Share mounten
+
+
+### Walkthrough 
+
+```
+apt install cifs-utils 
+##  danach muss mount.cifs zur Verfügung stehen 
+
+## Unser Windows: Windows Share erstellen für entsprechen Nutzer zB Admin
+## Wenn keine Auflösung des Hostnamens auf Windows erfolgen kann, dann IP rausfinden
+## WIN + cmd -> cmd.exe 
+## ipconfig 
+
+## Ein Mountpunkt erstellt
+mkdir /mnt/windows 
+
+## und dann einhängen 
+mount.cifs //10.10.11.116/Users/Admin /mnt/windows -o username=Admin,password='mein@P@dss!$?'
+
+## Jetzt stehen die Daten unter 
+## /mnt/windows zur Verfügung 
+cd /mnt/windows
+ls -la 
+```
+
+```
+## /etc/fstab 
+//10.10.11.116/Users/Admin /mnt/platte2 cifs username=Admin,password=mein@P@dss!$? 0 0 
+```
+
+```
+## testen von /etc/fstab
+mount -av
+```
+
 ## Basisbefehle
 
 ### In den Root-Benutzer wechseln - sudo
@@ -393,6 +600,17 @@ cat /etc/services | less
 ```
 ##Innerhalb von less
 /suchbegriff + RETURN
+## nächstes Suchergebnis
+n 
+## voriges Suchergebnis 
+N
+```
+
+### Rückwärts suchen in less 
+
+```
+##Innerhalb von less
+?suchbegriff + RETURN
 ## nächstes Suchergebnis
 n 
 ## voriges Suchergebnis 
@@ -776,6 +994,12 @@ ps -ef
 ps aux  # x alle Prozesse anzeigen, die nicht an ein Terminal gebunden sind 
 ```
 
+### Bestimmte Prozesse anzeigen mit Kopfzeile 
+
+```
+ps -ef | head -n 1; ps -ef | grep ssh 
+```
+
 ### systemctl (läuft Dienst) 
 
 ```
@@ -837,6 +1061,28 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 chmod g+w,o+r testfile
 ```
 
+### Die Maske als Basis für neue Dateien 
+
+```
+## als kurs benutzer automatisch so gesetzt für alle unpriviligierten
+umask 
+0002 
+
+## als Basis für Dateien 
+   6 6 6 
+-  0 0 2
+========
+   6 6 4 - neue Dateien werden mit 664 angelegt 
+   
+## als Basis für Verzeichnisse
+   7 7 7
+-  0 0 2
+========
+   7 7 5 - neue Dateien werden mit 664 angelegt
+
+
+```
+
 ### Dateien für Benutzer und Gruppen
 
 
@@ -882,6 +1128,7 @@ deluser --remove-home training
 
 ```
 adduser newuser
+### append - hinzufügen zu der Gruppe 
 usermod -aG sudo newuser
 ### testing 
 su - newuser
@@ -1249,6 +1496,75 @@ logger meine_nachricht
 
 ```
 
+### Logfile unter /var/log analysieren
+
+
+### Beispiel syslog 
+
+```
+cd /var/log 
+## Achtung: Problem bei zu grossen Logfiles 
+## d.h. z.B. 2-3 GB, weil alles erst in den Arbeitsspeicher geladet 
+less syslog 
+
+### Alternative 
+### nur 10.000 letzte Zeilen auswerten
+tail -n 10000 syslog | less 
+tail -n 10000 syslog > meinlog 
+less meinlog 
+
+### Alternative Level 2 (gleich mit filtern) 
+tail -n 10000 syslog | grep ssh | less 
+
+```
+
+### Logrotate - Rotation
+
+
+### Was macht es ?
+
+```
+Rotiert die Logs täglich auf Basis einer config unter /etc/logrotate.d
+```
+
+### Beispiel 
+
+```
+## Ziel 
+## Rotieren von log unter /var/log/script.log 
+cd /etc/logrotate.d 
+nano script 
+```
+
+```
+/var/log/script.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 640 root root
+}
+```
+
+```
+## testen 
+## -f forced das ganze 
+logrotate -f /etc/logrotate.conf 
+
+## Jetzt werden die logs unter /var/log rotiert, auch script 
+```
+
+### Anzeigen von gepackten 
+
+```
+## d.h. alle Dateien mit der Endung .gz 
+## z.B. dmesg.1.gz 
+## zcat wird mit gzip mitinstalliert 
+zcat dmesg.1.gz 
+```
+
 ### Dienste debuggen
 
 
@@ -1298,7 +1614,10 @@ cat error.log | grep -i error
 ```
 ## Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
 grep -r gummitulpe /etc
-
+## mit zeilennummer 
+grep -nr gummitulpe /etc
+## mit zeilennummer und egal ob gross oder kleingeschrieben 
+grep -inr GUMMITULPE /etc
 ```
 
 ### Rsyslog
@@ -1681,6 +2000,49 @@ journalctl -u apache2.service -o json-pretty
 
 ```
 
+### Dienste installieren und (optional) starten
+
+
+### Step 1: Suchen und installieren (Ubuntu / Debian) 
+
+```
+apt update 
+## Suchergebnis und eine zusätzliche Zeile finden 
+apt search apache | grep -A 1 ^apache
+## Abhängige Paket (weitere) ohne Nachfrage installieren 
+apt install -y apache2 
+```
+
+### Step 1: Suchen und installieren (OpenSuSE) 
+
+```
+zypper search apache2 
+zypper install -y apache2 
+```
+
+### Step 2: Dienstnamen herausfinden (weil nicht gestartet -> SLES/OpenSuSE) und starten/aktivieren
+
+```
+## Ministep 2.1 - Dienstnamen rausfinden
+systemctl list-units -t service 
+systemctl list-units -t service | grep apache
+
+## Ministep 2.2 - Status abfragen
+systemctl status apache2.service 
+
+## Ministep 2.3. - Dienst starten (kein Problem, wenn er bereits läuft) 
+systemctl start apache2.service 
+
+## Ministep 2.4 - Is Autostart aktiviert ? und.. autostart aktivieren
+systemctl is-enabled apache2.service 
+systemctl enable apache2.service 
+
+## Evtl nochmal status abfragen
+systemctl status apache2.service 
+
+
+```
+
 ### Script mit systemd verwalten und EnvironmentVariablen
 
 
@@ -2028,7 +2390,10 @@ cat error.log | grep -i error
 ```
 ## Fehler ist gummitulpe - option - falsch in Konfigurationsdatei, aber wo ? 
 grep -r gummitulpe /etc
-
+## mit zeilennummer 
+grep -nr gummitulpe /etc
+## mit zeilennummer und egal ob gross oder kleingeschrieben 
+grep -inr GUMMITULPE /etc
 ```
 
 ### Neue Partition mit lvm
@@ -2173,6 +2538,23 @@ ls -la
 ### Referenz:
 
   * https://linuxconfig.org/how-to-create-incremental-and-differential-backups-with-tar
+
+### Dateien per scp übertragen
+
+
+```
+cd
+ls -la > testdatei
+
+## testdatei aufs Zielsystem übertragen
+scp testdatei 11trainingdo@134.122.81.88:/home/11trainingdo/
+## Prüfen ob dort gelandet 
+ssh 11trainingdo@134.122.81.88
+
+## Datei vom Zielsystem herunterladen und unter anderem Namen speichern 
+scp 11trainingdo@134.122.81.88:/home/11trainingdo/testdatei /tmp/foodatei
+
+```
 
 ## Apache 
 
@@ -2458,12 +2840,27 @@ sudo tasksel install ubuntu-desktop
 ```
 apt update
 apt upgrade 
-apt dist-upgrade 
+apt dist-upgrade
+## alte Pakete, die nicht mehr als Abhängigkeit benötigt werden, entfernen 
+apt autoremove
 
 ## oder geht auch auf älteren Systemen
 apt-get update
 apt-get upgrade
 apt-get dist-upgrade
+apt-get autoremove 
+
+
+## Achtung: Evtl. ist noch ein Reboot aufgrund eines Kernel Upgrades notwendig.
+## Vergleichen von  
+cd /boot
+ls -la vm*
+
+## zeigt den geladenen Kernel 
+uname -a 
+
+## Gibt es im Filesystem unter boot einen neueren Kernel als mit uname -a
+## muss ! zeitnah neu gebootet werden.
 
 ```
 
@@ -2531,6 +2928,9 @@ apt search apache | less
 ## Alle Paket in denen apache am Anfang der Zeile fehlt 
 apt search ^apache | less
 
+## Oder um noch weiter zu verfeinern 
+apt search apache | grep ^apache 
+
 ```
 
 ### Installieren mit apt install 
@@ -2566,6 +2966,10 @@ dpkg -c /usr/src/openssh-server-xyz.deb
 
 
 ```
+
+### Cheatsheet apt vs yum/zypper
+
+  * https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet
 
 ### Archive runterladen und entpacken
 
@@ -2873,6 +3277,132 @@ firewall-cmd --runtime-to-permanent
   * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
 
 ### Scannen und Überprüfen mit telnet/nmap
+
+### iptables Wirkweise und Beispiele
+
+
+### Überblick
+
+![iptables Überblick](https://webguy.vip/wp-content/uploads/2021/07/IPTABLES.jpg))
+
+```
+Quelle: https://webguy.vip/example-of-iptables/
+```
+
+### Was wird unter der Haube verwendet (iptables oder nf_tables) 
+
+```
+## Hier unter der Haube nf_tables 
+iptables --version 
+## iptables v1.8.7 (nf_tables)
+
+## Ansonsten muss hier (legacy) stehen 
+## Dann ist es ein reines iptables 
+```
+
+
+### Tables 
+
+```
+INPUT 
+OUTPUT 
+FORWARD 
+
+PREROUTING 
+POSTROUTING 
+
+```
+
+### Cheatsheet 
+
+```
+manage chain:
+## iptables -N new_chain				// create a chain
+## iptables -E new_chain old_chain  		// edit a chain
+## iptables -X old_chain				// delete a chain
+
+redirecting packet to a user chain:
+## iptables -A INPUT -p icmp -j new_chain
+
+listing rules:
+## iptables -L					// list all rules of all tables
+## iptables -L -v				// display rules and their counters
+## iptables -L -t nat				// display rules for a specific tables
+## iptables -L -n --line-numbers			// listing rules with line number for all tables
+## iptables -L INPUT -n --line-numbers		// listing rules with line number for specific table
+
+manage rules:
+## iptables -A chain				// append rules to the bottom of the chain
+## iptables -I chain [rulenum](default at the top or 1)
+## iptables -R chain rulenum			// replace rules with rules specified for the rulnum
+## iptables -D chain	rulenum			// delete rules matching rulenum (default 1)
+## iptables -D chain				// delete matching rules
+
+change default policy:
+## iptables -P chain target			// change policy on chain to target
+## iptables -P INPUT DROP			// change INPUT table policy to DROP
+## iptables -P OUTPUT DROP			// change OUTPUT chain policy to DROP
+## iptables -P FORWARD DROP			// change FORWARD chain policy to DROP
+```
+
+### Beispiel: ssh / apache konfigurieren
+
+```
+## Variante nur eingehender Traffic 
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -L -v
+
+iptables -P INPUT DROP
+```
+
+
+
+```
+## Variante mit ausgehendem Traffic 
+ # Standard policy of drop setzen 
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP 
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
+```
+
+```
+## Tables flushen
+iptables -F
+```
+
+### Regeln persistent setzen 
+
+```
+apt install iptables-persistent 
+## wahrscheinlich 
+zypper install iptables-service 
+
+systemctl cat iptables-service 
+systemctl status iptables-service 
+
+## Regeln speichern, um sie beim Booten zu setzen
+iptables-save > /etc/iptables/rules.v4 
+```
+
+
+### Ausblick 
+
+  * Unter der Haube wird heute inftables verwendet 
+  * s. iptables -L (alt: legacy) 
+
+### Referenzen 
+
+ * https://www.karlrupp.net/de/computer/nat_tutorial
 
 ## Netzwerk/Dienste 
 
@@ -3349,6 +3879,57 @@ su -
 env 
 ```
 
+### Servername und User mit bash-script aufsetzen
+
+
+```
+cd /usr/local/sbin
+nano manage.sh 
+```
+
+```
+##!/bin/bash
+
+USERNAME=$1
+PASS=$2
+
+if test -z $USERNAME
+then
+  echo You forgot to enter a username
+  exit 1
+fi
+
+if test -z $PASS
+then
+  echo You forgot to enter a password
+  exit 1
+fi
+
+COUNT=$(cat /etc/passwd | grep -c "^$USERNAME:")
+
+if test $COUNT -eq 0
+then
+  echo User $USERNAME wird angelegt
+  useradd -m -s /bin/bash $USERNAME
+  usermod -aG sudo $USERNAME
+  echo "$USERNAME:$PASS" | chpasswd
+else
+  echo User $USERNAME existiert bereits !
+fi
+
+hostnamectl set-hostname instructor.training.local
+
+apt-get update -y
+apt-get install -y apache2
+
+exit 0
+```
+
+```
+chmod u+x manage.sh 
+manage.sh username passwort-des-users 
+```
+
 ## Timers/cronjobs 
 
 ### Cronjob - hourly einrichten
@@ -3456,6 +4037,37 @@ ls -la /var/log/scripting.log
 ### Übung Umleitung mit Variable
 
 ### Übung user/password
+
+## Extras 
+
+### Apache-Tomcat
+
+
+```
+## Debian 
+a2enmod proxy proxy_http
+
+## Auf allen systemen 
+systemctl restart apache2 
+```
+
+
+
+### VirtualHost konfiguration 
+
+```
+<VirtualHost *:80>
+ServerAdmin root@localhost
+ServerName myserversystem.mylabserver.com
+DefaultType text/html
+## Proxy aktivierierung 
+ProxyRequests on
+ProxyPreserveHost On
+ProxyPass / http://localhost:8080/
+ProxyPassReverse / http://localhost:8080/
+</VirtualHost>
+
+```
 
 ## Literatur 
 
