@@ -9,6 +9,7 @@
      * [Dateitypen](dateitypen.md) 
   1. Administration / Tipps & Tricks 
      * [IP-Adresse herausfinden](ip.md)
+     * [Welches Programm macht mein Filesystem voll](find-critical-large-files.md)
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](sudo.md)  
      * [Wo bin ich ?](pwd.md)
