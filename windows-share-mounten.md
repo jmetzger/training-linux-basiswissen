@@ -25,5 +25,10 @@ ls -la
 
 ```
 # /etc/fstab 
-//10.10.11.116/Users/Admin /mnt/platte2 cifs username=Admin,password='NUE@L7nuX!$?' 0 0 
+//10.10.11.116/Users/Admin /mnt/platte2 cifs username=Admin,password=mein@P@dss!$? 0 0 
+```
+
+```
+# testen von /etc/fstab
+mount -av
 ```
