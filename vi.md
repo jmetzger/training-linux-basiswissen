@@ -65,7 +65,7 @@ ESC + u # eigentlich reicht 1x Escape
 ESC + 1000dd # ESC - Taste drücken, dann 1000 eingeben, dann dd (sie sehen die 1000 nicht auf dem Bildschirm) 
 ```
 
-## Neues Fenster und Fenster wechseln 
+## Neues Fenster und Fenster wechseln (nice to have !)
 
 ```
 # innerhalb von vi 
