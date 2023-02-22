@@ -59,7 +59,7 @@
      * [Die history](history.md)
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](/systemd.md) 
-     * [Die wichtigsten systemctl/service](systemctl-service.md)
+     * [Die wichtigsten systemctl/service - Kommandos](systemctl-service.md)
      * [Dienste installieren und (optional) starten](dienst-installieren-und-starten.md)
      * [Script mit systemd verwalten und EnvironmentVariablen](systemctl-service-oneshot-env.md)
      * [Systemd Service endless loop](systemctl-service-simple-loop.md)
