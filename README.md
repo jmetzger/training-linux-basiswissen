@@ -11,7 +11,6 @@
      * [IP-Adresse herausfinden](ip.md)
      * [Welches Programm macht mein Filesystem voll](find-critical-large-files.md)
      * [Neue Festplatte/Partition erstellen und einhängen](new-disk-mount.md) 
-     * [Windows Share mounten](windows-share-mounten.md)
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](sudo.md)  
      * [Wo bin ich ?](pwd.md)
@@ -138,6 +137,8 @@
 
   1. Erweiterte Befehle (Nice to have) 
      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
+  1. Adminstration / Tipps &Tricks    
+     * [Windows Share mounten](windows-share-mounten.md)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
