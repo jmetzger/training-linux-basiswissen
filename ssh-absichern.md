@@ -1,5 +1,14 @@
 # ssh absichern 
 
+## Anlegen einer Gruppe und zuordnen zu einem User 
+
+```
+groupadd sshadmin 
+# z.B. Benutzer training 
+usermod -aG sshadmin training 
+```
+
+
 ## Walkthrough 
 
 
@@ -9,16 +18,16 @@
 # ganz unten hinzufügeb 
 AllowGroups sshadmin 
 ```
-``
+
+```
 # wichtig !! auch der root-Benutzer, muss dann der Gruppe angehören
 # sollte ich mich mit dem Root-Benutzer über public/private key verbinden 
-
+```
 
 ```
 # Schritt 2: 
 # Jeden Benutzer der sich mit ssh verbinden können soll, der Gruppe sshadmin hinzfügen 
 usermod -aG sshadmin kurs 
-
 ```
 
 ```
