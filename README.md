@@ -66,8 +66,9 @@
      * [Systemctl - timers](systemctl-timers.md)
      * [systemctl - timers - Übung](systemctl-timer-example.md)
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
-  1. Administration 
+  1. Administration / Debugging 
      * [Dienste debuggen](debug-service.md)
+     * [Grosses Logs analysieren](analyze-big-logs.md)
      * [Neue Partition mit lvm](lvm.md)
      * [Verzeichnisse backup/restore mit tar](tar.md)
      * [Dateien per scp übertragen](scp.md)
