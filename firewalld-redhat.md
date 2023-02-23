@@ -55,7 +55,10 @@ firewall-cmd --get-active-zones
 
 ## Show information about all zones that are used 
 ```
+# how the default zone is configured 
 firewall-cmd --list-all 
+
+# only if you really want to see all zones 
 firewall-cmd --list-all-zones 
 ```
 
