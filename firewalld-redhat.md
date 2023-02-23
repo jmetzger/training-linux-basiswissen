@@ -84,6 +84,8 @@ firewall-cmd --info-service=http
 # Version 1 - more practical 
 # set in runtime 
 firewall-cmd --zone=public --add-service=http
+# or:
+firewall-cmd --add-service=http
 firewall-cmd --runtime-to-permanent 
 
 # Version 2 - less practical
