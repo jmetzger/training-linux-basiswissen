@@ -129,6 +129,7 @@
      * [Apache-Tomcat](apache-tomcat.md) 
      * [LDAP einbinden (Redhat)](ldap-einbinden-redhat.md)
      * [Linux Server Local Hacken über boot-manager](linux-server-local-hacken.md)
+     * [Cheatsheet - wichtigste Befehle](extras/wichtigste-kommandos.md)
   1. Literatur 
      * [Literatur](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
