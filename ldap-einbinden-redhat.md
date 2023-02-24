@@ -27,7 +27,7 @@ dnf install sssd sssd-tools
 #### Config von sssd 
 
 ```
-cat > /etc/sssd/sssd.conf << EOL
+cat > /etc/sssd/sssd.conf << SOMETHING 
 [sssd]
 services = nss, pam, sudo
 config_file_version = 2
@@ -60,7 +60,7 @@ ldap_network_timeout = 60
 ldap_sudo_search_base = ou=SUDOers,dc=ldapmaster,dc=kifarunix-demo,dc=com
 ldap_access_order = filter
 ldap_access_filter = (objectClass=posixAccount)
-EOL
+SOMETHING 
 ```
 
 #### Erklärung: sudo 
