@@ -98,10 +98,7 @@
   1. Absicherung System 
      * [ssh absichern](ssh-absichern.md) 
   1. Firewall und ports
-     * [ufw (uncomplicated firewall)](ufw.md)
-     * [firewalld](firewalld.md)
-     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
-     * [iptables Wirkweise und Beispiele](iptables.md)      
+     * [firewalld Redhat](firewalld-redhat.md)  
   1. Netzwerk/Dienste 
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](netzwerk-einrichten-distris.md)
      * [Hostname setzen](hostnamectl.md)
@@ -117,7 +114,7 @@
      * [Best practice structure bash - scripts](/bash/best-practice-structure.md)
      * [Neue Umgebungsvariable setzen](/bash/neue-env-variable-setzen.md)
      * [Servername und User mit bash-script aufsetzen](hostname-user-script.md)
-  1. Timers/cronjobs 
+  1. Cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
   1. Übungen 
@@ -153,6 +150,11 @@
      * [Prioritäten und NiceNess](nice-pr.md)
   1. Netzwerk 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
+  1. Firewall und ports
+     * [ufw (uncomplicated firewall)](ufw.md)
+     * [firewalld](firewalld-ubuntu.md)
+     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
+     * [iptables Wirkweise und Beispiele](iptables.md)           
   1. Digitalocean 
      * [Script zum Aufsetzen eines Server mit Docker](do-script-docker.md) 
 
