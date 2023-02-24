@@ -19,7 +19,7 @@
 ### Installation 
 
 ```
-dnf install sssd sssd-tools 
+dnf install sssd sssd-tools ldap-clients 
 ```
 
 ### Konfiguration für sssd einrichten
@@ -27,7 +27,10 @@ dnf install sssd sssd-tools
 #### Config von sssd 
 
 ```
-cat > /etc/sssd/sssd.conf << SOMETHING 
+vi /etc/sssd/sssd.conf 
+```
+
+```
 [sssd]
 services = nss, pam, sudo
 config_file_version = 2
@@ -59,8 +62,7 @@ ldap_search_timeout = 50
 ldap_network_timeout = 60
 ldap_sudo_search_base = ou=SUDOers,dc=ldapmaster,dc=kifarunix-demo,dc=com
 ldap_access_order = filter
-ldap_access_filter = (objectClass=posixAccount)
-SOMETHING 
+ldap_access_filter = (objectClass=posixAccount) 
 ```
 
 #### Erklärung: sudo 
@@ -91,7 +93,7 @@ openssl s_client -connect ldapmaster.kifarunix-demo.com:636 -showcerts < /dev/nu
 #### Configure ldap.conf 
 
 ```
-# vim /etv/openldap/ldap.conf 
+# vim /etc/openldap/ldap.conf 
 # change the following lines 
 BASE    dc=ldapmaster,dc=kifarunix-demo,dc=com
 URI     ldaps://ldapmaster.kifarunix-demo.com:636
