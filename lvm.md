@@ -48,7 +48,7 @@ vgdisplay
 ## Schritt 4: Logical Volume erstellen (lv) 
 
 ```
-lvcreate -n data -L500M vg1
+lvcreate -n data -L5G vg1
 lvdisplay
 ```
 
