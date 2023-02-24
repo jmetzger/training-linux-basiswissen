@@ -9,17 +9,24 @@ apt install lvm2
 dnf install lvm2 
 ```
 
+## 3 Befehle zum anzeigen der Bereiche 
+
+```
+pvdisplay # physical volumes anzeigen = partition unter lvm nutzung
+vgdisplay # Alle Volume Groups im System anzeigen
+lvdisplay # Alle Logical Volumes im System anzeigen
+```
 
 ## Schritt 1: Partitionen vorbereiten 
 
 ```
-# parted /dev/sda 
+# parted /dev/sdb
 
 # partitionen erstellen z.B. 1 und 2 
 # 2x mkpart .....
 # und ein flag für lvm setzen
-(parted) set 1 lvm on
-(parted) set 2 lvm on 
+(parted) set 2 lvm on
+(parted) set 3 lvm on 
 
 quit 
 ```
@@ -27,30 +34,30 @@ quit
 ## Schritt 2: Physical Volumes vorbereiten (1. lvm Schritt) 
 
 ```
-pvcreate /dev/sda1 /dev/sda2
+pvcreate /dev/sdb2 /dev/sdb3
 pvdisplay 
 ```
 
 ## Schritt 3: Volumen Group erstellen (vg) 
 
 ```
-vgcreate vg0 /dev/sda1 /dev/sda2
+vgcreate vg1 /dev/sdb2 /dev/sdb3
 vgdisplay
 ```
 
 ## Schritt 4: Logical Volume erstellen (lv) 
 
 ```
-lvcreate -n data -L500M vg0
+lvcreate -n data -L500M vg1
 lvdisplay
 ```
 
 ## Schritt 5: filesystem aufbringen (ext4) und probehalber mounten 
 
 ```
-mkfs.ext4 /dev/vg0/data
-mkdir -p /mnt/platte
-mount /dev/vg0/data /mnt/platte
+mkfs.ext4 /dev/vg1/data
+mkdir -p /mnt/lvmplatte
+mount /dev/vg1/data /mnt/lvmplatte
 ```
 
 ## Schritt 6: /etc/fstab 
@@ -58,7 +65,7 @@ mount /dev/vg0/data /mnt/platte
 ```
 umount /mnt/platte
 # vi /etc/fstab 
-/dev/vg0/data /mnt/platte  ext4  defaults 0 1 
+/dev/vg1/data /mnt/lvmplatte  ext4  defaults 0 1 
 
 mount -av
 
