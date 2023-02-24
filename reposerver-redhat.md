@@ -7,6 +7,8 @@ dnf install -y httpd createrepo
 systemctl start httpd 
 systemctl enable httpd 
 cd /var/www/html
+# sicherstellen, dass keine startseite von apache erscheint 
+touch index.html
 mkdir repo
 cd repo 
 dnf download lsof 
