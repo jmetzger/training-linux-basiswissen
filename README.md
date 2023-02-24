@@ -71,7 +71,8 @@
      * [Grosses Logs analysieren](analyze-big-logs.md)
      * [Neue Partition mit lvm](lvm.md)
      * [Verzeichnisse backup/restore mit tar](tar.md)
-     * [Dateien per scp übertragen](scp.md)
+     * [Dateien per scp übertragen](scp.md)   
+     * [Windows Share mounten](windows-share-mounten.md)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](apache-ssl-letsencrypt-ubuntu.md)
   1. Partitionierung und Filesystem
@@ -138,8 +139,6 @@
 
   1. Erweiterte Befehle (Nice to have) 
      * [Welche Bibliotheken verwendet ein ausführbares Programm](ldd.md)
-  1. Adminstration / Tipps &Tricks    
-     * [Windows Share mounten](windows-share-mounten.md)
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
