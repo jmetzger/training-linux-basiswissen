@@ -140,7 +140,7 @@ echo "sudoers:    files sss" >> /etc/nsswitch.conf
   * https://kifarunix.com/configure-sssd-for-ldap-authentication-on-rocky-linux-8/
 ```
 
-#### Wichtig: bekomme ich die Daten von ldap 
+#### Wichtig: Bekommt der Authentifizierungsprozess die Daten von ldap ? 
 
 ```
 getent passwd 
