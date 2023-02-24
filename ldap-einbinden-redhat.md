@@ -27,7 +27,7 @@ dnf install sssd sssd-tools
 #### Config von sssd 
 
 ```
-cat > /etc/sssd/sssd.conf << 'EOL'
+cat > /etc/sssd/sssd.conf << EOL
 [sssd]
 services = nss, pam, sudo
 config_file_version = 2
