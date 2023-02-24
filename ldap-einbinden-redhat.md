@@ -133,7 +133,21 @@ files sss
 echo "sudoers:    files sss" >> /etc/nsswitch.conf
 ```
 
+#### Weiteres: z.B. home-verzeichnisse erstellen 
 
+```
+# oddjob-home 
+  * https://kifarunix.com/configure-sssd-for-ldap-authentication-on-rocky-linux-8/
+```
+
+#### Wichtig: bekomme ich die Daten von ldap 
+
+```
+getent passwd 
+# oder 
+# hier einen usernamen nehmen, den es lokal nicht gibt. 
+getent passwd username 
+```
 
 
 ## Reference 
