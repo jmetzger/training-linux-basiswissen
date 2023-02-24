@@ -91,7 +91,7 @@
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
   1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
-     * [Paketmanager apt/dpkg](apt-dpkg.md) 
+     * [dnf und dnf module](dnf.md)
      * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
      * [Archive runterladen und entpacken](tar-download.md) 
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](update-alternatives.md)
