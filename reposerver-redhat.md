@@ -3,7 +3,7 @@
 ## Steps - on server 
 
 ```
-dnf install httpd createrepo 
+dnf install -y httpd createrepo 
 systemctl start httpd 
 systemctl enable httpd 
 cd /var/www/html
