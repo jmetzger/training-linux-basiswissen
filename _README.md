@@ -11,7 +11,6 @@
      * [IP-Adresse herausfinden](#ip-adresse-herausfinden)
      * [Welches Programm macht mein Filesystem voll](#welches-programm-macht-mein-filesystem-voll)
      * [Neue Festplatte/Partition erstellen und einhängen](#neue-festplattepartition-erstellen-und-einhängen)
-     * [Windows Share mounten](#windows-share-mounten)
   1. Basisbefehle
      * [In den Root-Benutzer wechseln - sudo](#in-den-root-benutzer-wechseln---sudo)
      * [Wo bin ich ?](#wo-bin-ich-)
@@ -60,18 +59,20 @@
      * [Die history](#die-history)
   1. Dienste/Runlevel(Targets verwalten) 
      * [Systemd Überblick](#systemd-überblick)
-     * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
+     * [Die wichtigsten systemctl/service - Kommandos](#die-wichtigsten-systemctlservice---kommandos)
      * [Dienste installieren und (optional) starten](#dienste-installieren-und-optional-starten)
      * [Script mit systemd verwalten und EnvironmentVariablen](#script-mit-systemd-verwalten-und-environmentvariablen)
      * [Systemd Service endless loop](#systemd-service-endless-loop)
      * [Systemctl - timers](#systemctl---timers)
      * [systemctl - timers - Übung](#systemctl---timers---übung)
      * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinitd-systemctl)
-  1. Administration 
+  1. Administration / Debugging 
      * [Dienste debuggen](#dienste-debuggen)
+     * [Grosses Logs analysieren](#grosses-logs-analysieren)
      * [Neue Partition mit lvm](#neue-partition-mit-lvm)
      * [Verzeichnisse backup/restore mit tar](#verzeichnisse-backuprestore-mit-tar)
      * [Dateien per scp übertragen](#dateien-per-scp-übertragen)
+     * [Windows Share mounten](#windows-share-mounten)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](#ssl---letsencrypt-mit-ubuntu-2204)
   1. Partitionierung und Filesystem
@@ -90,7 +91,7 @@
      * [Installations-Images-Server](https://ubuntu.com/download/server#download)
   1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
-     * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
+     * [dnf und dnf module](#dnf-und-dnf-module)
      * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-zb-php-cli-verwalten)
@@ -98,10 +99,7 @@
   1. Absicherung System 
      * [ssh absichern](#ssh-absichern)
   1. Firewall und ports
-     * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
-     * [firewalld](#firewalld)
-     * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
-     * [iptables Wirkweise und Beispiele](#iptables-wirkweise-und-beispiele)
+     * [firewalld Redhat](#firewalld-redhat)
   1. Netzwerk/Dienste 
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](#wie-netzwerk-einrichten-in-unterschiedlichen-distros)
      * [Hostname setzen](#hostname-setzen)
@@ -117,7 +115,7 @@
      * [Best practice structure bash - scripts](#best-practice-structure-bash---scripts)
      * [Neue Umgebungsvariable setzen](#neue-umgebungsvariable-setzen)
      * [Servername und User mit bash-script aufsetzen](#servername-und-user-mit-bash-script-aufsetzen)
-  1. Timers/cronjobs 
+  1. Cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
   1. Übungen 
@@ -127,6 +125,9 @@
      * [Übung user/password](#übung-userpassword)
   1. Extras 
      * [Apache-Tomcat](#apache-tomcat)
+     * [LDAP einbinden (Redhat)](#ldap-einbinden-redhat)
+     * [Linux Server Local Hacken über boot-manager](#linux-server-local-hacken-über-boot-manager)
+     * [Cheatsheet - wichtigste Befehle](#cheatsheet---wichtigste-befehle)
   1. Literatur 
      * [Literatur](#literatur)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
@@ -148,6 +149,11 @@
      * [Prioritäten und NiceNess](#prioritäten-und-niceness)
   1. Netzwerk 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
+  1. Firewall und ports
+     * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
+     * [firewalld](#firewalld)
+     * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
+     * [iptables Wirkweise und Beispiele](#iptables-wirkweise-und-beispiele)
   1. Digitalocean 
      * [Script zum Aufsetzen eines Server mit Docker](#script-zum-aufsetzen-eines-server-mit-docker)
 
@@ -514,42 +520,6 @@ nano /etc/fstab
 ## does it mount properly 
 ## mounts everything from /etc/fstab of not mounted yet 
 mount -av 
-```
-
-### Windows Share mounten
-
-
-### Walkthrough 
-
-```
-apt install cifs-utils 
-##  danach muss mount.cifs zur Verfügung stehen 
-
-## Unser Windows: Windows Share erstellen für entsprechen Nutzer zB Admin
-## Wenn keine Auflösung des Hostnamens auf Windows erfolgen kann, dann IP rausfinden
-## WIN + cmd -> cmd.exe 
-## ipconfig 
-
-## Ein Mountpunkt erstellt
-mkdir /mnt/windows 
-
-## und dann einhängen 
-mount.cifs //10.10.11.116/Users/Admin /mnt/windows -o username=Admin,password='mein@P@dss!$?'
-
-## Jetzt stehen die Daten unter 
-## /mnt/windows zur Verfügung 
-cd /mnt/windows
-ls -la 
-```
-
-```
-## /etc/fstab 
-//10.10.11.116/Users/Admin /mnt/platte2 cifs username=Admin,password=mein@P@dss!$? 0 0 
-```
-
-```
-## testen von /etc/fstab
-mount -av
 ```
 
 ## Basisbefehle
@@ -967,7 +937,7 @@ ESC + u # eigentlich reicht 1x Escape
 ESC + 1000dd # ESC - Taste drücken, dann 1000 eingeben, dann dd (sie sehen die 1000 nicht auf dem Bildschirm) 
 ```
 
-### Neues Fenster und Fenster wechseln 
+### Neues Fenster und Fenster wechseln (nice to have !)
 
 ```
 ## innerhalb von vi 
@@ -1124,7 +1094,27 @@ deluser --remove-home training
 ### sudo Benutzer erstellen
 
 
-### Benutzer zum Sudo benutzer machen
+### Benutzer zum Sudo benutzer machen (Redhat RHEL, Rocky Linux) 
+
+```
+sudo su -
+adduser newuser
+### passwort setzten
+passwd newuser 
+
+### append - hinzufügen zu der Gruppe 
+usermod -aG wheel newuser
+### testing 
+su - newuser
+groups # see if we are in groups sudo 
+id # shows the same but more info 
+
+### testen ob sudo funktioniert 
+sudo su -
+```
+
+
+### Benutzer zum Sudo benutzer machen (Debian/Ubuntu) 
 
 ```
 adduser newuser
@@ -1837,7 +1827,7 @@ grahical.target (ehemals runlevel 5: genau wie 3 mit grafischer Oberfläche)
 
 
 
-### Die wichtigsten systemctl/service
+### Die wichtigsten systemctl/service - Kommandos
 
 
 ### systemctl Beispiele 
@@ -2339,7 +2329,7 @@ service rsyslog status
 
 ```
 
-## Administration 
+## Administration / Debugging 
 
 ### Dienste debuggen
 
@@ -2396,26 +2386,55 @@ grep -nr gummitulpe /etc
 grep -inr GUMMITULPE /etc
 ```
 
+### Grosses Logs analysieren
+
+
+### Wichtigste Regel 
+
+```
+Ausgabe möglichst lange aufschieben
+und
+vorher schon mit Tools verkleinern
+```
+
+### Beispiele 
+
+```
+## Bestimmter Tag mit Uhrzeit und dann alle Fehler rausextrahieren 
+cd /var/logs 
+cat messages | grep "Feb 23 13" | grep -i "error" > report-error.log
+```
+
 ### Neue Partition mit lvm
 
 
 ### keine Befehle lvdisplay,vgdisplay etc.
 
 ```
+## Debian / Ubuntu 
 apt install lvm2
+## Redhat 
+dnf install lvm2 
 ```
 
+### 3 Befehle zum anzeigen der Bereiche 
+
+```
+pvdisplay # physical volumes anzeigen = partition unter lvm nutzung
+vgdisplay # Alle Volume Groups im System anzeigen
+lvdisplay # Alle Logical Volumes im System anzeigen
+```
 
 ### Schritt 1: Partitionen vorbereiten 
 
 ```
-## parted /dev/sda 
+## parted /dev/sdb
 
 ## partitionen erstellen z.B. 1 und 2 
 ## 2x mkpart .....
 ## und ein flag für lvm setzen
-(parted) set 1 lvm on
-(parted) set 2 lvm on 
+(parted) set 2 lvm on
+(parted) set 3 lvm on 
 
 quit 
 ```
@@ -2423,30 +2442,30 @@ quit
 ### Schritt 2: Physical Volumes vorbereiten (1. lvm Schritt) 
 
 ```
-pvcreate /dev/sda1 /dev/sda2
+pvcreate /dev/sdb2 /dev/sdb3
 pvdisplay 
 ```
 
 ### Schritt 3: Volumen Group erstellen (vg) 
 
 ```
-vgcreate vg0 /dev/sda1 /dev/sda2
+vgcreate vg1 /dev/sdb2 /dev/sdb3
 vgdisplay
 ```
 
 ### Schritt 4: Logical Volume erstellen (lv) 
 
 ```
-lvcreate -n data -L500M vg0
+lvcreate -n data -L5G vg1
 lvdisplay
 ```
 
 ### Schritt 5: filesystem aufbringen (ext4) und probehalber mounten 
 
 ```
-mkfs.ext4 /dev/vg0/data
-mkdir -p /mnt/platte
-mount /dev/vg0/data /mnt/platte
+mkfs.ext4 /dev/vg1/data
+mkdir -p /mnt/lvmplatte
+mount /dev/vg1/data /mnt/lvmplatte
 ```
 
 ### Schritt 6: /etc/fstab 
@@ -2454,7 +2473,7 @@ mount /dev/vg0/data /mnt/platte
 ```
 umount /mnt/platte
 ## vi /etc/fstab 
-/dev/vg0/data /mnt/platte  ext4  defaults 0 1 
+/dev/vg1/data /mnt/lvmplatte  ext4  defaults 0 1 
 
 mount -av
 
@@ -2554,6 +2573,42 @@ ssh 11trainingdo@134.122.81.88
 ## Datei vom Zielsystem herunterladen und unter anderem Namen speichern 
 scp 11trainingdo@134.122.81.88:/home/11trainingdo/testdatei /tmp/foodatei
 
+```
+
+### Windows Share mounten
+
+
+### Walkthrough 
+
+```
+apt install cifs-utils 
+##  danach muss mount.cifs zur Verfügung stehen 
+
+## Unser Windows: Windows Share erstellen für entsprechen Nutzer zB Admin
+## Wenn keine Auflösung des Hostnamens auf Windows erfolgen kann, dann IP rausfinden
+## WIN + cmd -> cmd.exe 
+## ipconfig 
+
+## Ein Mountpunkt erstellt
+mkdir /mnt/windows 
+
+## und dann einhängen 
+mount.cifs //10.10.11.116/Users/Admin /mnt/windows -o username=Admin,password='mein@P@dss!$?'
+
+## Jetzt stehen die Daten unter 
+## /mnt/windows zur Verfügung 
+cd /mnt/windows
+ls -la 
+```
+
+```
+## /etc/fstab 
+//10.10.11.116/Users/Admin /mnt/platte2 cifs username=Admin,password=mein@P@dss!$? 0 0 
+```
+
+```
+## testen von /etc/fstab
+mount -av
 ```
 
 ## Apache 
@@ -2864,106 +2919,37 @@ uname -a
 
 ```
 
-### Paketmanager apt/dpkg
+### dnf und dnf module
 
 
-### Alle Pakete anzeigen, die installiert sind auf dem System 
-
-```
-dpkg -l 
-## oder 
-apt list --installed
-```
-
-### Alle Paket die zur Verfügung stehen 
+### Versionen von Paketen anzeigen die noch nicht installiert sind 
 
 ```
-apt list 
+dnf list available php 
 ```
 
-### Wo sind die Repos konfiguriert 
+### Alle vorhandenen module in allen repos 
 
 ```
-cat /etc/apt/sources.list 
-cd /etc/apt/sources.list.d 
+dnf list available --showduplicates php 
 ```
 
-
-### Paket deinstallieren und aufräumen 
-
-```
-## mit Konfigurationsdateien deinstallieren
-apt purge mariadb-server 
-## Konfgurationsdateien stehen lassen
-apt remove mariadb-server 
-
-## Aufräumen / alle Pakete die nicht mehr benötigt werden
-apt autoremove 
-```
-
-### Pakete händisch mit dpkg installieren 
+### Paket aus einem bestimmten installieren
 
 ```
-## Schritt 1: Im Browser
-## Paket online finden und Link kopieren (Browser - Rechte Mauataste Link kopieren) 
-
-## Schritt 2: auf dem Linux Server
-sudo apt install wget
-cd /usr/src
-wget http://archive.ubuntu.com/ubuntu/pool/main/a/acl/acl_2.2.53-10build1_amd64.deb
-sudo dpkg -i acl_2.2.53-10build1_amd64.deb
+dnf install --repo=meinrepo php
 ```
 
-### Pakete mit apt search suchen 
+### Arbeiten mit modulen 
+
+  * Beinhalten jeweils mehrere Installationspakete 
 
 ```
-## Vorbereitung
-apt update
-
-## suche nache apache 
-apt search apache 
-## mit pager
-apt search apache | less 
-
-## Alle Paket in denen apache am Anfang der Zeile fehlt 
-apt search ^apache | less
-
-## Oder um noch weiter zu verfeinern 
-apt search apache | grep ^apache 
-
-```
-
-### Installieren mit apt install 
-
-```
-## mit genauem Namen 
-apt install apache2 
-```
-
-### Liste der Files aus dem Paket (wenn installiert)
-
-```
-dpkg -L openssh-server 
-
-```
-
-### Paket runterladen, wenn bereits installiert 
-
-```
-apt install -d --reinstall openssh-server # -d steht für download-only
-## Lädt das Paket unter 
-## /var/cache/apt/archives runter 
-
-```
-
-### Welche Dateien sind im Paket, die ausgerollt werden ? (ohne Installation) 
-
-```
-cd /var/cache/apt/archives 
-dpkg --contents openssh-server-xyz.deb # im gleichen Verzeichnis oder vollen Pfad dorthin
-## oder Paket haben händisch in ein anderes Verzeichnis runtergeladen (z.B. mit wget)
-dpkg -c /usr/src/openssh-server-xyz.deb
-
+dnf module list
+## Welche genau Version von php wird installiert 
+## Das sehe ich bei den Artifakten, die installiert werden 
+## Liste die angezeigt wird.
+dnf module info php:8.1 | less
 
 ```
 
@@ -3037,6 +3023,15 @@ tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc
 ### ssh absichern
 
 
+### Anlegen einer Gruppe und zuordnen zu einem User 
+
+```
+groupadd sshadmin 
+## z.B. Benutzer training 
+usermod -aG sshadmin training 
+```
+
+
 ### Walkthrough 
 
 
@@ -3046,16 +3041,16 @@ tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc
 ## ganz unten hinzufügeb 
 AllowGroups sshadmin 
 ```
-``
+
+```
 ## wichtig !! auch der root-Benutzer, muss dann der Gruppe angehören
 ## sollte ich mich mit dem Root-Benutzer über public/private key verbinden 
-
+```
 
 ```
 ## Schritt 2: 
 ## Jeden Benutzer der sich mit ssh verbinden können soll, der Gruppe sshadmin hinzfügen 
 usermod -aG sshadmin kurs 
-
 ```
 
 ```
@@ -3071,75 +3066,19 @@ Diese Dateien überschreiben die config aus /etc/ssh/sshd_config
 
 ## Firewall und ports
 
-### ufw (uncomplicated firewall)
+### firewalld Redhat
 
 
-### Läuft der Dienst für die Firewall 
-
-```
-systemctl status ufw 
-```
-
-### Ist die Firewall scharfgeschaltet ? 
+### Install firewalld (if not present)
 
 ```
-ufw status
+systemctl status firewalld
+## if not present install
+dnf install -y firewalld 
+systemctl start firewalld 
+## for next reboot 
+systemctl enable firewalld
 ```
-
-### Firewall aktivieren (Achtung ssh) 
-
-```
-## Neue ssh - Verbindungen werden nicht angenommen 
-## Bestehende Bedingungen (ESTABLISHED) bleiben erhalten 
-ufw enable 
-ufw status 
-```
-
-### Port hinzufügen 
-
-```
-ufw allow 22 # for tcp and udp
-## or 
-ufw allow ssh # uses /etc/services for detection of port - number
-ufw status 
-```
-
-### Port wieder rausnehmen 
-
-```
-ufw delete allow http
-ufw delete allow ssh
-ufw delete allow 22 
-
-## ufw status numbered 
-## e.g. 
-ufw delete 1 
-```
-
-### firewalld
-
-
-### Install firewalld and restrict ufw 
-
-```
-## Schritt 1: ufw deaktivieren 
-systemctl stop ufw
-systemctl disable ufw 
-ufw disable # zur Sicherheit 
-ufw status
-## -> disabled # this has to be the case 
-```
-
-```
-## Schritt 2: firewalld 
-apt install firewalld 
-systemctl status firewalld 
-
-## doublecheck ufw 
-systemctl status ufw 
-
-```
-
 
 ### Is firewalld running ?
 ```
@@ -3185,7 +3124,10 @@ firewall-cmd --get-active-zones
 
 ### Show information about all zones that are used 
 ```
+## how the default zone is configured 
 firewall-cmd --list-all 
+
+## only if you really want to see all zones 
 firewall-cmd --list-all-zones 
 ```
 
@@ -3211,6 +3153,8 @@ firewall-cmd --info-service=http
 ## Version 1 - more practical 
 ## set in runtime 
 firewall-cmd --zone=public --add-service=http
+## or:
+firewall-cmd --add-service=http
 firewall-cmd --runtime-to-permanent 
 
 ## Version 2 - less practical
@@ -3223,6 +3167,14 @@ firewall-cmd --reload
 firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload 
 ```
+
+### runtime und permanente configuration anschauen für meine active zone 
+
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all --permanent 
+```
+
 
 ### Best way to add a new rule 
 ```
@@ -3275,134 +3227,6 @@ firewall-cmd --runtime-to-permanent
 
   * https://www.linuxjournal.com/content/understanding-firewalld-multi-zone-configurations#:~:text=Going%20line%20by%20line%20through,or%20source%20associated%20with%20it.
   * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
-
-### Scannen und Überprüfen mit telnet/nmap
-
-### iptables Wirkweise und Beispiele
-
-
-### Überblick
-
-![iptables Überblick](https://webguy.vip/wp-content/uploads/2021/07/IPTABLES.jpg))
-
-```
-Quelle: https://webguy.vip/example-of-iptables/
-```
-
-### Was wird unter der Haube verwendet (iptables oder nf_tables) 
-
-```
-## Hier unter der Haube nf_tables 
-iptables --version 
-## iptables v1.8.7 (nf_tables)
-
-## Ansonsten muss hier (legacy) stehen 
-## Dann ist es ein reines iptables 
-```
-
-
-### Tables 
-
-```
-INPUT 
-OUTPUT 
-FORWARD 
-
-PREROUTING 
-POSTROUTING 
-
-```
-
-### Cheatsheet 
-
-```
-manage chain:
-## iptables -N new_chain				// create a chain
-## iptables -E new_chain old_chain  		// edit a chain
-## iptables -X old_chain				// delete a chain
-
-redirecting packet to a user chain:
-## iptables -A INPUT -p icmp -j new_chain
-
-listing rules:
-## iptables -L					// list all rules of all tables
-## iptables -L -v				// display rules and their counters
-## iptables -L -t nat				// display rules for a specific tables
-## iptables -L -n --line-numbers			// listing rules with line number for all tables
-## iptables -L INPUT -n --line-numbers		// listing rules with line number for specific table
-
-manage rules:
-## iptables -A chain				// append rules to the bottom of the chain
-## iptables -I chain [rulenum](default at the top or 1)
-## iptables -R chain rulenum			// replace rules with rules specified for the rulnum
-## iptables -D chain	rulenum			// delete rules matching rulenum (default 1)
-## iptables -D chain				// delete matching rules
-
-change default policy:
-## iptables -P chain target			// change policy on chain to target
-## iptables -P INPUT DROP			// change INPUT table policy to DROP
-## iptables -P OUTPUT DROP			// change OUTPUT chain policy to DROP
-## iptables -P FORWARD DROP			// change FORWARD chain policy to DROP
-```
-
-### Beispiel: ssh / apache konfigurieren
-
-```
-## Variante nur eingehender Traffic 
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-
-iptables -L -v
-
-iptables -P INPUT DROP
-```
-
-
-
-```
-## Variante mit ausgehendem Traffic 
- # Standard policy of drop setzen 
-iptables -P INPUT DROP
-iptables -P FORWARD DROP
-iptables -P OUTPUT DROP 
-
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-
-iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
-```
-
-```
-## Tables flushen
-iptables -F
-```
-
-### Regeln persistent setzen 
-
-```
-apt install iptables-persistent 
-## wahrscheinlich 
-zypper install iptables-service 
-
-systemctl cat iptables-service 
-systemctl status iptables-service 
-
-## Regeln speichern, um sie beim Booten zu setzen
-iptables-save > /etc/iptables/rules.v4 
-```
-
-
-### Ausblick 
-
-  * Unter der Haube wird heute inftables verwendet 
-  * s. iptables -L (alt: legacy) 
-
-### Referenzen 
-
- * https://www.karlrupp.net/de/computer/nat_tutorial
 
 ## Netzwerk/Dienste 
 
@@ -3930,7 +3754,7 @@ chmod u+x manage.sh
 manage.sh username passwort-des-users 
 ```
 
-## Timers/cronjobs 
+## Cronjobs 
 
 ### Cronjob - hourly einrichten
 
@@ -4068,6 +3892,197 @@ ProxyPassReverse / http://localhost:8080/
 </VirtualHost>
 
 ```
+
+### LDAP einbinden (Redhat)
+
+
+### Grundlagen 
+
+  * Redhat verwendet SSSD um eine Einbindung zu erreichen
+  * authselect hilft mir auf einfach Weise die Authentifizierung umzustellen 
+
+### SSSD 
+
+  * System Security Service Daemon 
+  * Unterstützt die Möglichkeit sich zu externe ID-Providern zu verbinden (z.B. LDAP)
+  * Baut die Verbindung dahin auf. 
+
+#### authselect 
+
+  * Stellt die Nutzung von ldap für Authentifizierung ein.
+  * statt dass ich das selbst händisch machen muss.
+ 
+#### Installation 
+
+```
+dnf install sssd sssd-tools ldap-clients 
+```
+
+#### Konfiguration für sssd einrichten
+
+##### Config von sssd 
+
+```
+vi /etc/sssd/sssd.conf 
+```
+
+```
+[sssd]
+services = nss, pam, sudo
+config_file_version = 2
+domains = default
+
+[sudo]
+
+[nss]
+
+[pam]
+offline_credentials_expiration = 60
+
+[domain/default]
+ldap_id_use_start_tls = True
+cache_credentials = True
+ldap_search_base = dc=ldapmaster,dc=kifarunix-demo,dc=com
+id_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+access_provider = ldap
+sudo_provider = ldap
+ldap_uri = ldap://ldapmaster.kifarunix-demo.com
+ldap_default_bind_dn = cn=readonly,ou=system,dc=ldapmaster,dc=kifarunix-demo,dc=com
+ldap_default_authtok = P@ssWOrd
+ldap_tls_reqcert = demand
+ldap_tls_cacert = /etc/pki/tls/cacert.crt
+ldap_tls_cacertdir = /etc/pki/tls
+ldap_search_timeout = 50
+ldap_network_timeout = 60
+ldap_sudo_search_base = ou=SUDOers,dc=ldapmaster,dc=kifarunix-demo,dc=com
+ldap_access_order = filter
+ldap_access_filter = (objectClass=posixAccount) 
+```
+
+##### Erklärung: sudo 
+
+```
+### sudo with auch über ldap gezogen 
+### d.h. ob jemand sudo darf:
+### wenn man das nicht möchte, muss man es auskommentieren 
+services = nss, pam, sudo
+.....
+
+[sudo]
+ldap_sudo_search_base = ou=SUDOers,dc=ldapmaster,dc=kifarunix-demo,dc=com
+
+
+```
+
+##### Zertifikat vom ldap - server holen und lokal speichern als CA 
+
+```
+## Test it - to see if you get a certificate 
+openssl s_client -connect ldapmaster.kifarunix-demo.com:636 -showcerts < /dev/null | openssl x509 -text 
+## now write it 
+openssl s_client -connect ldapmaster.kifarunix-demo.com:636 -showcerts < /dev/null | openssl x509 -text > /etc/pki/tls/cacert.crt
+
+```
+
+##### Configure ldap.conf 
+
+```
+## vim /etc/openldap/ldap.conf 
+## change the following lines 
+BASE    dc=ldapmaster,dc=kifarunix-demo,dc=com
+URI     ldaps://ldapmaster.kifarunix-demo.com:636
+SUDOERS_BASE    ou=SUDOers,dc=ldapmaster,dc=kifarunix-demo,dc=com
+...
+...
+TLS_CACERT      /etc/pki/tls/cacert.crt
+```
+
+##### Configure auth-system with authselect 
+
+
+```
+## authselect will modifiy these files 
+/etc/pam.d/system-auth
+/etc/pam.d/password-auth
+/etc/pam.d/fingerprint-auth
+/etc/pam.d/smartcard-auth
+/etc/pam.d/postlogin
+/etc/nsswitch.conf
+```
+
+```
+## configure system to use ldap through sssd 
+authselect select sssd 
+## oder falls files akutell dort liegen 
+authselect select --force sssd 
+```
+
+```
+## What did it change ? (most important file) 
+cat /etc/nsswitch.conf 
+e.g. 
+files sss
+```
+
+```
+## for using sudoers you would need to add 
+echo "sudoers:    files sss" >> /etc/nsswitch.conf
+```
+
+##### Weiteres: z.B. home-verzeichnisse erstellen 
+
+```
+## oddjob-home 
+  * https://kifarunix.com/configure-sssd-for-ldap-authentication-on-rocky-linux-8/
+```
+
+##### Wichtig: Bekommt der Authentifizierungsprozess die Daten von ldap ? 
+
+```
+getent passwd 
+## oder 
+## hier einen usernamen nehmen, den es lokal nicht gibt. 
+getent passwd username 
+```
+
+
+### Reference 
+
+  * https://kifarunix.com/configure-sssd-for-ldap-authentication-on-rocky-linux-8/
+
+### Linux Server Local Hacken über boot-manager
+
+
+### Steps 
+
+```
+1) System gebootet und mit F2 bzw. F12 in den bootmanager gewechselt
+2) Dann: Pfeiltasten nach unten 1x kurz drücken, damit Count-Down aufhört 
+3) e gedrückt  und in der Zeile linux und dann init=/bin/bash eingefügt (Achtung englische Tastatur) 
+4) System gestartet mit CRTL+x 
+
+### Sobald bash zu sehen als root-Benutzer system readwrite
+mount -o remount,rw / 
+### Jetzt können wir Änderungen vornehmen 
+### Passwort für root ändern 
+passwd
+
+### Achtung bei Red Hat auf jeden Fall noch ein /.autorelabel erstellen
+touch /.autorelabel 
+
+### System ausschalten -> reboot funktioniert nicht, da systemd nicht läuft. 
+
+### starten
+starten des system
+
+
+```
+
+
+
+### Cheatsheet - wichtigste Befehle
 
 ## Literatur 
 
@@ -4257,6 +4272,341 @@ ip a # zeigt die Netzwerkschnittstellen an.
 dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen  
 ip a
 ```
+
+## Firewall und ports
+
+### ufw (uncomplicated firewall)
+
+
+### Läuft der Dienst für die Firewall 
+
+```
+systemctl status ufw 
+```
+
+### Ist die Firewall scharfgeschaltet ? 
+
+```
+ufw status
+```
+
+### Firewall aktivieren (Achtung ssh) 
+
+```
+## Neue ssh - Verbindungen werden nicht angenommen 
+## Bestehende Bedingungen (ESTABLISHED) bleiben erhalten 
+ufw enable 
+ufw status 
+```
+
+### Port hinzufügen 
+
+```
+ufw allow 22 # for tcp and udp
+## or 
+ufw allow ssh # uses /etc/services for detection of port - number
+ufw status 
+```
+
+### Port wieder rausnehmen 
+
+```
+ufw delete allow http
+ufw delete allow ssh
+ufw delete allow 22 
+
+## ufw status numbered 
+## e.g. 
+ufw delete 1 
+```
+
+### firewalld
+
+
+### Install firewalld and restrict ufw 
+
+```
+## Schritt 1: ufw deaktivieren 
+systemctl stop ufw
+systemctl disable ufw 
+ufw disable # zur Sicherheit 
+ufw status
+## -> disabled # this has to be the case 
+```
+
+```
+## Schritt 2: firewalld 
+apt install firewalld 
+systemctl status firewalld 
+
+## doublecheck ufw 
+systemctl status ufw 
+
+```
+
+
+### Is firewalld running ?
+```
+## is it set to enabled ?
+systemctl status firewalld 
+firewall-cmd --state
+```
+
+### Command to control firewalld 
+  
+  * firewall-cmd 
+
+
+
+### Zones documentation 
+
+man firewalld.zones 
+
+### Zones available 
+
+```
+firewall-cmd --get-zones 
+block dmz drop external home internal public trusted work
+```
+
+### Active Zones 
+
+```
+firewall-cmd --get-active-zones
+## in our case empty 
+```
+
+### Add Interface to Zone = Active Zone 
+
+```
+firewall-cmd --zone=public --add-interface=enp0s3 
+firewall-cmd --runtime-to-permanent 
+firewall-cmd --get-active-zones 
+## public
+##  interfaces: enp0s3
+
+```
+
+### Show information about all zones that are used 
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all-zones 
+```
+
+
+### Default Zone 
+
+```
+## if not specifically mentioned when using firewall-cmd
+## .. add things to this zone 
+firewall-cmd --get-default-zone
+public
+```
+
+### Show services / Info
+```
+firewall-cmd --get-services 
+firewall-cmd --info-service=http
+```
+
+### Adding/Removing a service 
+
+```
+## Version 1 - more practical 
+## set in runtime 
+firewall-cmd --zone=public --add-service=http
+firewall-cmd --runtime-to-permanent 
+
+## Version 2 - less practical
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --reload 
+```
+
+```
+### Service wieder entfernen
+firewall-cmd --permanent --zone=public --remove-service=ssh
+firewall-cmd --reload 
+```
+
+### Best way to add a new rule 
+```
+## Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --permanent  
+
+## Step 2: + reload firewall 
+firewall-cmd --reload 
+```
+
+### Enable / Disabled icmp 
+```
+firewall-cmd --get-icmptypes
+## none present yet 
+firewall-cmd --zone=public --add-icmp-block-inversion --permanent
+firewall-cmd --reload
+```
+
+### Working with rich rules 
+```
+## Documentation 
+## man firewalld.richlanguage
+
+## throttle connectons 
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10/32 service name=http log level=notice prefix="firewalld rich rule INFO:   " limit value="100/h" accept' 
+firewall-cmd --reload # 
+firewall-cmd --zone=public --list-all
+
+## port forwarding 
+firewall-cmd --get-active-zones
+firewall-cmd --zone=public --list-all
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10 forward-port port=42343 protocol=tcp to-port=22'
+firewall-cmd --reload 
+firewall-cmd --zone=public --list-all
+firewall-cmd --remove-service=ssh --zone=public
+
+## 
+
+
+## list only the rich rules 
+firewall-cmd --zone=public --list-rich-rules
+
+## persist all runtime rules 
+firewall-cmd --runtime-to-permanent
+
+```
+
+
+### References 
+
+  * https://www.linuxjournal.com/content/understanding-firewalld-multi-zone-configurations#:~:text=Going%20line%20by%20line%20through,or%20source%20associated%20with%20it.
+  * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
+
+### Scannen und Überprüfen mit telnet/nmap
+
+### iptables Wirkweise und Beispiele
+
+
+### Überblick
+
+![iptables Überblick](https://webguy.vip/wp-content/uploads/2021/07/IPTABLES.jpg))
+
+```
+Quelle: https://webguy.vip/example-of-iptables/
+```
+
+### Was wird unter der Haube verwendet (iptables oder nf_tables) 
+
+```
+## Hier unter der Haube nf_tables 
+iptables --version 
+## iptables v1.8.7 (nf_tables)
+
+## Ansonsten muss hier (legacy) stehen 
+## Dann ist es ein reines iptables 
+```
+
+
+### Tables 
+
+```
+INPUT 
+OUTPUT 
+FORWARD 
+
+PREROUTING 
+POSTROUTING 
+
+```
+
+### Cheatsheet 
+
+```
+manage chain:
+## iptables -N new_chain				// create a chain
+## iptables -E new_chain old_chain  		// edit a chain
+## iptables -X old_chain				// delete a chain
+
+redirecting packet to a user chain:
+## iptables -A INPUT -p icmp -j new_chain
+
+listing rules:
+## iptables -L					// list all rules of all tables
+## iptables -L -v				// display rules and their counters
+## iptables -L -t nat				// display rules for a specific tables
+## iptables -L -n --line-numbers			// listing rules with line number for all tables
+## iptables -L INPUT -n --line-numbers		// listing rules with line number for specific table
+
+manage rules:
+## iptables -A chain				// append rules to the bottom of the chain
+## iptables -I chain [rulenum](default at the top or 1)
+## iptables -R chain rulenum			// replace rules with rules specified for the rulnum
+## iptables -D chain	rulenum			// delete rules matching rulenum (default 1)
+## iptables -D chain				// delete matching rules
+
+change default policy:
+## iptables -P chain target			// change policy on chain to target
+## iptables -P INPUT DROP			// change INPUT table policy to DROP
+## iptables -P OUTPUT DROP			// change OUTPUT chain policy to DROP
+## iptables -P FORWARD DROP			// change FORWARD chain policy to DROP
+```
+
+### Beispiel: ssh / apache konfigurieren
+
+```
+## Variante nur eingehender Traffic 
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -L -v
+
+iptables -P INPUT DROP
+```
+
+
+
+```
+## Variante mit ausgehendem Traffic 
+ # Standard policy of drop setzen 
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP 
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
+```
+
+```
+## Tables flushen
+iptables -F
+```
+
+### Regeln persistent setzen 
+
+```
+apt install iptables-persistent 
+## wahrscheinlich 
+zypper install iptables-service 
+
+systemctl cat iptables-service 
+systemctl status iptables-service 
+
+## Regeln speichern, um sie beim Booten zu setzen
+iptables-save > /etc/iptables/rules.v4 
+```
+
+
+### Ausblick 
+
+  * Unter der Haube wird heute inftables verwendet 
+  * s. iptables -L (alt: legacy) 
+
+### Referenzen 
+
+ * https://www.karlrupp.net/de/computer/nat_tutorial
 
 ## Digitalocean 
 
