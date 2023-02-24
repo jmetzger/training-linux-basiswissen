@@ -99,6 +99,14 @@ firewall-cmd --permanent --zone=public --remove-service=ssh
 firewall-cmd --reload 
 ```
 
+## runtime und permanente configuration anschauen für meine active zone 
+
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all --permanent 
+```
+
+
 ## Best way to add a new rule 
 ```
 # Step1: do it persistent -> written to disk 
