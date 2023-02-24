@@ -3,7 +3,10 @@
 ## keine Befehle lvdisplay,vgdisplay etc.
 
 ```
+# Debian / Ubuntu 
 apt install lvm2
+# Redhat 
+dnf install lvm2 
 ```
 
 
