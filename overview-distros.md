@@ -1,5 +1,20 @@
 # Überblick 
 
+## Was hat die jeweilige Familie gemeinsam ?
+
+```
+## Aus was besteht eine Distribution 
+Installer 
+Grafische Oberfläche (GNOME) 
+Bestimmte Teilmenge von Anwendungen / Features
+Paket-Managment-System 
+
+Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
+
+```
+
+
+
 ## Multi-Purpose - Distributionen (Ideal zum Starten) 
 
 ### Redhat-Familie 
@@ -27,17 +42,6 @@ SLES (SuSE Linux Enterprise - SLES 15)
 OpenSuSE 
 ```
 
-## Was hat die jeweilige Familie gemeinsam ?
-
-```
-Installer 
-Grafische Oberfläche (GNOME) 
-Bestimmte Teilmenge von Anwendungen / Features
-Paket-Managment-System 
-
-Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
-
-```
 
 ## Varianten Ubuntu 
 
