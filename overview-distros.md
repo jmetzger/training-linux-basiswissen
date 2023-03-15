@@ -25,6 +25,7 @@ Redhat.  — rpm / (yum / dnf) (Support-Vertrag) - RHEL 9 (Redhat Enterprise Lin
 Fedora 
 Rocky Linux / Alma Linux 
 Scientific Linux 
+Oracle Linux
 ```
 
 ### Debian Familie 
