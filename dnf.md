@@ -1,5 +1,12 @@
 # dnf
 
+## Welches Paket installiert ein Programm 
+
+```
+dnf whatprovides lsof 
+
+```
+
 ## Versionen von Paketen anzeigen die noch nicht installiert sind 
 
 ```
