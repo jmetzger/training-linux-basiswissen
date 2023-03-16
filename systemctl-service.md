@@ -157,5 +157,7 @@ journalctl -u apache2 -f
 # hilft beim identifizieren von feldern 
 journalctl -u apache2.service -o json-pretty
 
-
+# in den letzten 11minutes 
+journalctl -u sshd.service --since '11min ago'  -r
+journalctl -u sshd.service --since '2hours ago'  -r
 ```
