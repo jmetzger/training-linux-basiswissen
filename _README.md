@@ -96,6 +96,7 @@
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](#mehrere-versionen-eines-programms-zb-php-cli-verwalten)
      * [Verzeichnisse in archiven sichern - tar](#verzeichnisse-in-archiven-sichern---tar)
+     * [Eigenes Repo mit Reposerver erstellen - redhat](#eigenes-repo-mit-reposerver-erstellen---redhat)
   1. Absicherung System 
      * [ssh absichern](#ssh-absichern)
   1. Firewall und ports
@@ -129,7 +130,7 @@
      * [Linux Server Local Hacken über boot-manager](#linux-server-local-hacken-über-boot-manager)
      * [Cheatsheet - wichtigste Befehle](#cheatsheet---wichtigste-befehle)
   1. Literatur 
-     * [Literatur](#literatur)
+     * [Literaturu.a. bash scripting](#literaturua-bash-scripting)
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](#wo-finde-ich-hilfe-im-internet)
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
@@ -169,6 +170,21 @@
 ### Überblick
 
 
+### Was hat die jeweilige Familie gemeinsam ?
+
+```
+### Aus was besteht eine Distribution 
+Installer 
+Grafische Oberfläche (GNOME) 
+Bestimmte Teilmenge von Anwendungen / Features
+Paket-Managment-System 
+
+Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
+
+```
+
+
+
 ### Multi-Purpose - Distributionen (Ideal zum Starten) 
 
 #### Redhat-Familie 
@@ -179,6 +195,7 @@ Redhat.  — rpm / (yum / dnf) (Support-Vertrag) - RHEL 9 (Redhat Enterprise Lin
 Fedora 
 Rocky Linux / Alma Linux 
 Scientific Linux 
+Oracle Linux
 ```
 
 #### Debian Familie 
@@ -196,17 +213,6 @@ SLES (SuSE Linux Enterprise - SLES 15)
 OpenSuSE 
 ```
 
-### Was hat die jeweilige Familie gemeinsam ?
-
-```
-Installer 
-Grafische Oberfläche (GNOME) 
-Bestimmte Teilmenge von Anwendungen / Features
-Paket-Managment-System 
-
-Installer, Grafische Oberfläche, Paket-Management, Anwendungen und Kernel -> nennt man -> Distribution
-
-```
 
 ### Varianten Ubuntu 
 
@@ -1987,7 +1993,9 @@ journalctl -u apache2 -f
 ## hilft beim identifizieren von feldern 
 journalctl -u apache2.service -o json-pretty
 
-
+## in den letzten 11minutes 
+journalctl -u sshd.service --since '11min ago'  -r
+journalctl -u sshd.service --since '2hours ago'  -r
 ```
 
 ### Dienste installieren und (optional) starten
@@ -2253,8 +2261,11 @@ IOSchedulingClass=idle
 ### Schritt 1: script erstellen und testen
 
 ```
+vi /usr/local/bin/scriptv2.sh
+```
+
+```
 ##!/bin/bash 
-## vi /usr/local/bin/scriptv2.sh
 LOGTO=/var/log/scriptv2.log
 echo "script script-ng schreibt was ins log...." 
 env
@@ -2922,6 +2933,43 @@ uname -a
 ### dnf und dnf module
 
 
+### Befehle cheatsheet
+
+```
+## alle repos anzeigen
+dnf repolist all
+
+## alle verfügbaren Pakete anzeigen
+dnf list available | less
+
+## alle installierten Pakete anzeigen
+dnf list installed 
+
+## paket installieren
+dnf install <paket>
+
+## paket deinstallieren 
+dnf remove <paket>
+
+## nach updates suchen 
+dnf check-update 
+
+## alle Pakete upgraden 
+##  --refresh forces an immediate update of the repository lists.
+dnf upgrade --refresh 
+
+## nur ein Paket upgraden
+## Abhängigkeiten werden dann auch geupgraded 
+dnf upgrade <paketname>
+```
+
+### Welches Paket installiert ein Programm 
+
+```
+dnf whatprovides lsof 
+
+```
+
 ### Versionen von Paketen anzeigen die noch nicht installiert sind 
 
 ```
@@ -2952,6 +3000,54 @@ dnf module list
 dnf module info php:8.1 | less
 
 ```
+
+### Weitere repos ausser die Distri - Repos, wann ? 
+
+```
+## Installiert repos mit zusatzpaket 
+dnf search epel-release 
+
+## Spezielle Repos vom Hersteller,
+## z.B. mariadb 
+https://mariadb.org/download/?t=repo-config&d=Red+Hat+Enterprise+Linux+9&v=10.11&r_m=agdsn
+## repo einpflegen
+```
+
+### Repos mit dem config-manager anlegen
+
+```
+## https://dnf-plugins-core.readthedocs.io/en/latest/config_manager.html
+dnf config-manager --add-repo http://example.com/some/additional.repo
+```
+
+### Pakete und Abhängigkeiten finden 
+
+```
+## best bet 
+yum deplist httpd
+
+## dependencies
+dnf repoquery --requires <package>
+dnf repoquery --requires vim
+
+## recommends
+dnf repoquery --recommends httpd
+
+## Download package and check for the dependencies
+dnf download httpd 
+rpm -qpR httpd-2.4.53-7.el9_1.1.x86_64.rpm
+
+## Extract package contents
+mkdir packagecontents; cd packagecontents
+rpm2cpio ../httpd-2.4.53-7.el9_1.1.x86_64.rpm | cpio -idmv
+
+
+```
+
+
+### bestimmte pakete für upgrade speren 
+
+  * https://www.howtoforge.de/anleitung/wie-man-paket-und-kernel-updates-in-centos-rocky-linux-blockiert/
 
 ### Cheatsheet apt vs yum/zypper
 
@@ -3017,6 +3113,70 @@ tar xvf /usr/src/_etc.20220522.tar.gz etc/skel/.bashrc
 
 ```
 
+
+### Eigenes Repo mit Reposerver erstellen - redhat
+
+
+### Steps - on server 
+
+```
+dnf install -y httpd createrepo 
+systemctl start httpd 
+systemctl enable httpd 
+cd /var/www/html
+## sicherstellen, dass keine startseite von apache erscheint 
+touch index.html
+mkdir repo
+cd repo 
+dnf download lsof 
+createrepo /var/www/html/repo 
+```
+
+```
+## find public ip 
+ip -br a
+e.g. 61.41.41.12
+```
+
+### Steps: Test in browser
+
+```
+## Test in any browser 
+http://61.41.41.12/repo
+```
+
+### Steps on clients to use repo 
+
+```
+dnf config-manager --add-repo http://61.41.41.12/repo
+## Adjust some stuff 
+cd /etc/yum.repos.d
+mv [old-name.repo] company.repo
+vi company.repo 
+## change name in brackets to [company]
+## add line 
+gpgcheck=0 
+```
+
+```
+## check if repo can be found under repolist
+dnf repolist 
+```
+
+```
+## see package with all destinations 
+dnf list available lsof --showduplicates
+
+
+## Install package on client from repo 
+dnf install lsof --repo=company 
+
+### Uuups: dependancy 
+dnf install <depnendancy name>
+
+### Try again 
+dnf install lsof --repo=company 
+```
 
 ## Absicherung System 
 
@@ -3601,6 +3761,10 @@ befehl1 || befehl2
 ### Vordefinierte Variablen z.B $0
 
 
+```
+cd /usr/local/bin
+vi params.sh
+```
 
 ```
 ##!/bin/bash
@@ -3614,20 +3778,26 @@ echo Hallo heute ist:$(date)
 ##exit 22
 ```
 
+```
+chmod u+x params.sh
+params.sh
+```
+
 ### Funktionen in der bash
 
 
 ```
+vi /usr/local/bin/functiontest.sh
+```
+
+```
 ##!/bin/bash
-## vi /usr/local/bin/functiontest.sh
-## chmod u+x /usr/local/bin/functiontest.sh  
 
 LOGTO=/var/log/logme
 
 function logto {
-  # echo "hello jochen"
   date >> $LOGTO
-  echo "hello jochen: $1" >> $LOGTO
+  echo "hello : $1" >> $LOGTO
 }
 
 logto 'Hans hat Glück'
@@ -3636,9 +3806,11 @@ cat $LOGTO
 ```
 
 ```
+chmod u+x /usr/local/bin/functiontest.sh  
 ## im script wird Funktion aufgerufen 
 functiontest.sh
 ```
+
 
 ### Best practice structure bash - scripts
 
@@ -3665,8 +3837,8 @@ function logto {
 ### File 3: script.sh 
 
 ```
-## vi /usr/local/bin/script.sh
 ##!/bin/bash
+## vi /usr/local/bin/script.sh
   
 source /usr/local/bin/config.sh
 source /usr/local/bin/functions.sh
@@ -3735,7 +3907,7 @@ if test $COUNT -eq 0
 then
   echo User $USERNAME wird angelegt
   useradd -m -s /bin/bash $USERNAME
-  usermod -aG sudo $USERNAME
+  usermod -aG wheel $USERNAME
   echo "$USERNAME:$PASS" | chpasswd
 else
   echo User $USERNAME existiert bereits !
@@ -3743,8 +3915,7 @@ fi
 
 hostnamectl set-hostname instructor.training.local
 
-apt-get update -y
-apt-get install -y apache2
+dnf install -y httpd
 
 exit 0
 ```
@@ -4084,9 +4255,95 @@ starten des system
 
 ### Cheatsheet - wichtigste Befehle
 
+
+### Bewegungskommandos und Dateimanipulation 
+
+```
+cd 
+ls -la
+## Anlegen verzeichnis 
+mkdir 
+## wo bind ich
+pwd
+## kopieren 
+cp -a
+
+## datei löschen 
+rm dateiname
+```
+
+### Unix Tools 
+
+```
+cat /etc/passwd 
+cat /etc/passwd | grep root
+## Zeilen zählen 
+cat /etc/passwd | wc -l 
+```
+
+### Bearbeitung 
+
+```
+vi dateiname 
+## datei reinschreiben 
+## anhängen 
+echo "neue Zeile" >> dateiname 
+```
+
+
+### Pakete installieren 
+
+```
+dnf search <such-pattern>
+dnf list httpd
+dnf install httpd 
+```
+
+### Services 
+
+```
+systemctl status sshd 
+systemctl reload sshd
+systemctl restart sshd 
+systemctl enable sshd 
+systmectl cat sshd 
+
+## journal 
+journalctl -u sshd.service 
+```
+
+### User
+
+```
+## user anlegen 
+adduser username
+## Passwort setzen 
+passwd username 
+## Gruppe anlegen 
+groupadd sshadmin 
+## Weitere Gruppe user hinzufügen 
+usermod -aG sshadmin username 
+```
+
+### Berechtigungen 
+
+```
+## Besitzer darf Berechtigungen ändern 
+chmod u+x script.sh 
+chmod 444 dateiname 
+
+## Besitzerrechte geändert, darf nur root
+chown username dateiname 
+```
+
+
+
+
+
+
 ## Literatur 
 
-### Literatur
+### Literaturu.a. bash scripting
 
 ### Literatur 
 
