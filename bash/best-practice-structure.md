@@ -22,8 +22,8 @@ function logto {
 ## File 3: script.sh 
 
 ```
-# vi /usr/local/bin/script.sh
 #!/bin/bash
+# vi /usr/local/bin/script.sh
   
 source /usr/local/bin/config.sh
 source /usr/local/bin/functions.sh
