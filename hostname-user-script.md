@@ -29,7 +29,7 @@ if test $COUNT -eq 0
 then
   echo User $USERNAME wird angelegt
   useradd -m -s /bin/bash $USERNAME
-  usermod -aG sudo $USERNAME
+  usermod -aG wheel $USERNAME
   echo "$USERNAME:$PASS" | chpasswd
 else
   echo User $USERNAME existiert bereits !
@@ -37,8 +37,7 @@ fi
 
 hostnamectl set-hostname instructor.training.local
 
-apt-get update -y
-apt-get install -y apache2
+dnf install -y httpd
 
 exit 0
 ```
