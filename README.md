@@ -130,7 +130,7 @@
      * [Linux Server Local Hacken über boot-manager](linux-server-local-hacken.md)
      * [Cheatsheet - wichtigste Befehle](extras/wichtigste-kommandos.md)
   1. Literatur 
-     * [Literatur](literatur.md) 
+     * [Literaturu.a. bash scripting](literatur.md) 
      * [Cheatsheet Commandline](https://cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)
      * [Wo finde ich Hilfe im Internet](hilfe-im-internet.md)
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
