@@ -1,5 +1,9 @@
 # Vordefinierte Bash-Variablen
 
+```
+cd /usr/local/bin
+vi params.sh
+```
 
 ```
 #!/bin/bash
@@ -11,4 +15,9 @@ echo '#'$#
 echo Hallo heute ist:$(date)
 
 #exit 22
+```
+
+```
+chmod u+x params.sh
+params.sh
 ```
