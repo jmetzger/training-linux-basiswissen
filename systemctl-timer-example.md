@@ -3,8 +3,11 @@
 ## Schritt 1: script erstellen und testen
 
 ```
+vi /usr/local/bin/scriptv2.sh
+```
+
+```
 #!/bin/bash 
-# vi /usr/local/bin/scriptv2.sh
 LOGTO=/var/log/scriptv2.log
 echo "script script-ng schreibt was ins log...." 
 env
