@@ -1,9 +1,11 @@
 # Beispiel einer Funktion 
 
 ```
+vi /usr/local/bin/functiontest.sh
+```
+
+```
 #!/bin/bash
-# vi /usr/local/bin/functiontest.sh
-# chmod u+x /usr/local/bin/functiontest.sh  
 
 LOGTO=/var/log/logme
 
@@ -19,6 +21,8 @@ cat $LOGTO
 ```
 
 ```
+chmod u+x /usr/local/bin/functiontest.sh  
 # im script wird Funktion aufgerufen 
 functiontest.sh
 ```
+
