@@ -10,9 +10,8 @@ vi /usr/local/bin/functiontest.sh
 LOGTO=/var/log/logme
 
 function logto {
-  # echo "hello jochen"
   date >> $LOGTO
-  echo "hello jochen: $1" >> $LOGTO
+  echo "hello : $1" >> $LOGTO
 }
 
 logto 'Hans hat Glück'
