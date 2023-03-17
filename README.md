@@ -95,7 +95,8 @@
      * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
      * [Archive runterladen und entpacken](tar-download.md) 
      * [Mehrere Versionen eines Programms z.B. php (cli) verwalten](update-alternatives.md)
-     * [Verzeichnisse in archiven sichern - tar](/backups/tar.md)     
+     * [Verzeichnisse in archiven sichern - tar](/backups/tar.md)   
+     * [Eigenes Repo mit Reposerver erstellen - redhat](reposerver-redhat.md)
   1. Absicherung System 
      * [ssh absichern](ssh-absichern.md) 
   1. Firewall und ports
