@@ -87,6 +87,31 @@ https://mariadb.org/download/?t=repo-config&d=Red+Hat+Enterprise+Linux+9&v=10.11
 dnf config-manager --add-repo http://example.com/some/additional.repo
 ```
 
+## Pakete und Abhängigkeiten finden 
+
+```
+# best bet 
+yum deplist httpd
+
+# dependencies
+dnf repoquery --requires <package>
+dnf repoquery --requires vim
+
+# recommends
+dnf repoquery --recommends httpd
+
+# Download package and check for the dependencies
+dnf download httpd 
+rpm -qpR httpd-2.4.53-7.el9_1.1.x86_64.rpm
+
+# Extract package contents
+mkdir packagecontents; cd packagecontents
+rpm2cpio ../httpd-2.4.53-7.el9_1.1.x86_64.rpm | cpio -idmv
+
+
+```
+
+
 ## bestimmte pakete für upgrade speren 
 
   * https://www.howtoforge.de/anleitung/wie-man-paket-und-kernel-updates-in-centos-rocky-linux-blockiert/
