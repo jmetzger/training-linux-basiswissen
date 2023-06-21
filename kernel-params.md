@@ -8,7 +8,11 @@ Zeile
 linux 
 ganz am Ende
 
+# Centos / Rocky / Redhat
 man kernel-command-line
+
+# Ubuntu / Debian
+man kernel-params 
 
 
 Danach F10 oder CTRL-x 
