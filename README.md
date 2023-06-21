@@ -90,7 +90,7 @@
      * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
   1. Wartung, Sicherung und Aktualisierung
-     * [Aktualisierung des Systems](update-upgrade.md)
+     * [Aktualisierung des Systems (Ubuntu/Debian)](update-upgrade.md)
      * [dnf und dnf module](dnf.md)
      * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
      * [Archive runterladen und entpacken](tar-download.md) 
