@@ -63,7 +63,7 @@ mount /dev/vg1/data /mnt/lvmplatte
 ## Schritt 6: /etc/fstab 
 
 ```
-umount /mnt/platte
+umount /mnt/lvmplatte
 # vi /etc/fstab 
 /dev/vg1/data /mnt/lvmplatte  ext4  defaults 0 1 
 
