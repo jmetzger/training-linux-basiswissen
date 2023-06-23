@@ -11,6 +11,12 @@
     * ssh
     * Apache
    
+## Schritt 2.5: Firewall einrichten 
+
+  * Nur services / ports freigeben die benötigt werden
+  * Standard bei firewalld -> Zone: public
+  * Am besten sogar nach egress (ausgehender Traffic), nur bestimmte Ziele erlauben 
+   
 ## Schritt 3: Zugänge absichern 
 
   * ssh: nur bestimmte Nutzer dürfen zuzgreifen
