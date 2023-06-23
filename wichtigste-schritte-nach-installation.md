@@ -26,3 +26,21 @@
   * evt. automatisch
     * unattended-upgrades
     * https://access.redhat.com/documentation/de-de/red_hat_enterprise_linux/9/html/managing_software_with_the_dnf_tool/assembly_automating-software-updates-in-rhel-9_managing-software-with-the-dnf-tool
+   
+## Extra - ssh absichern 
+
+```
+sshd_config:
+# nur on, when server als jump 
+AllowAgentForwarding no
+AllowTcpForwarding no
+# Auskommentieren, wenn nicht benötigt
+# Subsystem     sftp    /usr/libexec/openssh/sftp-server
+
+# Nur bestimmmte Gruppen erlauben (Unix-Gruppe
+# Beispiel 
+# groupadd sshadmin
+# usermod -aG sshadmin kurs 
+AllowGroups sshadmin 
+
+```
