@@ -74,6 +74,7 @@
      * [Verzeichnisse backup/restore mit tar](tar.md)
      * [Dateien per scp übertragen](scp.md)   
      * [Windows Share mounten](windows-share-mounten.md)
+     * [Wichtigste Absicherung nach Installation](wichtigste-schritte-nach-installation.md)
   1. Apache 
      * [SSL - LetsEncrypt mit Ubuntu 22.04](apache-ssl-letsencrypt-ubuntu.md)
   1. Partitionierung und Filesystem
