@@ -3,5 +3,7 @@
 ```
 ip a 
 # noch schöner - ausgabe ist schlanker 
-ip -br a 
+ip -br a
+# und noch mit Farbe
+ip -br -c a
 ```
