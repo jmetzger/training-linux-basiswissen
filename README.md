@@ -137,6 +137,7 @@
      * [Wo finde ich Hilfe im Internet](hilfe-im-internet.md)
      * [RDP-Client unter Windows](https://linuxwiki.de/rdesktop)
      * [Linux Malware Scanner](https://www.rfxn.com/projects/linux-malware-detect/)
+     * [Linux DistroWatch](https://distrowatch.com/dwres.php?resource=major&language=DE)
 
 ## Backlog 
 
