@@ -9,6 +9,7 @@
      * [Dateitypen](dateitypen.md) 
   1. Administration / Tipps & Tricks 
      * [IP-Adresse herausfinden](ip.md)
+     * [netplan auf dhcp - mac-adresse umstellen - virtualbox](netplan-dhcp-use-max-virtualbox.md)
      * [Welches Programm macht mein Filesystem voll](find-critical-large-files.md)
      * [Neue Festplatte/Partition erstellen und einhängen](new-disk-mount.md) 
   1. Basisbefehle
