@@ -38,7 +38,7 @@ pvcreate /dev/sdb2 /dev/sdb3
 pvdisplay 
 ```
 
-## Schritt 3: Volumen Group erstellen (vg) 
+## Schritt 3: Volume Group erstellen (vg) 
 
 ```
 vgcreate vg1 /dev/sdb2 /dev/sdb3
