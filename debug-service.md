@@ -3,6 +3,14 @@
 ## Vorbereiten für Training -> Fehler einbauen 
 
 ```
+# falsche Konfigurationeinstellung in
+/etc/mysql/mariadb.d/50-server.cnf unter
+[mysqld]
+z.B.
+sonnenschirm
+
+eintragen 
+```
 
 ## Walkthrough 
 
