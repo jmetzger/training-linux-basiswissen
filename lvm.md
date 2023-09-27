@@ -48,16 +48,16 @@ vgdisplay
 ## Schritt 4: Logical Volume erstellen (lv) 
 
 ```
-lvcreate -n data -L5G vg1
+lvcreate -n lvdata1 -L5G vg1
 lvdisplay
 ```
 
 ## Schritt 5: filesystem aufbringen (ext4) und probehalber mounten 
 
 ```
-mkfs.ext4 /dev/vg1/data
+mkfs.ext4 /dev/vg1/lvdata1
 mkdir -p /mnt/lvmplatte
-mount /dev/vg1/data /mnt/lvmplatte
+mount /dev/vg1/lvdata1 /mnt/lvmplatte
 ```
 
 ## Schritt 6: /etc/fstab 
