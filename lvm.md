@@ -76,7 +76,7 @@ reboot
 
 ```
 
-## Schritt 7: Vergrößern des Logical Volumes (Variante 1)
+## Schritt 7a: Vergrößern des Logical Volumes (Variante 1)
 
 ```
 # Voraussetzung, ausreichend Speicher in der volumegroup 
@@ -90,7 +90,7 @@ lvresize -L +200M --resizefs /dev/vg1/lvdata1
 
 ```
 
-## Schritt 7: logical volume erweitern (Variante 2)  
+## Schritt 7b: logical volume erweitern (Variante 2)  
 
 ```
 # gleich mit Erweiterung des Filesystems 
