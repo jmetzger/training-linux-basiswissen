@@ -65,7 +65,7 @@ mount /dev/vg1/lvdata1 /mnt/lvmplatte
 ```
 umount /mnt/lvmplatte
 # vi /etc/fstab 
-/dev/vg1/data /mnt/lvmplatte  ext4  defaults 0 1 
+/dev/vg1/lvdata1 /mnt/lvmplatte  ext4  defaults 0 1 
 
 mount -av
 
@@ -76,7 +76,7 @@ reboot
 
 ```
 
-## Schritt 7: Vergrößern des Logical Volumes 
+## Schritt 7: Vergrößern des Logical Volumes (Variante 1)
 
 ```
 # Voraussetzung, ausreichend Speicher in der volumegroup 
@@ -86,15 +86,15 @@ reboot
 # 3. vgextend vg /dev/sdb1 
 
 # --resizefs
-sudo lvresize -L +200M --resizefs vg0/data
+lvresize -L +200M --resizefs /dev/vg1/lvdata1
 
 ```
 
-## Fall 2: logical volume erweitern 
+## Schritt 7: logical volume erweitern (Variante 2)  
 
 ```
 # gleich mit Erweiterung des Filesystems 
-lvextend --resizefs -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+lvextend --resizefs -l +100%FREE /dev/vg1/lvdata1
 
 ```
 
