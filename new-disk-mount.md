@@ -54,3 +54,7 @@ nano /etc/fstab
 # mounts everything from /etc/fstab of not mounted yet 
 mount -av 
 ```
+
+```
+# Please reboot, if mount -av works great
+```
