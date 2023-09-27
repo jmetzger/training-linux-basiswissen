@@ -1,6 +1,6 @@
 # Create new partition on new disk and mount it 
 
-## Walkthrough (Creaation and mountoing manually)
+## Walkthrough (Creation and mountoing manually)
 
 ```
 # Step 0: 
