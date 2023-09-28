@@ -109,11 +109,11 @@ firewall-cmd --list-all --permanent
 
 ## Best way to add a new rule 
 ```
-# Step1: do it persistent -> written to disk 
+# Step1: do it for runtime + test
 firewall-cmd --add-port=82/tcp --permanent  
 
-# Step 2: + reload firewall 
-firewall-cmd --reload 
+# Step 2: on success add to permanent 
+firewall-cmd --runtime-to-permanent 
 ```
 
 ## Enable / Disabled icmp 
