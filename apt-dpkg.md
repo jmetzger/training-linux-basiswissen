@@ -70,7 +70,9 @@ apt search apache | grep ^apache
 
 ```
 # mit genauem Namen 
-apt install apache2 
+apt install apache2
+# ohne Nachfrage
+apt install -y apache2 
 ```
 
 ## Liste der Files aus dem Paket (wenn installiert)
