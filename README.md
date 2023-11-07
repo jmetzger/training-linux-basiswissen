@@ -97,6 +97,7 @@
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
   1. Wartung, Sicherung und Aktualisierung
      * [Aktualisierung des Systems (Ubuntu/Debian)](update-upgrade.md)
+     * [apt und dpkg](apt-dpkg.md)
      * [Wissen rpm](rpm.md)
      * [dnf und dnf module](dnf.md)
      * [Cheatsheet apt vs yum/zypper](https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet)
