@@ -8,10 +8,11 @@ dpkg -l
 apt list --installed
 ```
 
-## Alle Paket die zur Verfügung stehen 
+## Alle Paket die zur Verfügung  stehen bzw. installiert sind 
 
 ```
-apt list 
+apt list # alle Pakete die zur Verfügung stehen 
+apt list --installed # Pakete die installiert sind
 ```
 
 ## Wo sind die Repos konfiguriert 
