@@ -39,7 +39,8 @@
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
      * [Benutzer anlegen](create-users.md) 
      * [Benutzer löschen (debian)](deluser.md)
-     * [sudo Benutzer erstellen](mod-user-sudo.md) 
+     * [sudo Benutzer erstellen](mod-user-sudo.md)
+     * [Übung ACL's](uebungen-rechte/acl.md)
   1. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](cat-head.md)
