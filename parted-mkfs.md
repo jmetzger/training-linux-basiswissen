@@ -9,7 +9,7 @@
 lsblk 
 
 # Schritt 3: Platte partitionieren 
-mkpart /dev/sdb1
+mkpart /dev/sdb
 mklabel gpt
 mkpart data2 ext4 2048s 500M # data2 ist name der Partition bei gpt 
 quit 
