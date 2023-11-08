@@ -82,8 +82,8 @@ reboot
 # Voraussetzung, ausreichend Speicher in der volumegroup 
 # oder dazufügen
 # 1. neue partition erstellen (auch auf komplett neuer Platte möglich) 
-# 2. pvcreate /dev/sdb1 
-# 3. vgextend vg /dev/sdb1 
+# 2. pvcreate /dev/sdb4 
+# 3. vgextend vg1 /dev/sdb4 
 
 # --resizefs
 lvresize -L +200M --resizefs /dev/vg1/lvdata1
