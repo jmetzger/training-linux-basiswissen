@@ -13,7 +13,7 @@ parted /dev/sdb
 
 # Schritt 3.5: Innerhalb von parted
 mklabel gpt
-mkpart data2 ext4 2048s 500M # data2 ist name der Partition bei gpt 
+mkpart data2 ext4 1M 500M # data2 ist name der Partition bei gpt 
 quit 
 
 # Schritt 4: Partition formatiert 
