@@ -83,6 +83,7 @@
      * [SSL - LetsEncrypt mit Ubuntu 22.04](apache-ssl-letsencrypt-ubuntu.md)
   1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](parted-mkfs.md)
+     * [boot if mount fails](fstab/nobootwait.md)
   1. Boot-Prozess und Kernel 
      * [Hintergründe zum Starten des Systems](/starten-des-system.md)
      * [Grub konfigurieren](grub.md)
