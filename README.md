@@ -110,7 +110,8 @@
      * [ssh absichern](ssh-absichern.md) 
   1. Firewall und ports
      * [firewalld Redhat](firewalld-redhat.md)
-     * [firewalld Ubuntu](firewalld-ubuntu.md) 
+     * [firewalld Ubuntu](firewalld-ubuntu.md)
+     * [Übung Ubuntu: Apache installieren und firewalld freischalten](firewalld/ubuntu-apache-install-firewalld.md)
   1. Netzwerk/Dienste 
      * [Wie Netzwerk einrichten in unterschiedlichen Distros](netzwerk-einrichten-distris.md)
      * [Hostname setzen](hostnamectl.md)
