@@ -108,7 +108,7 @@ firewall-cmd --reload
 ## Best way to add a new rule 
 ```
 # Step1: do it for runtime + test
-firewall-cmd --add-port=82/tcp --permanent  
+firewall-cmd --add-port=82/tcp 
 
 # Step 2: on success add to permanent 
 firewall-cmd --runtime-to-permanent 
